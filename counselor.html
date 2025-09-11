@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Counselor - Eirene AI Wellness</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            /* Premium Color Palette */
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --accent-2: #f5576c;
+            --accent-3: #4facfe;
+            --success-color: #00d4aa;
+            --warning-color: #ffb946;
+            --error-color: #ff6b6b;
+            
+            /* Sophisticated Text Colors */
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --text-light: #cbd5e0;
+            
+            /* Modern Background System */
+            --bg-primary: #fafbfc;
+            --bg-secondary: #f7f9fc;
+            --bg-tertiary: #eef2f7;
+            --bg-card: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.25);
+            
+            /* Chat Colors - Light Mode */
+            --chat-bg: #ffffff;
+            --chat-user-bg: #667eea;
+            --chat-ai-bg: #f8fafc;
+            --chat-border: #e2e8f0;
+            --chat-text: #1a1a2e;
+            --chat-user-text: #ffffff;
+            --chat-ai-text: #1a1a2e;
+            --chat-input-bg: #ffffff;
+            --chat-input-border: #e2e8f0;
+            
+            /* Border & Shadow System */
+            --border-color: #e2e8f0;
+            --border-light: #f1f5f9;
+            --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-glow: 0 0 40px rgba(102, 126, 234, 0.15);
+            
+            /* Premium Gradients */
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-tertiary: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-success: linear-gradient(135deg, #00d4aa 0%, #01a085 100%);
+            --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
+            
+            /* Modern Border Radius */
+            --radius-xs: 8px;
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --radius-full: 9999px;
+        }
+
+        [data-theme="dark"] {
+            --text-primary: #f7fafc;
+            --text-secondary: #e2e8f0;
+            --text-muted: #a0aec0;
+            --text-light: #718096;
+            --bg-primary: #0f0f23;
+            --bg-secondary: #16213e;
+            --bg-tertiary: #1a2332;
+            --bg-card: #1e2a3a;
+            --bg-glass: rgba(30, 42, 58, 0.8);
+            --border-color: #2d3748;
+            --border-light: #4a5568;
+            --shadow-glow: 0 0 40px rgba(102, 126, 234, 0.3);
+            
+            /* Chat Colors - Dark Mode */
+            --chat-bg: #1e2a3a;
+            --chat-user-bg: #667eea;
+            --chat-ai-bg: #2d3748;
+            --chat-border: #4a5568;
+            --chat-text: #f7fafc;
+            --chat-user-text: #ffffff;
+            --chat-ai-text: #f7fafc;
+            --chat-input-bg: #2d3748;
+            --chat-input-border: #4a5568;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            position: relative;
+        }
+
+        /* Relaxing Background Animations */
+        .wellness-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Gentle Floating Orbs */
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: gentleFloat 12s infinite ease-in-out;
+        }
+
+        .floating-orb:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.08), rgba(102, 126, 234, 0.02));
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 15s;
+        }
+
+        .floating-orb:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(240, 147, 251, 0.08), rgba(240, 147, 251, 0.02));
+            top: 60%;
+            right: 15%;
+            animation-delay: -3s;
+            animation-duration: 18s;
+        }
+
+        .floating-orb:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(79, 172, 254, 0.06), rgba(79, 172, 254, 0.02));
+            bottom: 25%;
+            left: 70%;
+            animation-delay: -7s;
+            animation-duration: 20s;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 0.4;
+            }
+            25% { 
+                transform: translateY(-20px) translateX(15px) scale(1.05);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: translateY(-10px) translateX(-10px) scale(0.95);
+                opacity: 0.3;
+            }
+            75% { 
+                transform: translateY(-30px) translateX(20px) scale(1.02);
+                opacity: 0.5;
+            }
+        }
+
+        /* Zen Gradient Overlay */
+        .zen-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(102, 126, 234, 0.02) 0%, 
+                transparent 25%, 
+                rgba(240, 147, 251, 0.02) 50%, 
+                transparent 75%, 
+                rgba(79, 172, 254, 0.02) 100%
+            );
+            animation: zenShift 12s ease-in-out infinite;
+        }
+
+        @keyframes zenShift {
+            0%, 100% { opacity: 0.8; }
+            33% { opacity: 0.4; }
+            66% { opacity: 0.9; }
+        }
+
+        .selectable, input, textarea, .chat-input {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        /* Enhanced Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--gradient-primary);
+            z-index: 10000;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Premium Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .loading-screen.hide {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1.1);
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+            margin-bottom: 2rem;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            opacity: 0.95;
+            animation: pulse 2s ease-in-out infinite;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.95; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Floating Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+            font-size: 1.2rem;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+            animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: var(--shadow-xl);
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3) translateY(100px); }
+            50% { opacity: 1; transform: scale(1.05) translateY(-10px); }
+            70% { transform: scale(0.95) translateY(5px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* Modern Glass Header */
+        .header {
+            background: var(--bg-glass);
+            backdrop-filter: blur(30px) saturate(180%);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(40px) saturate(200%);
+            padding: 0.8rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-full);
+            background: var(--bg-card);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logo:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .logo i {
+            font-size: 2rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rotate 4s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        .nav-center {
+            display: flex;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-full);
+            padding: 0.4rem;
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--radius-full);
+            position: relative;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            overflow: hidden;
+        }
+
+        .nav-links a.active {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-links a:hover:not(.active) {
+            background: var(--bg-secondary);
+            color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .profile-section:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .profile-status {
+            font-size: 0.75rem;
+            color: var(--success-color);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--success-color);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            padding: 0.7rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .theme-toggle:hover {
+            background: var(--gradient-primary);
+            color: white;
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            padding: 0.7rem;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* AI Counselor Dashboard */
+        .counselor-dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            padding-top: 120px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section with 3D OM */
+        .counselor-hero {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 4rem 3rem;
+            border-radius: var(--radius-xl);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-xl);
+            align-items: center;
+        }
+
+        .counselor-hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -15%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(180deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+        }
+
+        .hero-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
+        }
+
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius-full);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-feature i {
+            font-size: 1.2rem;
+        }
+
+        /* 3D OM Container */
+        .om-3d-container {
+            position: relative;
+            z-index: 2;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.8s both;
+        }
+
+        #om-canvas {
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 70%);
+            backdrop-filter: blur(20px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #om-canvas:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(255, 105, 180, 0.5);
+        }
+
+        /* Main Chat Interface */
+        .chat-interface {
+            display: grid;
+            grid-template-columns: 300px 1fr 280px;
+            gap: 2rem;
+            height: 70vh;
+            margin-bottom: 3rem;
+        }
+
+        /* Sidebar - Conversation History */
+        .chat-sidebar {
+            background: var(--chat-bg);
+            border-radius: var(--radius-xl);
+            padding: 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--chat-border);
+            overflow: hidden;
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both;
+        }
+
+        .sidebar-header {
+            background: var(--gradient-secondary);
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .sidebar-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .conversation-list {
+            padding: 1rem;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .conversation-item {
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            color: var(--chat-text);
+        }
+
+        .conversation-item:hover {
+            background: var(--bg-tertiary);
+            border-left-color: var(--primary-color);
+        }
+
+        .conversation-item.active {
+            background: var(--bg-tertiary);
+            border-left-color: var(--primary-color);
+        }
+
+        .conversation-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+            color: var(--chat-text);
+        }
+
+        .conversation-preview {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .conversation-time {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.3rem;
+        }
+
+        /* Main Chat Area */
+        .chat-main {
+            background: var(--chat-bg);
+            border-radius: var(--radius-xl);
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--chat-border);
+            overflow: hidden;
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+        }
+
+        .chat-header {
+            background: var(--gradient-primary);
+            padding: 1.5rem 2rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .counselor-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .counselor-info h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .counselor-status {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .online-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success-color);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        /* Chat Messages - Fixed Dark Mode Visibility */
+        .chat-messages {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            background: var(--bg-primary);
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 1.5rem;
+            animation: messageSlide 0.5s ease-out;
+        }
+
+        @keyframes messageSlide {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .message.user .message-avatar {
+            order: 2;
+            margin-right: 0;
+            margin-left: 1rem;
+            background: var(--gradient-tertiary);
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 1.2rem 1.5rem;
+            border-radius: var(--radius-lg);
+            background: var(--chat-ai-bg);
+            box-shadow: var(--shadow-xs);
+            border: 1px solid var(--chat-border);
+            position: relative;
+            color: var(--chat-ai-text);
+        }
+
+        .message.user .message-content {
+            background: var(--chat-user-bg);
+            color: var(--chat-user-text);
+            order: 1;
+            border: 1px solid var(--chat-user-bg);
+        }
+
+        .message-text {
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            opacity: 0.7;
+        }
+
+        .message.user .message-time {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .typing-indicator.show {
+            display: flex;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 0.3rem;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation: typingDot 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingDot {
+            0%, 60%, 100% { transform: scale(1); opacity: 0.5; }
+            30% { transform: scale(1.3); opacity: 1; }
+        }
+
+        /* Chat Input - Fixed Dark Mode */
+        .chat-input-area {
+            padding: 1.5rem 2rem;
+            background: var(--chat-bg);
+            border-top: 1px solid var(--chat-border);
+        }
+
+        .input-container {
+            display: flex;
+            align-items: flex-end;
+            gap: 1rem;
+            background: var(--chat-input-bg);
+            border: 2px solid var(--chat-input-border);
+            border-radius: var(--radius-xl);
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-container:focus-within {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .chat-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--chat-text);
+            resize: none;
+            outline: none;
+            max-height: 120px;
+            min-height: 20px;
+        }
+
+        .chat-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .input-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .voice-btn, .send-btn {
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .voice-btn {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+        }
+
+        .voice-btn:hover {
+            background: var(--gradient-secondary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .send-btn {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+
+        /* Right Sidebar - Session Info */
+        .session-sidebar {
+            background: var(--chat-bg);
+            border-radius: var(--radius-xl);
+            padding: 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--chat-border);
+            overflow: hidden;
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
+        }
+
+        .session-header {
+            background: var(--gradient-success);
+            padding: 1.5rem;
+            color: white;
+            text-align: center;
+        }
+
+        .session-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .session-duration {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .session-content {
+            padding: 1.5rem;
+        }
+
+        .mood-indicator-small {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .mood-emoji-large {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .mood-label {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .session-stats {
+            margin-bottom: 2rem;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--chat-text);
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .quick-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .quick-action-btn {
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--chat-border);
+            border-radius: var(--radius-md);
+            background: var(--chat-input-bg);
+            color: var(--chat-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quick-action-btn:hover {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Language Selector */
+        .language-selector {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+        }
+
+        .language-title {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .language-btn {
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background: var(--bg-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .language-btn:hover {
+            border-color: var(--primary-color);
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .language-btn.active {
+            border-color: var(--primary-color);
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .language-flag {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .language-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Enhanced Animations */
+        @keyframes slideInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 1200px) {
+            .counselor-hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-features {
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .om-3d-container {
+                width: 250px;
+                height: 250px;
+                margin: 0 auto;
+            }
+
+            .chat-interface {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .chat-sidebar, .session-sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-center {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .profile-info {
+                display: none;
+            }
+
+            .counselor-dashboard {
+                padding: 1rem;
+                padding-top: 100px;
+            }
+
+            .counselor-hero {
+                padding: 2rem 1.5rem;
+                border-radius: var(--radius-lg);
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-features {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .om-3d-container {
+                width: 200px;
+                height: 200px;
+            }
+
+            .chat-interface {
+                height: 60vh;
+            }
+
+            .language-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .floating-orb {
+                display: none;
+            }
+
+            .zen-overlay {
+                opacity: 0.3;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .counselor-hero {
+                padding: 1.5rem;
+            }
+
+            .chat-main, .language-selector {
+                border-radius: var(--radius-md);
+                margin: 0 -0.5rem;
+            }
+
+            .chat-messages {
+                padding: 1rem;
+            }
+
+            .message-content {
+                max-width: 85%;
+                padding: 1rem;
+            }
+
+            .om-3d-container {
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Relaxing Background Animations -->
+    <div class="wellness-background">
+        <div class="floating-orb"></div>
+        <div class="floating-orb"></div>
+        <div class="floating-orb"></div>
+        <div class="zen-overlay"></div>
+    </div>
+
+    <!-- Enhanced Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Premium Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+        <div class="loading-text">Connecting to your AI counselor...</div>
+    </div>
+
+    <!-- Floating Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Modern Glass Header -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-lotus"></i>
+                Eirene
+            </a>
+            
+            <div class="nav-center">
+                <nav class="nav-links">
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="creative-studio.html">Creative Studio</a>
+                    <a href="mood-tracker.html">Mood Tracker</a>
+                    <a href="counselor.html" class="active">AI Counselor</a>
+                    <a href="wellness-forecast.html">Wellness Forecast</a>
+                    <a href="resources.html">Resources</a>
+                </nav>
+            </div>
+
+            <div class="nav-right">
+                <div class="profile-section" id="profileSection">
+                    <div class="profile-avatar">P</div>
+                    <div class="profile-info">
+                        <div class="profile-name">Priya Sharma</div>
+                        <div class="profile-status">
+                            <div class="status-dot"></div>
+                            Online
+                        </div>
+                    </div>
+                </div>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- AI Counselor Dashboard -->
+    <main class="counselor-dashboard">
+        <!-- Hero Header Section with 3D OM -->
+        <section class="counselor-hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Desi AI Counselor</h1>
+                <p class="hero-subtitle">Culturally-aware guidance in your native language with empathetic AI trained on Indian contexts</p>
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <i class="fas fa-language"></i>
+                        <span>Multi-lingual Support</span>
+                    </div>
+                    <div class="hero-feature">
+                        <i class="fas fa-heart"></i>
+                        <span>Culturally Sensitive</span>
+                    </div>
+                    <div class="hero-feature">
+                        <i class="fas fa-clock"></i>
+                        <span>24/7 Available</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 3D OM Visualization -->
+            <div class="om-3d-container">
+                <canvas id="om-canvas" width="300" height="300"></canvas>
+            </div>
+        </section>
+
+        <!-- Language Selector -->
+        <section class="language-selector">
+            <h2 class="language-title">Choose Your Preferred Language</h2>
+            <div class="language-grid">
+                <div class="language-btn active" data-lang="hindi">
+                    <span class="language-flag">🇮🇳</span>
+                    <div class="language-name">Hindi</div>
+                </div>
+                <div class="language-btn" data-lang="english">
+                    <span class="language-flag">🇬🇧</span>
+                    <div class="language-name">English</div>
+                </div>
+                <div class="language-btn" data-lang="bengali">
+                    <span class="language-flag">🇧🇩</span>
+                    <div class="language-name">Bengali</div>
+                </div>
+                <div class="language-btn" data-lang="tamil">
+                    <span class="language-flag">🏴‍⚧️</span>
+                    <div class="language-name">Tamil</div>
+                </div>
+                <div class="language-btn" data-lang="telugu">
+                    <span class="language-flag">🏳️‍🌈</span>
+                    <div class="language-name">Telugu</div>
+                </div>
+                <div class="language-btn" data-lang="marathi">
+                    <span class="language-flag">🏳️‍⚧️</span>
+                    <div class="language-name">Marathi</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Chat Interface -->
+        <section class="chat-interface">
+            <!-- Left Sidebar - Conversation History -->
+            <div class="chat-sidebar">
+                <div class="sidebar-header">
+                    <div class="sidebar-title">Conversations</div>
+                    <div class="sidebar-subtitle">Your chat history</div>
+                </div>
+                <div class="conversation-list">
+                    <div class="conversation-item active">
+                        <div class="conversation-title">Study Stress Discussion</div>
+                        <div class="conversation-preview">Exam anxiety and coping strategies...</div>
+                        <div class="conversation-time">2 hours ago</div>
+                    </div>
+                    <div class="conversation-item">
+                        <div class="conversation-title">Family Pressure</div>
+                        <div class="conversation-preview">Dealing with career expectations...</div>
+                        <div class="conversation-time">1 day ago</div>
+                    </div>
+                    <div class="conversation-item">
+                        <div class="conversation-title">Relationship Guidance</div>
+                        <div class="conversation-preview">Understanding cultural differences...</div>
+                        <div class="conversation-time">3 days ago</div>
+                    </div>
+                    <div class="conversation-item">
+                        <div class="conversation-title">Self-Confidence Building</div>
+                        <div class="conversation-preview">Overcoming imposter syndrome...</div>
+                        <div class="conversation-time">1 week ago</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Chat Area -->
+            <div class="chat-main">
+                <div class="chat-header">
+                    <div class="counselor-avatar">🧠</div>
+                    <div class="counselor-info">
+                        <h3>Dr. Aisha - AI Counselor</h3>
+                        <div class="counselor-status">
+                            <span class="online-dot"></span>
+                            <span>Online & Ready to Help</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message">
+                        <div class="message-avatar">AI</div>
+                        <div class="message-content">
+                            <div class="message-text">Namaste Priya! 🙏 Main Dr. Aisha hun, aapki AI counselor. Main yahan hun aapki emotional journey mein support karne ke liye. Aaj aap kaise feel kar rahe hain? Kya koi specific mental wellness concern hai jo aapko pareshaan kar rahi hai?</div>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+
+                    <!-- Typing Indicator -->
+                    <div class="typing-indicator" id="typingIndicator">
+                        <div class="message-avatar">AI</div>
+                        <div class="typing-dots">
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                        </div>
+                        <span>Dr. Aisha is typing...</span>
+                    </div>
+                </div>
+
+                <div class="chat-input-area">
+                    <div class="input-container">
+                        <textarea class="chat-input selectable" id="chatInput" placeholder="Share your thoughts... मैं यहाँ आपकी mental wellness के लिए हूँ" rows="1"></textarea>
+                        <div class="input-actions">
+                            <button class="voice-btn" id="voiceBtn" title="Voice message">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                            <button class="send-btn" id="sendBtn" disabled title="Send message">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Sidebar - Session Info -->
+            <div class="session-sidebar">
+                <div class="session-header">
+                    <div class="session-title">Current Session</div>
+                    <div class="session-duration" id="sessionDuration">0 minutes</div>
+                </div>
+                <div class="session-content">
+                    <div class="mood-indicator-small">
+                        <span class="mood-emoji-large" id="currentMoodEmoji">😊</span>
+                        <div class="mood-label" id="currentMoodLabel">Neutral</div>
+                    </div>
+
+                    <div class="session-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Messages</span>
+                            <span class="stat-value" id="messageCount">1</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Mood Score</span>
+                            <span class="stat-value" id="moodScore">7.0/10</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Progress</span>
+                            <span class="stat-value" id="sessionProgress">Good</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Language</span>
+                            <span class="stat-value" id="currentLanguage">Hindi-English</span>
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+                        <button class="quick-action-btn" onclick="triggerQuickAction('breathing')">
+                            <i class="fas fa-wind"></i>
+                            Breathing Exercise
+                        </button>
+                        <button class="quick-action-btn" onclick="triggerQuickAction('meditation')">
+                            <i class="fas fa-spa"></i>
+                            Quick Meditation
+                        </button>
+                        <button class="quick-action-btn" onclick="triggerQuickAction('affirmations')">
+                            <i class="fas fa-heart"></i>
+                            Positive Affirmations
+                        </button>
+                        <button class="quick-action-btn" onclick="triggerQuickAction('journal')">
+                            <i class="fas fa-book"></i>
+                            Mood Journal
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // GEMINI API CONFIGURATION
+        const GEMINI_API_KEY = 'AIzaSyBK8Y4JZdHOXK8JkM5QQzOJLz6JKJh9N2M';
+        const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+
+        // Global state
+        let currentLanguage = 'hindi';
+        let messageCount = 1;
+        let conversationHistory = [];
+        let sessionStartTime = Date.now();
+
+        // 3D OM Animation Variables
+        let canvas, ctx;
+        let animationId;
+        let rotation = 0;
+        let mouseX = 0, mouseY = 0;
+        let isMouseOver = false;
+
+        // Enhanced Loading Screen with 3D OM initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hide');
+                initializeCounselor();
+                init3DOm(); // Initialize 3D OM
+            }, 2000);
+        });
+
+        // Initialize proper 3D OM with canvas animation
+        function init3DOm() {
+            canvas = document.getElementById('om-canvas');
+            ctx = canvas.getContext('2d');
+            
+            // Set canvas size for high DPI displays
+            const rect = canvas.getBoundingClientRect();
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+            
+            // Mouse interaction
+            canvas.addEventListener('mousemove', handleMouseMove);
+            canvas.addEventListener('mouseenter', () => isMouseOver = true);
+            canvas.addEventListener('mouseleave', () => {
+                isMouseOver = false;
+                mouseX = 0;
+                mouseY = 0;
+            });
+            
+            // Start animation
+            animate3DOm();
+            console.log('3D OM Canvas Animation initialized! 🕉️');
+        }
+
+        function handleMouseMove(e) {
+            const rect = canvas.getBoundingClientRect();
+            mouseX = (e.clientX - rect.left - rect.width / 2) * 0.01;
+            mouseY = (e.clientY - rect.top - rect.height / 2) * 0.01;
+        }
+
+        // Proper 3D OM animation with realistic cosmic effects
+        function animate3DOm() {
+            const width = 300;
+            const height = 300;
+            const centerX = width / 2;
+            const centerY = height / 2;
+            
+            // Clear canvas with cosmic background
+            const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, width/2);
+            gradient.addColorStop(0, 'rgba(102, 126, 234, 0.1)');
+            gradient.addColorStop(0.3, 'rgba(240, 147, 251, 0.08)');
+            gradient.addColorStop(0.6, 'rgba(79, 172, 254, 0.05)');
+            gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+            
+            // Update rotation
+            rotation += 0.01;
+            
+            // Mouse interaction effect
+            const tiltX = isMouseOver ? mouseY * 0.3 : Math.sin(rotation * 0.7) * 0.2;
+            const tiltY = isMouseOver ? mouseX * 0.3 : Math.cos(rotation * 0.5) * 0.2;
+            
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            
+            // Create cosmic aura rings
+            for (let i = 0; i < 3; i++) {
+                const radius = 60 + i * 25;
+                const alpha = 0.1 - i * 0.02;
+                const ringGradient = ctx.createRadialGradient(0, 0, radius - 10, 0, 0, radius + 10);
+                ringGradient.addColorStop(0, `rgba(255, 105, 180, ${alpha})`);
+                ringGradient.addColorStop(0.5, `rgba(153, 50, 204, ${alpha * 1.5})`);
+                ringGradient.addColorStop(1, 'rgba(255, 105, 180, 0)');
+                
+                ctx.strokeStyle = ringGradient;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(0, 0, radius, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+            
+            // 3D OM Symbol with proper depth
+            ctx.rotate(rotation + tiltY);
+            ctx.scale(1 + tiltX * 0.1, 1 - tiltX * 0.05);
+            
+            // Create glowing OM symbol
+            const glowGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 80);
+            glowGradient.addColorStop(0, '#ff69b4');
+            glowGradient.addColorStop(0.3, '#ff1493');
+            glowGradient.addColorStop(0.7, '#9932cc');
+            glowGradient.addColorStop(1, '#4b0082');
+            
+            // Draw OM with proper 3D effect
+            ctx.font = 'bold 120px serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // Shadow for depth
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+            ctx.fillText('ॐ', 5, 5);
+            
+            // Main OM with glow
+            ctx.fillStyle = glowGradient;
+            ctx.fillText('ॐ', 0, 0);
+            
+            // Add sparkle particles
+            for (let i = 0; i < 8; i++) {
+                const angle = (rotation * 2 + i * Math.PI / 4);
+                const sparkleX = Math.cos(angle) * (70 + Math.sin(rotation * 3 + i) * 20);
+                const sparkleY = Math.sin(angle) * (70 + Math.cos(rotation * 2 + i) * 20);
+                const sparkleSize = 2 + Math.sin(rotation * 4 + i) * 1;
+                
+                ctx.fillStyle = `rgba(255, 255, 255, ${0.6 + Math.sin(rotation * 5 + i) * 0.4})`;
+                ctx.beginPath();
+                ctx.arc(sparkleX, sparkleY, sparkleSize, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            ctx.restore();
+            
+            // Continue animation
+            animationId = requestAnimationFrame(animate3DOm);
+        }
+
+        function initializeCounselor() {
+            autoResizeTextarea();
+            loadConversationHistory();
+            updateSessionStats();
+            startSessionTimer();
+        }
+
+        // Session Timer
+        function startSessionTimer() {
+            setInterval(() => {
+                const duration = Math.floor((Date.now() - sessionStartTime) / 60000);
+                document.getElementById('sessionDuration').textContent = `${duration} minutes`;
+            }, 60000);
+        }
+
+        // Smooth Scroll Progress Bar
+        function updateScrollProgress() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+            document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+        }
+
+        // Enhanced Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const themeIcon = themeToggle.querySelector('i');
+
+        const savedTheme = localStorage.getItem('eirene-theme') || 'light';
+        if (savedTheme === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+            themeIcon.className = 'fas fa-sun';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('eirene-theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('eirene-theme', 'dark');
+            }
+        });
+
+        // Ultra Smooth Scroll Effects
+        const header = document.getElementById('header');
+        const scrollTop = document.getElementById('scrollTop');
+        let ticking = false;
+
+        function updateScrollEffects() {
+            updateScrollProgress();
+            
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+                scrollTop.classList.add('show');
+            } else {
+                header.classList.remove('scrolled');
+                scrollTop.classList.remove('show');
+            }
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateScrollEffects);
+                ticking = true;
+            }
+        });
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // LANGUAGE SELECTION
+        document.querySelectorAll('.language-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.language-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentLanguage = btn.getAttribute('data-lang');
+                
+                document.getElementById('currentLanguage').textContent = getLanguageDisplay(currentLanguage);
+                sendLanguageChangeMessage(currentLanguage);
+            });
+        });
+
+        function getLanguageDisplay(lang) {
+            const langMap = {
+                'hindi': 'Hindi-English',
+                'english': 'English',
+                'bengali': 'Bengali',
+                'tamil': 'Tamil',
+                'telugu': 'Telugu',
+                'marathi': 'Marathi'
+            };
+            return langMap[lang] || 'Hindi-English';
+        }
+
+        function sendLanguageChangeMessage(language) {
+            const messages = {
+                'hindi': 'धन्यवाद! अब मैं हिंदी में आपसे बात करूंगी। आप comfortable feel करें और अपनी mental wellness के बारे में खुलकर बात करें।',
+                'english': 'Thank you! I will now communicate in English. Please feel comfortable discussing your mental wellness concerns with me.',
+                'bengali': 'ধন্যবাদ! এখন আমি বাংলায় আপনার সাথে কথা বলব। আপনার মানসিক স্বাস্থ্য নিয়ে আরামে কথা বলুন।',
+                'tamil': 'நன்றி! இப்போது நான் தமிழில் உங்களுடன் பேசுவேன். உங்கள் மன நலன் குறித்து வசதியாக பேசுங்கள்।',
+                'telugu': 'ధన్యవాదాలు! ఇప్పుడు నేను తెలుగులో మాట్లాడతాను. మీ మానసిక ఆరోగ్యం గురించి సౌకర్యంగా మాట్లాడండి।',
+                'marathi': 'धन्यवाद! आता मी मराठीत तुमच्याशी बोलेन. तुमच्या मानसिक आरोग्याबद्दल आरामात बोला.'
+            };
+            
+            setTimeout(() => {
+                addMessage('ai', messages[language] || messages['hindi']);
+            }, 500);
+        }
+
+        // CHAT INPUT HANDLING
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        chatInput.addEventListener('input', () => {
+            chatInput.style.height = 'auto';
+            chatInput.style.height = Math.min(chatInput.scrollHeight, 120) + 'px';
+            sendBtn.disabled = chatInput.value.trim().length === 0;
+        });
+
+        chatInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        sendBtn.addEventListener('click', sendMessage);
+
+        function autoResizeTextarea() {
+            chatInput.style.height = 'auto';
+            chatInput.style.height = Math.min(chatInput.scrollHeight, 120) + 'px';
+        }
+
+        // SEND MESSAGE FUNCTIONALITY WITH WELLNESS FOCUS
+        async function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            if (!isWellnessRelated(message)) {
+                const redirectMessage = getWellnessRedirectMessage(currentLanguage);
+                setTimeout(() => {
+                    addMessage('ai', redirectMessage);
+                }, 500);
+                chatInput.value = '';
+                sendBtn.disabled = true;
+                chatInput.style.height = 'auto';
+                return;
+            }
+
+            addMessage('user', message);
+            chatInput.value = '';
+            sendBtn.disabled = true;
+            chatInput.style.height = 'auto';
+            showTypingIndicator();
+            
+            try {
+                const aiResponse = await generateWellnessResponse(message);
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    addMessage('ai', aiResponse);
+                    analyzeMood(message);
+                }, 2000 + Math.random() * 1000);
+                
+            } catch (error) {
+                console.error('AI response failed:', error);
+                hideTypingIndicator();
+                addMessage('ai', getFallbackWellnessResponse());
+            }
+            
+            messageCount++;
+            updateSessionStats();
+        }
+
+        function isWellnessRelated(message) {
+            const wellnessKeywords = [
+                'stress', 'anxiety', 'depression', 'mood', 'feeling', 'emotion', 'mental', 'wellness', 
+                'health', 'therapy', 'counseling', 'help', 'support', 'worry', 'fear', 'sad', 'happy',
+                'angry', 'frustrated', 'overwhelmed', 'pressure', 'family', 'relationship', 'work',
+                'study', 'exam', 'career', 'future', 'confidence', 'self-esteem', 'motivation',
+                'pareshaan', 'tension', 'chinta', 'dar', 'khushi', 'dukh', 'gussa', 'pareshan',
+                'family pressure', 'padhai', 'exam', 'career', 'job', 'relationship', 'dost',
+                'ghar', 'mummy', 'papa', 'feel', 'lagta', 'samajh', 'help', 'support',
+                'feel like', 'feeling', 'emotions', 'thoughts', 'thinking', 'mind', 'heart'
+            ];
+
+            const lowerMessage = message.toLowerCase();
+            return wellnessKeywords.some(keyword => lowerMessage.includes(keyword)) || message.includes('?');
+        }
+
+        function getWellnessRedirectMessage(language) {
+            const messages = {
+                'hindi': 'Main sirf mental wellness aur emotional support ke topics par baat kar sakti hun. Kya aap apni feelings, stress, ya koi emotional concern share karna chahenge? Main yahan hun aapki madad ke liye! 💙',
+                'english': 'I focus specifically on mental wellness and emotional support. Would you like to share your feelings, stress, or any emotional concerns? I\'m here to help you! 💙'
+            };
+            
+            return messages[language] || messages['hindi'];
+        }
+
+        function addMessage(sender, content) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('en-US', { 
+                hour: 'numeric', 
+                minute: '2-digit',
+                hour12: true 
+            });
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${sender === 'user' ? 'P' : 'AI'}</div>
+                <div class="message-content">
+                    <div class="message-text">${content}</div>
+                    <div class="message-time">${timeStr}</div>
+                </div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            conversationHistory.push({
+                sender,
+                content,
+                timestamp: now.toISOString()
+            });
+            
+            saveConversationHistory();
+        }
+
+        function showTypingIndicator() {
+            document.getElementById('typingIndicator').classList.add('show');
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            document.getElementById('typingIndicator').classList.remove('show');
+        }
+
+        async function generateWellnessResponse(userMessage) {
+            const culturalContext = getCulturalContext(currentLanguage);
+            const moodContext = getCurrentMoodContext();
+            const recentContext = getRecentContext();
+            
+            const wellnessPrompt = `You are Dr. Aisha, a culturally-sensitive AI counselor specializing in Indian mental wellness contexts.
+
+            STRICT GUIDELINES:
+            - ONLY respond to mental wellness, emotional health, and psychological support topics
+            - Be empathetic, professional, and culturally aware
+            - Use appropriate Indian cultural references and understanding
+            - Address family pressure, academic stress, career anxiety, relationship issues sensitively
+            - Provide practical coping strategies and emotional support
+
+            Context:
+            - User's language: ${currentLanguage}
+            - Cultural background: ${culturalContext}
+            - Current mood: ${moodContext}
+            - Previous context: ${recentContext}
+
+            Response Language: ${getLanguageInstructions(currentLanguage)}
+            User message: "${userMessage}"
+
+            Respond as Dr. Aisha with mental wellness focus ONLY.`;
+
+            try {
+                const result = await callGeminiAPI(wellnessPrompt);
+                return result;
+            } catch (error) {
+                return getFallbackWellnessResponse();
+            }
+        }
+
+        function getLanguageInstructions(language) {
+            const instructions = {
+                'hindi': 'Respond in natural Hinglish (Hindi-English mix) as commonly spoken in India. Use warm, caring tone.',
+                'english': 'Respond in English with Indian cultural awareness. Use empathetic and supportive tone.'
+            };
+            
+            return instructions[language] || instructions['english'];
+        }
+
+        async function callGeminiAPI(prompt) {
+            const requestBody = {
+                contents: [{
+                    parts: [{
+                        text: prompt
+                    }]
+                }],
+                generationConfig: {
+                    temperature: 0.7,
+                    topK: 40,
+                    topP: 0.9,
+                    maxOutputTokens: 400,
+                }
+            };
+
+            const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestBody)
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            return data.candidates[0].content.parts[0].text;
+        }
+
+        function getCulturalContext(language) {
+            return 'Indian family values, respect for elders, academic pressure, arranged marriages, joint family system';
+        }
+
+        function getCurrentMoodContext() {
+            const mood = document.getElementById('currentMoodLabel').textContent;
+            const score = document.getElementById('moodScore').textContent;
+            return `${mood} (${score})`;
+        }
+
+        function getRecentContext() {
+            return conversationHistory
+                .slice(-4)
+                .map(msg => `${msg.sender}: ${msg.content.substring(0, 100)}`)
+                .join('\n');
+        }
+
+        function getFallbackWellnessResponse() {
+            const responses = {
+                'hindi': 'Main aapki baat samajh rahi hun. Yeh feelings bilkul normal hain aur main yahan hun aapka support karne ke liye. Kya aap mujhe detail mein bata sakte hain ki aap kaise feel kar rahe hain? 💙',
+                'english': 'I understand what you\'re going through. These feelings are completely normal, and I\'m here to support you. Can you tell me more about how you\'re feeling right now? 💙'
+            };
+            
+            return responses[currentLanguage] || responses['hindi'];
+        }
+
+        function analyzeMood(message) {
+            const words = message.toLowerCase();
+            let mood = 'Neutral';
+            let score = 7.0;
+            let emoji = '😊';
+            
+            if (words.includes('stress') || words.includes('pressure') || words.includes('pareshaan')) {
+                mood = 'Anxious';
+                score = 4.0;
+                emoji = '😟';
+            } else if (words.includes('family pressure') || words.includes('parents')) {
+                mood = 'Stressed';
+                score = 3.5;
+                emoji = '😰';
+            } else if (words.includes('exam') || words.includes('study') || words.includes('career')) {
+                mood = 'Worried';
+                score = 4.5;
+                emoji = '😕';
+            } else if (words.includes('happy') || words.includes('good') || words.includes('khushi')) {
+                mood = 'Positive';
+                score = 8.0;
+                emoji = '😊';
+            } else if (words.includes('sad') || words.includes('dukh')) {
+                mood = 'Sad';
+                score = 3.0;
+                emoji = '😢';
+            }
+            
+            document.getElementById('currentMoodEmoji').textContent = emoji;
+            document.getElementById('currentMoodLabel').textContent = mood;
+            document.getElementById('moodScore').textContent = `${score.toFixed(1)}/10`;
+            
+            const progress = score >= 7 ? 'Excellent' : score >= 5 ? 'Good' : 'Needs Support';
+            document.getElementById('sessionProgress').textContent = progress;
+        }
+
+        function updateSessionStats() {
+            document.getElementById('messageCount').textContent = messageCount;
+        }
+
+        function triggerQuickAction(action) {
+            const actions = {
+                'breathing': {
+                    'hindi': 'Chaliye ek breathing exercise karte hain jo stress kam karta hai. 4 counts mein breathe in kariye... 1, 2, 3, 4... hold kariye... aur 6 counts mein slowly breathe out. 🌬️',
+                    'english': 'Let\'s do a breathing exercise that reduces stress. Breathe in for 4 counts... hold... and breathe out slowly for 6 counts. 🌬️'
+                },
+                'meditation': {
+                    'hindi': 'Aap 5 minute ka quick meditation kar sakte hain. Aankhein band kariye, comfortable position mein baithiye. Apni breathing par focus kariye. 🧘‍♀️',
+                    'english': 'You can do a quick 5-minute meditation. Close your eyes, sit comfortably. Focus on your breathing. 🧘‍♀️'
+                },
+                'affirmations': {
+                    'hindi': 'Positive affirmations try karte hain: "Main strong hun, main capable hun, main challenges handle kar sakta hun." Daily mirror mein dekh kar boliye! ✨',
+                    'english': 'Let\'s try positive affirmations: "I am strong, I am capable, I can handle challenges." Say these daily! ✨'
+                },
+                'journal': {
+                    'hindi': 'Mood journaling bahut helpful hai. Aaj ke 3 positive moments ke baare mein sochiye. Gratitude practice karne se mental health improve hoti hai. 📔',
+                    'english': 'Mood journaling is very helpful. Think about 3 positive moments from today. Gratitude practice improves mental health. 📔'
+                }
+            };
+            
+            const message = actions[action][currentLanguage] || actions[action]['english'];
+            
+            setTimeout(() => {
+                addMessage('ai', message);
+            }, 500);
+        }
+
+        // Voice Input Simulation
+        const voiceBtn = document.getElementById('voiceBtn');
+        let isRecording = false;
+
+        voiceBtn.addEventListener('click', () => {
+            if (!isRecording) {
+                startVoiceRecording();
+            } else {
+                stopVoiceRecording();
+            }
+        });
+
+        function startVoiceRecording() {
+            isRecording = true;
+            voiceBtn.style.background = 'var(--error-color)';
+            voiceBtn.style.color = 'white';
+            voiceBtn.innerHTML = '<i class="fas fa-stop"></i>';
+            
+            setTimeout(() => {
+                stopVoiceRecording();
+                chatInput.value = "Main bahut stressed feel kar rahi hun apni upcoming exams ki wajah se";
+                sendBtn.disabled = false;
+                autoResizeTextarea();
+            }, 3000);
+        }
+
+        function stopVoiceRecording() {
+            isRecording = false;
+            voiceBtn.style.background = 'var(--bg-tertiary)';
+            voiceBtn.style.color = 'var(--text-secondary)';
+            voiceBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+        }
+
+        function loadConversationHistory() {
+            const saved = localStorage.getItem('eirene-counselor-history');
+            if (saved) {
+                conversationHistory = JSON.parse(saved);
+            }
+        }
+
+        function saveConversationHistory() {
+            if (conversationHistory.length > 100) {
+                conversationHistory = conversationHistory.slice(-100);
+            }
+            localStorage.setItem('eirene-counselor-history', JSON.stringify(conversationHistory));
+        }
+
+        // Gentle Mouse Interaction with Background Orbs
+        document.addEventListener('mousemove', (e) => {
+            const orbs = document.querySelectorAll('.floating-orb');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 0.2;
+                const xOffset = (x - 0.5) * speed;
+                const yOffset = (y - 0.5) * speed;
+                
+                orb.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            });
+        });
+
+        // Conversation item clicks
+        document.querySelectorAll('.conversation-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.conversation-item').forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                
+                const title = item.querySelector('.conversation-title').textContent;
+                setTimeout(() => {
+                    const contextMessage = getContextMessage(title, currentLanguage);
+                    addMessage('ai', contextMessage);
+                }, 500);
+            });
+        });
+
+        function getContextMessage(title, language) {
+            const messages = {
+                'hindi': `आपने "${title}" conversation को select किया है। क्या आप इस topic पर और discuss करना चाहते हैं? मैं यहाँ आपकी support के लिए हूँ।`,
+                'english': `You've selected the "${title}" conversation. Would you like to continue discussing this topic? I'm here to support you.`
+            };
+            
+            return messages[language] || messages['english'];
+        }
+
+        // Auto-save conversation every 5 minutes
+        setInterval(() => {
+            if (conversationHistory.length > 0) {
+                saveConversationHistory();
+            }
+        }, 300000);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                if (!sendBtn.disabled) {
+                    sendMessage();
+                }
+            }
+            
+            if (e.key === 'Escape') {
+                chatInput.value = '';
+                sendBtn.disabled = true;
+                chatInput.style.height = 'auto';
+                chatInput.focus();
+            }
+        });
+
+        // Window resize handler for canvas
+        window.addEventListener('resize', () => {
+            if (canvas && ctx) {
+                const rect = canvas.getBoundingClientRect();
+                const dpr = window.devicePixelRatio || 1;
+                canvas.width = rect.width * dpr;
+                canvas.height = rect.height * dpr;
+                ctx.scale(dpr, dpr);
+            }
+        });
+
+        console.log('🧠🕉️ AI Counselor with Proper 3D OM initialized successfully! ॐ');
+    </script>
+</body>
+</html>

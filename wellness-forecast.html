@@ -1,0 +1,2004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness Forecast - Eirene AI Wellness</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            /* Premium Color Palette */
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --accent-2: #f5576c;
+            --accent-3: #4facfe;
+            --success-color: #00d4aa;
+            --warning-color: #ffb946;
+            --error-color: #ff6b6b;
+            
+            /* Sophisticated Text Colors */
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --text-light: #cbd5e0;
+            
+            /* Modern Background System */
+            --bg-primary: #fafbfc;
+            --bg-secondary: #f7f9fc;
+            --bg-tertiary: #eef2f7;
+            --bg-card: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.25);
+            
+            /* Border & Shadow System */
+            --border-color: #e2e8f0;
+            --border-light: #f1f5f9;
+            --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-glow: 0 0 40px rgba(102, 126, 234, 0.15);
+            
+            /* Premium Gradients */
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-tertiary: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-success: linear-gradient(135deg, #00d4aa 0%, #01a085 100%);
+            --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
+            
+            /* Modern Border Radius */
+            --radius-xs: 8px;
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --radius-full: 9999px;
+        }
+
+        [data-theme="dark"] {
+            --text-primary: #f7fafc;
+            --text-secondary: #e2e8f0;
+            --text-muted: #a0aec0;
+            --text-light: #718096;
+            --bg-primary: #0f0f23;
+            --bg-secondary: #16213e;
+            --bg-tertiary: #1a2332;
+            --bg-card: #1e2a3a;
+            --bg-glass: rgba(30, 42, 58, 0.8);
+            --border-color: #2d3748;
+            --border-light: #4a5568;
+            --shadow-glow: 0 0 40px rgba(102, 126, 234, 0.3);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            position: relative;
+        }
+
+        /* Relaxing Background Animations */
+        .wellness-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: gentleFloat 12s infinite ease-in-out;
+        }
+
+        .floating-orb:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.08), rgba(102, 126, 234, 0.02));
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 15s;
+        }
+
+        .floating-orb:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(240, 147, 251, 0.08), rgba(240, 147, 251, 0.02));
+            top: 60%;
+            right: 15%;
+            animation-delay: -3s;
+            animation-duration: 18s;
+        }
+
+        .floating-orb:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(79, 172, 254, 0.06), rgba(79, 172, 254, 0.02));
+            bottom: 25%;
+            left: 70%;
+            animation-delay: -7s;
+            animation-duration: 20s;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 0.4;
+            }
+            25% { 
+                transform: translateY(-20px) translateX(15px) scale(1.05);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: translateY(-10px) translateX(-10px) scale(0.95);
+                opacity: 0.3;
+            }
+            75% { 
+                transform: translateY(-30px) translateX(20px) scale(1.02);
+                opacity: 0.5;
+            }
+        }
+
+        .zen-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(102, 126, 234, 0.02) 0%, 
+                transparent 25%, 
+                rgba(240, 147, 251, 0.02) 50%, 
+                transparent 75%, 
+                rgba(79, 172, 254, 0.02) 100%
+            );
+            animation: zenShift 12s ease-in-out infinite;
+        }
+
+        @keyframes zenShift {
+            0%, 100% { opacity: 0.8; }
+            33% { opacity: 0.4; }
+            66% { opacity: 0.9; }
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--gradient-primary);
+            z-index: 10000;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .loading-screen.hide {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1.1);
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+            margin-bottom: 2rem;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            opacity: 0.95;
+            animation: pulse 2s ease-in-out infinite;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.95; }
+            50% { opacity: 0.7; }
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+            font-size: 1.2rem;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+            animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: var(--shadow-xl);
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3) translateY(100px); }
+            50% { opacity: 1; transform: scale(1.05) translateY(-10px); }
+            70% { transform: scale(0.95) translateY(5px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .header {
+            background: var(--bg-glass);
+            backdrop-filter: blur(30px) saturate(180%);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(40px) saturate(200%);
+            padding: 0.8rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-full);
+            background: var(--bg-card);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logo:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .logo i {
+            font-size: 2rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rotate 4s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        .nav-center {
+            display: flex;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-full);
+            padding: 0.4rem;
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--radius-full);
+            position: relative;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            overflow: hidden;
+        }
+
+        .nav-links a.active {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-links a:hover:not(.active) {
+            background: var(--bg-secondary);
+            color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .profile-section:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .profile-status {
+            font-size: 0.75rem;
+            color: var(--success-color);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--success-color);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            padding: 0.7rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .theme-toggle:hover {
+            background: var(--gradient-primary);
+            color: white;
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            padding: 0.7rem;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .forecast-dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            padding-top: 120px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .forecast-hero {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 4rem 3rem;
+            border-radius: var(--radius-xl);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .forecast-hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -15%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(180deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .hero-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .hero-visual {
+            flex: 0 0 320px;
+            height: 300px;
+            position: relative;
+        }
+
+        /* 3D Container - Fixed Dimensions */
+        .three-container {
+            width: 100%;
+            height: 100%;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .three-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: var(--radius-lg);
+        }
+
+        .status-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .status-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+            transition: all 0.4s ease;
+        }
+
+        .status-card:nth-child(1) { animation-delay: 0.1s; }
+        .status-card:nth-child(2) { animation-delay: 0.2s; }
+        .status-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .status-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .status-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .status-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .status-card:nth-child(1) .status-icon {
+            background: var(--gradient-success);
+        }
+
+        .status-card:nth-child(2) .status-icon {
+            background: var(--gradient-tertiary);
+        }
+
+        .status-card:nth-child(3) .status-icon {
+            background: var(--gradient-secondary);
+        }
+
+        .status-info h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .status-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .status-trend {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .trend-up {
+            color: var(--success-color);
+        }
+
+        .trend-down {
+            color: var(--error-color);
+        }
+
+        .ai-forecast {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+        }
+
+        .forecast-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .forecast-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .forecast-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .prediction-timeline {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-day {
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .timeline-day:hover {
+            background: var(--gradient-primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .timeline-day.today {
+            border-color: var(--primary-color);
+            background: var(--bg-card);
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-day-name {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-prediction {
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+
+        .detailed-predictions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .prediction-section {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+        }
+
+        .prediction-section:nth-child(1) { animation-delay: 0.5s; }
+        .prediction-section:nth-child(2) { animation-delay: 0.6s; }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .prediction-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .prediction-item:last-child {
+            border-bottom: none;
+        }
+
+        .prediction-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .prediction-content {
+            flex: 1;
+        }
+
+        .prediction-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .prediction-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .prediction-probability {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        .recommendations {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.7s both;
+        }
+
+        .recommendations-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .recommendations-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .recommendations-subtitle {
+            color: var(--text-secondary);
+        }
+
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .recommendation-card {
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 4px solid transparent;
+        }
+
+        .recommendation-card:hover {
+            transform: translateY(-4px);
+            background: var(--bg-card);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .recommendation-card.priority-high {
+            border-left-color: var(--error-color);
+        }
+
+        .recommendation-card.priority-medium {
+            border-left-color: var(--warning-color);
+        }
+
+        .recommendation-card.priority-low {
+            border-left-color: var(--success-color);
+        }
+
+        .recommendation-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .recommendation-card.priority-high .recommendation-icon {
+            background: var(--error-color);
+        }
+
+        .recommendation-card.priority-medium .recommendation-icon {
+            background: var(--warning-color);
+        }
+
+        .recommendation-card.priority-low .recommendation-icon {
+            background: var(--success-color);
+        }
+
+        .recommendation-title {
+            font-weight: 600;
+        }
+
+        .recommendation-description {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-impact {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        /* Enhanced Animations */
+        @keyframes slideInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 968px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-visual {
+                flex: none;
+                height: 250px;
+            }
+
+            .detailed-predictions {
+                grid-template-columns: 1fr;
+            }
+
+            .prediction-timeline {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+            }
+
+            .timeline-day {
+                padding: 1rem 0.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-center {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .profile-info {
+                display: none;
+            }
+
+            .forecast-dashboard {
+                padding: 1rem;
+                padding-top: 100px;
+            }
+
+            .forecast-hero {
+                padding: 2rem 1.5rem;
+                border-radius: var(--radius-lg);
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .status-overview {
+                grid-template-columns: 1fr;
+            }
+
+            .prediction-timeline {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .recommendations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-orb {
+                display: none;
+            }
+
+            .zen-overlay {
+                opacity: 0.3;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .forecast-hero {
+                padding: 1.5rem;
+            }
+
+            .hero-visual {
+                height: 200px;
+            }
+
+            .ai-forecast, .recommendations {
+                margin: 0 -0.5rem;
+                border-radius: var(--radius-md);
+            }
+
+            .status-card, .prediction-section {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Relaxing Background Animations -->
+    <div class="wellness-background">
+        <div class="floating-orb"></div>
+        <div class="floating-orb"></div>
+        <div class="floating-orb"></div>
+        <div class="zen-overlay"></div>
+    </div>
+
+    <!-- Enhanced Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Premium Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+        <div class="loading-text">Generating your wellness forecast...</div>
+    </div>
+
+    <!-- Floating Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Modern Glass Header -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-lotus"></i>
+                Eirene
+            </a>
+            
+            <div class="nav-center">
+                <nav class="nav-links">
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="creative-studio.html">Creative Studio</a>
+                    <a href="mood-tracker.html">Mood Tracker</a>
+                    <a href="counselor.html">AI Counselor</a>
+                    <a href="wellness-forecast.html" class="active">Wellness Forecast</a>
+                    <a href="resources.html">Resources</a>
+                </nav>
+            </div>
+
+            <div class="nav-right">
+                <div class="profile-section" id="profileSection">
+                    <div class="profile-avatar">P</div>
+                    <div class="profile-info">
+                        <div class="profile-name">Priya Sharma</div>
+                        <div class="profile-status">
+                            <div class="status-dot"></div>
+                            Online
+                        </div>
+                    </div>
+                </div>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Wellness Forecast Dashboard -->
+    <main class="forecast-dashboard">
+        <!-- Hero Header Section -->
+        <section class="forecast-hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">AI Wellness Forecast</h1>
+                    <p class="hero-subtitle">Predictive insights for your mental health journey with personalized recommendations</p>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <span class="hero-stat-number" id="accuracyRate">94%</span>
+                            <span class="hero-stat-label">Accuracy</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-number" id="daysTracked">28</span>
+                            <span class="hero-stat-label">Days Tracked</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-number" id="predictions">156</span>
+                            <span class="hero-stat-label">Predictions</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="three-container" id="threeContainer">
+                        <!-- Three.js 3D object will render here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current Status Overview -->
+        <section class="status-overview">
+            <div class="status-card">
+                <div class="status-header">
+                    <div class="status-icon">
+                        <i class="fas fa-heart-pulse"></i>
+                    </div>
+                    <div class="status-info">
+                        <h3>Current Wellness Score</h3>
+                    </div>
+                </div>
+                <div class="status-value" id="wellnessScore">8.2</div>
+                <div class="status-trend trend-up">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>+12% from last week</span>
+                </div>
+            </div>
+
+            <div class="status-card">
+                <div class="status-header">
+                    <div class="status-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="status-info">
+                        <h3>Mental Clarity</h3>
+                    </div>
+                </div>
+                <div class="status-value" id="mentalClarity">7.8</div>
+                <div class="status-trend trend-up">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>Improving trend</span>
+                </div>
+            </div>
+
+            <div class="status-card">
+                <div class="status-header">
+                    <div class="status-icon">
+                        <i class="fas fa-shield-heart"></i>
+                    </div>
+                    <div class="status-info">
+                        <h3>Stress Resilience</h3>
+                    </div>
+                </div>
+                <div class="status-value" id="stressResilience">6.9</div>
+                <div class="status-trend trend-down">
+                    <i class="fas fa-arrow-down"></i>
+                    <span>Needs attention</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Forecast Section -->
+        <section class="ai-forecast">
+            <div class="forecast-header">
+                <h2 class="forecast-title">7-Day Wellness Forecast</h2>
+                <p class="forecast-subtitle">AI-powered predictions based on your patterns, upcoming events, and environmental factors</p>
+            </div>
+
+            <!-- Prediction Timeline -->
+            <div class="prediction-timeline">
+                <div class="timeline-day today">
+                    <div class="timeline-date">Sep 11</div>
+                    <div class="timeline-day-name">Today</div>
+                    <div class="timeline-prediction">Good Balance</div>
+                </div>
+                <div class="timeline-day">
+                    <div class="timeline-date">Sep 12</div>
+                    <div class="timeline-day-name">Tomorrow</div>
+                    <div class="timeline-prediction">Calm Focus</div>
+                </div>
+                <div class="timeline-day">
+                    <div class="timeline-date">Sep 13</div>
+                    <div class="timeline-day-name">Saturday</div>
+                    <div class="timeline-prediction">Social Energy</div>
+                </div>
+                <div class="timeline-day">
+                    <div class="timeline-date">Sep 14</div>
+                    <div class="timeline-day-name">Sunday</div>
+                    <div class="timeline-prediction">Peaceful Rest</div>
+                </div>
+                <div class="timeline-day">
+                    <div class="timeline-date">Sep 15</div>
+                    <div class="timeline-day-name">Monday</div>
+                    <div class="timeline-prediction">Stress Peak</div>
+                </div>
+                <div class="timeline-day">
+                    <div class="timeline-date">Sep 16</div>
+                    <div class="timeline-day-name">Tuesday</div>
+                    <div class="timeline-prediction">High Focus</div>
+                </div>
+                <div class="timeline-day">
+                    <div class="timeline-date">Sep 17</div>
+                    <div class="timeline-day-name">Wednesday</div>
+                    <div class="timeline-prediction">Peak Performance</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Predictions -->
+        <section class="detailed-predictions">
+            <!-- Risk Factors -->
+            <div class="prediction-section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: var(--gradient-secondary);">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div>
+                        <h3 class="section-title">Risk Factors</h3>
+                    </div>
+                </div>
+
+                <div class="prediction-item">
+                    <div class="prediction-icon" style="background: var(--warning-color);">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="prediction-content">
+                        <div class="prediction-title">Exam Season Approaching</div>
+                        <div class="prediction-description">High stress period detected in 4 days</div>
+                    </div>
+                    <div class="prediction-probability">78%</div>
+                </div>
+
+                <div class="prediction-item">
+                    <div class="prediction-icon" style="background: var(--error-color);">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <div class="prediction-content">
+                        <div class="prediction-title">Sleep Pattern Disruption</div>
+                        <div class="prediction-description">Late nights may affect mood balance</div>
+                    </div>
+                    <div class="prediction-probability">65%</div>
+                </div>
+
+                <div class="prediction-item">
+                    <div class="prediction-icon" style="background: var(--warning-color);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="prediction-content">
+                        <div class="prediction-title">Social Pressure</div>
+                        <div class="prediction-description">Family expectations may increase stress</div>
+                    </div>
+                    <div class="prediction-probability">72%</div>
+                </div>
+            </div>
+
+            <!-- Positive Indicators -->
+            <div class="prediction-section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: var(--gradient-success);">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <h3 class="section-title">Positive Indicators</h3>
+                    </div>
+                </div>
+
+                <div class="prediction-item">
+                    <div class="prediction-icon" style="background: var(--success-color);">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <div class="prediction-content">
+                        <div class="prediction-title">Exercise Routine Building</div>
+                        <div class="prediction-description">Regular activity boosting mood significantly</div>
+                    </div>
+                    <div class="prediction-probability">89%</div>
+                </div>
+
+                <div class="prediction-item">
+                    <div class="prediction-icon" style="background: var(--success-color);">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="prediction-content">
+                        <div class="prediction-title">Strong Support Network</div>
+                        <div class="prediction-description">Friends and family providing good backup</div>
+                    </div>
+                    <div class="prediction-probability">92%</div>
+                </div>
+
+                <div class="prediction-item">
+                    <div class="prediction-icon" style="background: var(--accent-3);">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <div class="prediction-content">
+                        <div class="prediction-title">Mindfulness Progress</div>
+                        <div class="prediction-description">Meditation practice showing positive results</div>
+                    </div>
+                    <div class="prediction-probability">85%</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Recommendations -->
+        <section class="recommendations">
+            <div class="recommendations-header">
+                <h2 class="recommendations-title">Personalized Recommendations</h2>
+                <p class="recommendations-subtitle">AI-generated strategies to optimize your wellness journey</p>
+            </div>
+
+            <div class="recommendations-grid">
+                <div class="recommendation-card priority-high">
+                    <div class="recommendation-header">
+                        <div class="recommendation-icon">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <div class="recommendation-title">Sleep Schedule Optimization</div>
+                    </div>
+                    <div class="recommendation-description">
+                        Maintain consistent 10:30 PM bedtime to improve stress resilience by 23%. Your current irregular pattern is affecting morning mood scores.
+                    </div>
+                    <div class="recommendation-impact">High Impact: +2.1 wellness points</div>
+                </div>
+
+                <div class="recommendation-card priority-medium">
+                    <div class="recommendation-header">
+                        <div class="recommendation-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="recommendation-title">Exam Preparation Strategy</div>
+                    </div>
+                    <div class="recommendation-description">
+                        Break study sessions into 45-minute intervals with mindfulness breaks. This approach reduces exam anxiety by 35% based on your learning patterns.
+                    </div>
+                    <div class="recommendation-impact">Medium Impact: +1.4 wellness points</div>
+                </div>
+
+                <div class="recommendation-card priority-low">
+                    <div class="recommendation-header">
+                        <div class="recommendation-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="recommendation-title">Social Connection Boost</div>
+                    </div>
+                    <div class="recommendation-description">
+                        Schedule 2 friend calls this weekend. Your mood improves 18% on days with meaningful social interaction. Video calls work better for you.
+                    </div>
+                    <div class="recommendation-impact">Moderate Impact: +0.9 wellness points</div>
+                </div>
+
+                <div class="recommendation-card priority-medium">
+                    <div class="recommendation-header">
+                        <div class="recommendation-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="recommendation-title">Morning Routine Enhancement</div>
+                    </div>
+                    <div class="recommendation-description">
+                        Add 10-minute morning meditation before phone use. This timing aligns perfectly with your circadian rhythm and reduces daily stress by 28%.
+                    </div>
+                    <div class="recommendation-impact">Medium Impact: +1.6 wellness points</div>
+                </div>
+
+                <div class="recommendation-card priority-low">
+                    <div class="recommendation-header">
+                        <div class="recommendation-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="recommendation-title">Creative Expression</div>
+                    </div>
+                    <div class="recommendation-description">
+                        Try art therapy sessions on Tuesday evenings. Your creativity peaks mid-week and provides 22% mood boost during high-stress periods.
+                    </div>
+                    <div class="recommendation-impact">Low Impact: +0.7 wellness points</div>
+                </div>
+
+                <div class="recommendation-card priority-high">
+                    <div class="recommendation-header">
+                        <div class="recommendation-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="recommendation-title">Nutrition Timing</div>
+                    </div>
+                    <div class="recommendation-description">
+                        Eat protein-rich breakfast by 9 AM and avoid caffeine after 4 PM. This combination improves sleep quality by 31% and morning energy by 40%.
+                    </div>
+                    <div class="recommendation-impact">High Impact: +1.8 wellness points</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Three.js Local File -->
+    <script src="./three.js"></script>
+    
+    <script>
+        // Global Three.js Variables
+        let scene, camera, renderer, torusKnot, particles;
+        let mouseX = 0, mouseY = 0;
+        let targetRotationX = 0, targetRotationY = 0;
+        let isThreeInitialized = false;
+        
+        // Enhanced Loading Screen
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, starting initialization...');
+            
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hide');
+                initializeForecast();
+                
+                // Wait a bit more for Three.js
+                setTimeout(() => {
+                    init3DScene();
+                }, 500);
+            }, 2000);
+        });
+
+        // Initialize Three.js with Error Handling for R150
+        function init3DScene() {
+            console.log('Starting 3D initialization...');
+            
+            // Check if THREE is available
+            if (typeof THREE === 'undefined') {
+                console.error('THREE.js not loaded! Using fallback...');
+                showFallbackVisualization();
+                return;
+            }
+            
+            const container = document.getElementById('threeContainer');
+            if (!container) {
+                console.error('Container not found!');
+                return;
+            }
+            
+            console.log('Container dimensions:', {
+                width: container.clientWidth,
+                height: container.clientHeight,
+                offsetWidth: container.offsetWidth,
+                offsetHeight: container.offsetHeight
+            });
+            
+            try {
+                // Scene setup
+                scene = new THREE.Scene();
+                scene.fog = new THREE.Fog(0x667eea, 10, 50);
+                
+                // Camera with container aspect ratio
+                const containerWidth = container.clientWidth || 320;
+                const containerHeight = container.clientHeight || 300;
+                
+                camera = new THREE.PerspectiveCamera(
+                    60, 
+                    containerWidth / containerHeight, 
+                    0.1, 
+                    100
+                );
+                camera.position.z = 4;
+                
+                // Renderer setup for R150
+                renderer = new THREE.WebGLRenderer({ 
+                    antialias: true, 
+                    alpha: true,
+                    powerPreference: "high-performance"
+                });
+                
+                renderer.setSize(containerWidth, containerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                renderer.setClearColor(0x000000, 0);
+                renderer.shadowMap.enabled = true;
+                renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+                
+                // Clear container and add canvas
+                container.innerHTML = '';
+                container.appendChild(renderer.domElement);
+                
+                console.log('Renderer created and added to container');
+
+                // Lighting - Soft and Soothing
+                const ambientLight = new THREE.AmbientLight(0x667eea, 0.6);
+                scene.add(ambientLight);
+
+                const directionalLight1 = new THREE.DirectionalLight(0x4facfe, 0.8);
+                directionalLight1.position.set(5, 5, 5);
+                directionalLight1.castShadow = true;
+                scene.add(directionalLight1);
+
+                const directionalLight2 = new THREE.DirectionalLight(0xf093fb, 0.4);
+                directionalLight2.position.set(-5, -5, 2);
+                scene.add(directionalLight2);
+
+                // Main Soothing Object - Torus Knot (Compatible with R150)
+                const geometry = new THREE.TorusKnotGeometry(1, 0.3, 120, 16, 2, 3);
+                const material = new THREE.MeshStandardMaterial({
+                    color: 0x667eea,
+                    metalness: 0.8,
+                    roughness: 0.2,
+                    emissive: 0x112244,
+                    emissiveIntensity: 0.2,
+                    transparent: true,
+                    opacity: 0.9
+                });
+
+                torusKnot = new THREE.Mesh(geometry, material);
+                torusKnot.castShadow = true;
+                torusKnot.receiveShadow = true;
+                scene.add(torusKnot);
+
+                console.log('Torus knot added to scene');
+
+                // Add Floating Particles for Zen Effect
+                createZenParticles();
+
+                // Mouse interaction
+                container.addEventListener('mousemove', onMouseMove, false);
+                container.addEventListener('mouseleave', onMouseLeave, false);
+
+                // Resize handler
+                window.addEventListener('resize', onWindowResize, false);
+
+                // Mark as initialized and start animation
+                isThreeInitialized = true;
+                animate3D();
+                
+                console.log('3D scene initialized successfully!');
+                
+            } catch (error) {
+                console.error('Three.js initialization error:', error);
+                showFallbackVisualization();
+            }
+        }
+
+        function createZenParticles() {
+            if (!scene) return;
+            
+            try {
+                const particleCount = 30;
+                const particlesGeometry = new THREE.BufferGeometry();
+                const positions = new Float32Array(particleCount * 3);
+                
+                for (let i = 0; i < particleCount; i++) {
+                    positions[i * 3] = (Math.random() - 0.5) * 15;
+                    positions[i * 3 + 1] = (Math.random() - 0.5) * 15;
+                    positions[i * 3 + 2] = (Math.random() - 0.5) * 15;
+                }
+                
+                particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                
+                const particlesMaterial = new THREE.PointsMaterial({
+                    color: 0x4facfe,
+                    size: 0.08,
+                    transparent: true,
+                    opacity: 0.7,
+                    blending: THREE.AdditiveBlending
+                });
+                
+                particles = new THREE.Points(particlesGeometry, particlesMaterial);
+                scene.add(particles);
+                
+                console.log('Zen particles added');
+            } catch (error) {
+                console.error('Error creating particles:', error);
+            }
+        }
+
+        function onMouseMove(event) {
+            if (!isThreeInitialized) return;
+            
+            const container = document.getElementById('threeContainer');
+            const rect = container.getBoundingClientRect();
+            
+            mouseX = ((event.clientX - rect.left) / container.clientWidth) * 2 - 1;
+            mouseY = -((event.clientY - rect.top) / container.clientHeight) * 2 + 1;
+            
+            targetRotationX = mouseY * 0.3;
+            targetRotationY = mouseX * 0.3;
+        }
+
+        function onMouseLeave() {
+            targetRotationX = 0;
+            targetRotationY = 0;
+        }
+
+        function onWindowResize() {
+            if (!isThreeInitialized) return;
+            
+            const container = document.getElementById('threeContainer');
+            if (!container || !camera || !renderer) return;
+            
+            const containerWidth = container.clientWidth || 320;
+            const containerHeight = container.clientHeight || 300;
+            
+            camera.aspect = containerWidth / containerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(containerWidth, containerHeight);
+        }
+
+        function animate3D() {
+            if (!isThreeInitialized) return;
+            
+            requestAnimationFrame(animate3D);
+
+            try {
+                if (torusKnot) {
+                    // Gentle, soothing rotation
+                    torusKnot.rotation.x += (targetRotationX - torusKnot.rotation.x) * 0.02;
+                    torusKnot.rotation.y += (targetRotationY - torusKnot.rotation.y) * 0.02;
+                    
+                    // Continuous slow rotation for zen effect
+                    torusKnot.rotation.x += 0.004;
+                    torusKnot.rotation.y += 0.006;
+                    
+                    // Gentle breathing effect
+                    const scale = 1 + Math.sin(Date.now() * 0.001) * 0.08;
+                    torusKnot.scale.setScalar(scale);
+                    
+                    // Color pulsing for wellness
+                    const hue = (Date.now() * 0.0001) % 1;
+                    const color = new THREE.Color().setHSL(0.6 + hue * 0.1, 0.8, 0.4);
+                    torusKnot.material.emissive = color;
+                }
+
+                if (particles) {
+                    particles.rotation.y += 0.002;
+                    particles.rotation.x += 0.001;
+                    
+                    // Gentle particle movement
+                    const positions = particles.geometry.attributes.position.array;
+                    for (let i = 0; i < positions.length; i += 3) {
+                        positions[i + 1] += Math.sin(Date.now() * 0.001 + positions[i]) * 0.002;
+                    }
+                    particles.geometry.attributes.position.needsUpdate = true;
+                }
+
+                if (renderer && scene && camera) {
+                    renderer.render(scene, camera);
+                }
+            } catch (error) {
+                console.error('Animation error:', error);
+                isThreeInitialized = false;
+            }
+        }
+
+        // Fallback visualization if Three.js fails
+        function showFallbackVisualization() {
+            const container = document.getElementById('threeContainer');
+            if (!container) return;
+            
+            container.innerHTML = `
+                <div style="
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    border-radius: var(--radius-lg);
+                    color: white;
+                    text-align: center;
+                ">
+                    <div style="
+                        width: 120px;
+                        height: 120px;
+                        background: rgba(255,255,255,0.2);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 3rem;
+                        margin-bottom: 1rem;
+                        animation: gentleFloat 3s ease-in-out infinite;
+                    ">
+                        🔮
+                    </div>
+                    <div style="font-size: 1.2rem; font-weight: 600; opacity: 0.9;">
+                        Wellness Insights
+                    </div>
+                </div>
+            `;
+            
+            console.log('Fallback visualization displayed');
+        }
+
+        function initializeForecast() {
+            animateCounters();
+            loadUserData();
+            generatePredictions();
+        }
+
+        // Smooth Scroll Progress Bar
+        function updateScrollProgress() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+            document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+        }
+
+        // Enhanced Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const themeIcon = themeToggle.querySelector('i');
+
+        const savedTheme = localStorage.getItem('eirene-theme') || 'light';
+        if (savedTheme === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+            themeIcon.className = 'fas fa-sun';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('eirene-theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('eirene-theme', 'dark');
+            }
+        });
+
+        // Ultra Smooth Scroll Effects
+        const header = document.getElementById('header');
+        const scrollTop = document.getElementById('scrollTop');
+        let ticking = false;
+
+        function updateScrollEffects() {
+            updateScrollProgress();
+            
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+                scrollTop.classList.add('show');
+            } else {
+                header.classList.remove('scrolled');
+                scrollTop.classList.remove('show');
+            }
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateScrollEffects);
+                ticking = true;
+            }
+        });
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Animate Counter Numbers
+        function animateCounters() {
+            const counters = [
+                { id: 'accuracyRate', target: 94, suffix: '%' },
+                { id: 'daysTracked', target: 28, suffix: '' },
+                { id: 'predictions', target: 156, suffix: '' },
+                { id: 'wellnessScore', target: 8.2, suffix: '', decimal: true },
+                { id: 'mentalClarity', target: 7.8, suffix: '', decimal: true },
+                { id: 'stressResilience', target: 6.9, suffix: '', decimal: true }
+            ];
+
+            counters.forEach(counter => {
+                animateCounter(counter.id, counter.target, counter.suffix, counter.decimal);
+            });
+        }
+
+        function animateCounter(id, target, suffix, decimal = false) {
+            const element = document.getElementById(id);
+            if (!element) return;
+
+            let current = 0;
+            const increment = decimal ? target / 50 : target / 30;
+            const timer = setInterval(() => {
+                current += increment;
+                
+                if (current >= target) {
+                    element.textContent = decimal ? target.toFixed(1) + suffix : Math.floor(target) + suffix;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = decimal ? current.toFixed(1) + suffix : Math.floor(current) + suffix;
+                }
+            }, 50);
+        }
+
+        // Load User Data from Previous Sessions
+        function loadUserData() {
+            const moodHistory = JSON.parse(localStorage.getItem('eirene-mood-history') || '[]');
+            
+            if (moodHistory.length > 0) {
+                const avgMood = moodHistory.slice(-7).reduce((sum, entry) => sum + (entry.moodScore || 7), 0) / 7;
+                document.getElementById('wellnessScore').textContent = avgMood.toFixed(1);
+                updateTrendIndicators(moodHistory);
+            }
+        }
+
+        function updateTrendIndicators(history) {
+            if (history.length < 14) return;
+            
+            const recent = history.slice(-7);
+            const previous = history.slice(-14, -7);
+            
+            const recentAvg = recent.reduce((sum, entry) => sum + (entry.moodScore || 7), 0) / 7;
+            const previousAvg = previous.reduce((sum, entry) => sum + (entry.moodScore || 7), 0) / 7;
+            
+            const change = ((recentAvg - previousAvg) / previousAvg * 100);
+            
+            const trendElement = document.querySelector('.trend-up');
+            if (change > 0) {
+                trendElement.innerHTML = `<i class="fas fa-arrow-up"></i><span>+${change.toFixed(0)}% from last week</span>`;
+                trendElement.className = 'status-trend trend-up';
+            } else {
+                trendElement.innerHTML = `<i class="fas fa-arrow-down"></i><span>${change.toFixed(0)}% from last week</span>`;
+                trendElement.className = 'status-trend trend-down';
+            }
+        }
+
+        // Generate Dynamic Predictions
+        function generatePredictions() {
+            const today = new Date();
+            const predictions = [];
+            
+            for (let i = 0; i < 7; i++) {
+                const date = new Date(today);
+                date.setDate(today.getDate() + i);
+                
+                const prediction = generateDayPrediction(date, i);
+                predictions.push(prediction);
+            }
+            
+            updateTimelinePredictions(predictions);
+        }
+
+        function generateDayPrediction(date, dayOffset) {
+            const dayOfWeek = date.getDay();
+            const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+            
+            let description = 'Balanced';
+            
+            if (dayOffset === 4) {
+                description = 'Stress Peak';
+            } else if (isWeekend) {
+                description = dayOfWeek === 0 ? 'Peaceful Rest' : 'Social Energy';
+            } else if (dayOffset === 5) {
+                description = 'High Focus';
+            } else if (dayOffset === 6) {
+                description = 'Peak Performance';
+            }
+            
+            return {
+                date: date.getDate(),
+                description: description
+            };
+        }
+
+        function updateTimelinePredictions(predictions) {
+            const timelineDays = document.querySelectorAll('.timeline-day');
+            
+            predictions.forEach((prediction, index) => {
+                if (timelineDays[index]) {
+                    const desc = timelineDays[index].querySelector('.timeline-prediction');
+                    if (desc) desc.textContent = prediction.description;
+                }
+            });
+        }
+
+        // Interactive Timeline
+        document.querySelectorAll('.timeline-day').forEach((day, index) => {
+            day.addEventListener('click', () => {
+                document.querySelectorAll('.timeline-day').forEach(d => d.classList.remove('today'));
+                day.classList.add('today');
+                showDayDetails(index);
+            });
+        });
+
+        function showDayDetails(dayIndex) {
+            const dayNames = ['Today', 'Tomorrow', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday'];
+            const details = [
+                'Current balance looks good with stable mood patterns. Continue your regular routine.',
+                'Tomorrow shows promising energy levels. Good day for important tasks and social connections.',
+                'Weekend energy boost expected. Perfect time for recreational activities and family time.',
+                'Peaceful and restorative day ahead. Focus on self-care and relaxation activities.',
+                'Stress levels may peak due to week start. Prepare with meditation and proper sleep.',
+                'High focus period detected. Excellent day for challenging tasks and creative work.',
+                'Peak performance day with optimal mental clarity and emotional balance.'
+            ];
+            
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: var(--bg-card);
+                padding: 2rem;
+                border-radius: var(--radius-lg);
+                box-shadow: var(--shadow-xl);
+                z-index: 1000;
+                max-width: 400px;
+                text-align: center;
+                border: 1px solid var(--border-light);
+            `;
+            
+            notification.innerHTML = `
+                <h3 style="margin-bottom: 1rem; color: var(--primary-color);">${dayNames[dayIndex]}</h3>
+                <p style="color: var(--text-secondary); line-height: 1.6;">${details[dayIndex]}</p>
+                <button onclick="this.parentElement.remove()" style="
+                    margin-top: 1.5rem;
+                    padding: 0.75rem 1.5rem;
+                    background: var(--gradient-primary);
+                    color: white;
+                    border: none;
+                    border-radius: var(--radius-full);
+                    cursor: pointer;
+                    font-family: inherit;
+                    font-weight: 500;
+                ">Got it</button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+
+        // Auto-refresh predictions every hour
+        setInterval(() => {
+            generatePredictions();
+            loadUserData();
+        }, 3600000);
+
+        console.log('Wellness Forecast with 3D visualization ready! 🔮✨');
+    </script>
+</body>
+</html>

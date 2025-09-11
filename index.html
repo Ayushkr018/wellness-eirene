@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eirene - AI Mental Wellness for Indian Youth</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary-color: #10b981;
+            --accent-color: #f59e0b;
+            --success-color: #059669;
+            --error-color: #dc2626;
+            
+            /* Light Mode */
+            --bg-primary: #ffffff;
+            --bg-secondary: #fafafb;
+            --bg-accent: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-accent: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --gradient-hero: linear-gradient(135deg, #1e293b 0%, #4338ca 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Top Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--gradient-primary);
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+
+        /* Simple Page Loader */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .page-loader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .simple-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        .loader-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .navbar {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .navbar.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-color);
+            border-radius: 1px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-accent);
+            color: var(--primary-color);
+            transform: rotate(180deg);
+        }
+
+        .nav-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.9rem;
+            border: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            background: var(--gradient-hero);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(circle at 25% 25%, #ffffff 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, #ffffff 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 20s linear infinite;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: pulse 3s infinite;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-primary {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Features Section - NO CARDS */
+        .features-section {
+            padding: 6rem 0;
+            background: var(--bg-primary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Simple Feature List - NO CARDS STYLING */
+        .features-list {
+            max-width: 800px;
+            margin: 4rem auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .feature-item:hover {
+            padding-left: 1rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .feature-icon {
+            min-width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .feature-content h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        .feature-content p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 6rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .step-item {
+            text-align: center;
+            position: relative;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .step-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 6rem 0;
+            background: var(--bg-primary);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .about-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-primary);
+            border-radius: 24px;
+            min-height: 400px;
+            color: white;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Enhanced Auth Modal */
+        .auth-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .auth-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .auth-container {
+            background: var(--bg-primary);
+            border-radius: 24px;
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+            width: 100%;
+            max-width: 450px;
+            margin: 1rem;
+            transform: scale(0.9) translateY(50px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .auth-modal.active .auth-container {
+            transform: scale(1) translateY(0);
+        }
+
+        .auth-header {
+            padding: 2rem 2rem 1rem;
+            position: relative;
+            text-align: center;
+        }
+
+        .auth-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--bg-accent);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .auth-close:hover {
+            background: var(--error-color);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .auth-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .auth-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .auth-tabs {
+            display: flex;
+            background: var(--bg-accent);
+            border-radius: 12px;
+            padding: 0.5rem;
+            margin: 1rem 2rem;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 0.75rem;
+            background: none;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .auth-tab.active {
+            background: var(--bg-primary);
+            color: var(--primary-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .auth-form {
+            padding: 0 2rem 2rem;
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .form-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        .auth-divider span {
+            padding: 0 1rem;
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 1rem;
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        [data-theme="dark"] .google-btn {
+            background: var(--bg-secondary);
+        }
+
+        .google-btn:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+
+        .guest-btn {
+            width: 100%;
+            padding: 1rem;
+            background: transparent;
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .guest-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background: rgba(99, 102, 241, 0.05);
+            transform: translateY(-1px);
+        }
+
+        /* Professional Footer */
+        .footer {
+            background: var(--bg-secondary);
+            padding: 3rem 0 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand {
+            max-width: 350px;
+        }
+
+        .footer-brand h3 {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 42px;
+            height: 42px;
+            background: var(--bg-accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .social-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-section {
+            min-width: 150px;
+        }
+
+        .footer-section h4 {
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            line-height: 2;
+            transition: color 0.3s ease;
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .features-list {
+                gap: 2rem;
+                padding: 0 1rem;
+            }
+
+            .feature-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+                padding: 1.5rem 0;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-visual {
+                min-height: 250px;
+                order: -1;
+                font-size: 3rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .footer-brand {
+                max-width: 100%;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes float {
+            0% { transform: translateX(0px); }
+            100% { transform: translateX(-50px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Messages */
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .message.success {
+            background: #dcfce7;
+            color: #059669;
+            border-left: 4px solid #059669;
+        }
+
+        .message.error {
+            background: #fee2e2;
+            color: #dc2626;
+            border-left: 4px solid #dc2626;
+        }
+
+        [data-theme="dark"] .message.success {
+            background: rgba(5, 150, 105, 0.1);
+            color: #34d399;
+        }
+
+        [data-theme="dark"] .message.error {
+            background: rgba(220, 38, 38, 0.1);
+            color: #f87171;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-spinner.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Simple Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="simple-spinner"></div>
+        <div class="loader-text">Loading...</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="logo">
+                    <i class="fas fa-leaf"></i> Eirene
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                    <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+                    <button class="nav-btn btn-outline" onclick="openAuthModal('login')">Sign In</button>
+                    <button class="nav-btn btn-primary" onclick="openAuthModal('register')">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content fade-in">
+                <div class="hero-badge">
+                    <i class="fas fa-sparkles"></i>
+                    <span>AI-Powered Mental Wellness Platform</span>
+                </div>
+                <h1 class="hero-title">Transform Your Mental Health Journey with AI</h1>
+                <p class="hero-subtitle">
+                    Experience personalized mental wellness through creative therapy, culturally-aware AI counseling, 
+                    and proactive emotional support designed specifically for Indian youth.
+                </p>
+                <div class="hero-cta">
+                    <button class="cta-btn cta-primary" onclick="openAuthModal('register')">
+                        <i class="fas fa-rocket"></i>
+                        <span>Start Your Journey</span>
+                    </button>
+                    <a href="#features" class="cta-btn cta-secondary">
+                        <i class="fas fa-play"></i>
+                        <span>Learn More</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section - NO CARDS -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-stars"></i>
+                    <span>Core Features</span>
+                </div>
+                <h2 class="section-title">Innovative AI-Powered Wellness Tools</h2>
+                <p class="section-subtitle">
+                    Discover our cutting-edge features designed to support your mental health journey 
+                    with personalized, culturally-aware solutions.
+                </p>
+            </div>
+            
+            <div class="features-list">
+                <div class="feature-item fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Creative Therapy Studio</h3>
+                        <p>Transform your emotions into personalized art and music. Our AI creates therapeutic prompts and compositions that help you express and process feelings creatively.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Invisible Mood Detection</h3>
+                        <p>Advanced AI analyzes your text, voice, and behavior patterns to proactively detect emotional changes and provide support before crisis moments.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-om"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Desi Context AI Counselor</h3>
+                        <p>Get culturally-aware guidance that understands Indian family dynamics, academic pressure, and social expectations. Available in multiple Indian languages.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-crystal-ball"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Wellness Prediction</h3>
+                        <p>Receive mental health forecasts and preventive care suggestions based on your patterns, helping you stay ahead of emotional challenges.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Smart Resource Finder</h3>
+                        <p>Instantly connect with local counselors, support groups, and mental health resources tailored to your specific needs and location.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Multilingual Support</h3>
+                        <p>Express yourself in your native language with support for code-switching, regional slang, and cultural metaphors across multiple Indian languages.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-route"></i>
+                    <span>Simple Process</span>
+                </div>
+                <h2 class="section-title">How Eirene Works</h2>
+                <p class="section-subtitle">
+                    Get started with your mental wellness journey in three simple steps. 
+                    Our AI adapts to your unique needs and preferences.
+                </p>
+            </div>
+            
+            <div class="steps-container">
+                <div class="step-item fade-in">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Sign Up & Personalize</h3>
+                    <p class="step-description">
+                        Create your account and set your preferences. Choose your language, 
+                        share your background, and let our AI understand your unique context.
+                    </p>
+                </div>
+
+                <div class="step-item fade-in">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Start Your Wellness Journey</h3>
+                    <p class="step-description">
+                        Begin with mood tracking, creative expression, or AI counseling. 
+                        Our platform learns from your interactions to provide better support.
+                    </p>
+                </div>
+
+                <div class="step-item fade-in">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Grow & Heal Together</h3>
+                    <p class="step-description">
+                        Access proactive insights, connect with resources, and track your progress. 
+                        Our AI evolves with you for continuous personalized support.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-heart"></i>
+                    <span>About Eirene</span>
+                </div>
+                <h2 class="section-title">Empowering Mental Wellness Through AI</h2>
+                <p class="section-subtitle">
+                    Bridging the gap between technology and mental health care with culturally-aware, 
+                    accessible solutions for Indian youth.
+                </p>
+            </div>
+            
+            <div class="about-content">
+                <div>
+                    <p class="about-text">
+                        Mental health remains a significant challenge for Indian youth, with stigma, 
+                        accessibility, and cultural barriers preventing many from seeking help. 
+                        Eirene leverages cutting-edge AI technology to provide personalized, 
+                        culturally-sensitive mental wellness support.
+                    </p>
+                    <p class="about-text">
+                        Our platform combines creative therapy, proactive mood monitoring, and 
+                        multilingual support to create a safe space where young Indians can 
+                        explore their mental health without judgment or fear.
+                    </p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">1M+</div>
+                            <div class="stat-label">Indian Youth Affected</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">75%</div>
+                            <div class="stat-label">Don't Seek Help</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Languages Supported</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">AI Support Available</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-visual">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Auth Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h2 class="auth-title" id="authTitle">Welcome to Eirene</h2>
+                <p class="auth-subtitle" id="authSubtitle">Start your mental wellness journey today</p>
+                <button class="auth-close" onclick="closeAuthModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login')">Sign In</button>
+                <button class="auth-tab" onclick="switchAuthTab('register')">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form active">
+                <div id="loginMessages"></div>
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="loginPassword" required>
+                </div>
+                <button type="submit" class="form-submit">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Sign In to Eirene</span>
+                    <div class="loading-spinner hidden" id="loginSpinner"></div>
+                </button>
+                
+                <div class="auth-divider">
+                    <span>or continue with</span>
+                </div>
+                
+                <button type="button" class="google-btn" onclick="signInWithGoogle()">
+                    <svg width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    <span>Continue with Google</span>
+                </button>
+                
+                <button type="button" class="guest-btn" onclick="guestLogin()">
+                    <i class="fas fa-user-secret"></i>
+                    <span>Continue Anonymously</span>
+                </button>
+            </form>
+
+            <!-- Register Form -->
+            <form id="registerForm" class="auth-form">
+                <div id="registerMessages"></div>
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Preferred Language</label>
+                    <select class="form-input" id="registerLanguage" required>
+                        <option value="">Choose your language</option>
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी (Hindi)</option>
+                        <option value="bn">বাংলা (Bengali)</option>
+                        <option value="ta">தமிழ் (Tamil)</option>
+                        <option value="te">తెలుగు (Telugu)</option>
+                        <option value="mr">मराठी (Marathi)</option>
+                        <option value="gu">ગુજરાતી (Gujarati)</option>
+                    </select>
+                </div>
+                <button type="submit" class="form-submit">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Create Your Account</span>
+                    <div class="loading-spinner hidden" id="registerSpinner"></div>
+                </button>
+                
+                <div class="auth-divider">
+                    <span>or sign up with</span>
+                </div>
+                
+                <button type="button" class="google-btn" onclick="signUpWithGoogle()">
+                    <svg width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    <span>Sign up with Google</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Professional Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>
+                        <i class="fas fa-leaf"></i>
+                        <span>Eirene</span>
+                    </h3>
+                    <p>Empowering Indian youth with AI-powered mental wellness solutions. Combining technology with cultural sensitivity for better mental health outcomes.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Contact Us</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Emergency</h4>
+                    <a href="tel:+919152987821">Crisis Helpline</a>
+                    <a href="#">Find Counselors</a>
+                    <a href="#">Mental Health Resources</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Eirene. Made with <i class="fas fa-heart" style="color: #e11d48;"></i> for Indian youth mental health.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced Eirene Application - Final Complete Version
+        class EireneApp {
+            constructor() {
+                this.currentUser = null;
+                this.theme = localStorage.getItem('theme') || 'light';
+                this.init();
+            }
+
+            init() {
+                this.initPageLoader();
+                this.initScrollProgress();
+                this.initTheme();
+                this.initNavigation();
+                this.initScrollAnimations();
+                this.initAuth();
+                // NO this.checkSession() - removed to prevent automatic redirect
+            }
+
+            // Simple Page Loader
+            initPageLoader() {
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        document.getElementById('pageLoader').classList.add('hide');
+                    }, 1500);
+                });
+            }
+
+            // Scroll Progress Bar
+            initScrollProgress() {
+                const scrollProgress = document.getElementById('scrollProgress');
+                
+                window.addEventListener('scroll', () => {
+                    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    const scrolled = (winScroll / height) * 100;
+                    scrollProgress.style.width = scrolled + '%';
+                });
+            }
+
+            // Theme Management
+            initTheme() {
+                document.documentElement.setAttribute('data-theme', this.theme);
+                const themeIcon = document.getElementById('themeIcon');
+                themeIcon.className = this.theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+                document.getElementById('themeToggle').addEventListener('click', () => {
+                    this.toggleTheme();
+                });
+            }
+
+            toggleTheme() {
+                this.theme = this.theme === 'light' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', this.theme);
+                localStorage.setItem('theme', this.theme);
+                
+                const themeIcon = document.getElementById('themeIcon');
+                themeIcon.className = this.theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            }
+
+            // Navigation
+            initNavigation() {
+                window.addEventListener('scroll', () => {
+                    const navbar = document.getElementById('navbar');
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                });
+
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        
+                        const target = document.querySelector(link.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            this.updateActiveNavLink(link);
+                        }
+                    });
+                });
+
+                window.addEventListener('scroll', () => {
+                    this.updateActiveNavOnScroll();
+                });
+            }
+
+            updateActiveNavLink(activeLink) {
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                activeLink.classList.add('active');
+            }
+
+            updateActiveNavOnScroll() {
+                const sections = document.querySelectorAll('section[id]');
+                const scrollPos = window.scrollY + 100;
+
+                sections.forEach(section => {
+                    const top = section.offsetTop;
+                    const bottom = top + section.offsetHeight;
+                    const id = section.getAttribute('id');
+                    const navLink = document.querySelector(`a[href="#${id}"]`);
+
+                    if (scrollPos >= top && scrollPos <= bottom && navLink) {
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        navLink.classList.add('active');
+                    }
+                });
+            }
+
+            // Scroll Animations
+            initScrollAnimations() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { 
+                    threshold: 0.1, 
+                    rootMargin: '0px 0px -50px 0px' 
+                });
+
+                document.querySelectorAll('.fade-in').forEach(el => {
+                    observer.observe(el);
+                });
+            }
+
+            // Authentication
+            initAuth() {
+                document.getElementById('loginForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.handleLogin();
+                });
+
+                document.getElementById('registerForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.handleRegister();
+                });
+            }
+
+            async handleLogin() {
+                const email = document.getElementById('loginEmail').value.trim();
+                const password = document.getElementById('loginPassword').value;
+                const spinner = document.getElementById('loginSpinner');
+                const submitBtn = document.querySelector('#loginForm .form-submit');
+
+                if (!this.validateEmail(email)) {
+                    this.showMessage('loginMessages', 'Please enter a valid email address', 'error');
+                    return;
+                }
+
+                spinner.classList.remove('hidden');
+                submitBtn.disabled = true;
+
+                try {
+                    await this.delay(1500);
+                    
+                    // Simulated successful login
+                    this.showMessage('loginMessages', 'Welcome back! Redirecting to dashboard...', 'success');
+                    
+                    // MANUAL REDIRECT to dashboard.html
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1500);
+
+                } catch (error) {
+                    this.showMessage('loginMessages', 'Connection error. Please try again.', 'error');
+                } finally {
+                    spinner.classList.add('hidden');
+                    submitBtn.disabled = false;
+                }
+            }
+
+            async handleRegister() {
+                const formData = {
+                    name: document.getElementById('registerName').value.trim(),
+                    email: document.getElementById('registerEmail').value.trim(),
+                    password: document.getElementById('registerPassword').value,
+                    language: document.getElementById('registerLanguage').value
+                };
+
+                if (!this.validateRegistration(formData)) return;
+
+                const spinner = document.getElementById('registerSpinner');
+                const submitBtn = document.querySelector('#registerForm .form-submit');
+
+                spinner.classList.remove('hidden');
+                submitBtn.disabled = true;
+
+                try {
+                    await this.delay(2000);
+                    
+                    // Simulated successful registration
+                    this.showMessage('registerMessages', 'Account created successfully! Welcome to Eirene...', 'success');
+                    
+                    // MANUAL REDIRECT to dashboard.html
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 2000);
+
+                } catch (error) {
+                    this.showMessage('registerMessages', 'Registration failed. Please try again.', 'error');
+                } finally {
+                    spinner.classList.add('hidden');
+                    submitBtn.disabled = false;
+                }
+            }
+
+            validateEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            }
+
+            validateRegistration(data) {
+                if (data.name.length < 2) {
+                    this.showMessage('registerMessages', 'Name must be at least 2 characters', 'error');
+                    return false;
+                }
+
+                if (!this.validateEmail(data.email)) {
+                    this.showMessage('registerMessages', 'Please enter a valid email', 'error');
+                    return false;
+                }
+
+                if (data.password.length < 6) {
+                    this.showMessage('registerMessages', 'Password must be at least 6 characters', 'error');
+                    return false;
+                }
+
+                if (!data.language) {
+                    this.showMessage('registerMessages', 'Please select your preferred language', 'error');
+                    return false;
+                }
+
+                return true;
+            }
+
+            delay(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
+            showMessage(containerId, message, type) {
+                const container = document.getElementById(containerId);
+                const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle';
+                container.innerHTML = `<div class="message ${type}"><i class="${icon}"></i><span>${message}</span></div>`;
+                
+                setTimeout(() => {
+                    container.innerHTML = '';
+                }, 5000);
+            }
+
+            closeAuthModal() {
+                document.getElementById('authModal').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Modal Functions
+        function openAuthModal(tab = 'login') {
+            document.getElementById('authModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            switchAuthTab(tab);
+        }
+
+        function closeAuthModal() {
+            app.closeAuthModal();
+        }
+
+        function switchAuthTab(tab) {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+            
+            document.querySelector(`[onclick*="${tab}"]`).classList.add('active');
+            document.getElementById(tab + 'Form').classList.add('active');
+            
+            const title = document.getElementById('authTitle');
+            const subtitle = document.getElementById('authSubtitle');
+            
+            if (tab === 'login') {
+                title.textContent = 'Welcome Back to Eirene';
+                subtitle.textContent = 'Sign in to continue your wellness journey';
+            } else {
+                title.textContent = 'Join the Eirene Community';
+                subtitle.textContent = 'Start your mental wellness transformation today';
+            }
+            
+            document.getElementById('loginMessages').innerHTML = '';
+            document.getElementById('registerMessages').innerHTML = '';
+        }
+
+        function guestLogin() {
+            app.showMessage('loginMessages', 'Welcome! Redirecting to guest dashboard...', 'success');
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1500);
+        }
+
+        function signInWithGoogle() {
+            app.showMessage('loginMessages', 'Google Sign-In integration coming soon! Please use email for now.', 'error');
+        }
+
+        function signUpWithGoogle() {
+            app.showMessage('registerMessages', 'Google Sign-Up integration coming soon! Please use email for now.', 'error');
+        }
+
+        // Initialize App
+        let app;
+        document.addEventListener('DOMContentLoaded', () => {
+            app = new EireneApp();
+            
+            // Hero title typing effect
+            setTimeout(() => {
+                const heroTitle = document.querySelector('.hero-title');
+                if (heroTitle) {
+                    const text = heroTitle.textContent;
+                    heroTitle.textContent = '';
+                    
+                    let i = 0;
+                    const typeInterval = setInterval(() => {
+                        if (i < text.length) {
+                            heroTitle.textContent += text.charAt(i);
+                            i++;
+                        } else {
+                            clearInterval(typeInterval);
+                        }
+                    }, 60);
+                }
+            }, 2000);
+        });
+
+        // Enhanced modal interactions
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('authModal');
+            if (e.target === modal) {
+                closeAuthModal();
+            }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeAuthModal();
+            }
+        });
+
+        // Smooth scroll for CTA buttons
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

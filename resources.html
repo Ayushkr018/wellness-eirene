@@ -1,0 +1,2865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - Eirene AI Wellness</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            /* Premium Color Palette */
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --accent-2: #f5576c;
+            --accent-3: #4facfe;
+            --success-color: #00d4aa;
+            --warning-color: #ffb946;
+            --error-color: #ff6b6b;
+            
+            /* Sophisticated Text Colors */
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --text-light: #cbd5e0;
+            
+            /* Modern Background System */
+            --bg-primary: #fafbfc;
+            --bg-secondary: #f7f9fc;
+            --bg-tertiary: #eef2f7;
+            --bg-card: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.25);
+            
+            /* Border & Shadow System */
+            --border-color: #e2e8f0;
+            --border-light: #f1f5f9;
+            --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-glow: 0 0 40px rgba(102, 126, 234, 0.15);
+            
+            /* Premium Gradients */
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-tertiary: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-success: linear-gradient(135deg, #00d4aa 0%, #01a085 100%);
+            --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
+            
+            /* Modern Border Radius */
+            --radius-xs: 8px;
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --radius-full: 9999px;
+        }
+
+        [data-theme="dark"] {
+            --text-primary: #f7fafc;
+            --text-secondary: #e2e8f0;
+            --text-muted: #a0aec0;
+            --text-light: #718096;
+            --bg-primary: #0f0f23;
+            --bg-secondary: #16213e;
+            --bg-tertiary: #1a2332;
+            --bg-card: #1e2a3a;
+            --bg-glass: rgba(30, 42, 58, 0.8);
+            --border-color: #2d3748;
+            --border-light: #4a5568;
+            --shadow-glow: 0 0 40px rgba(102, 126, 234, 0.3);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            position: relative;
+        }
+
+        /* Relaxing Background Animations */
+        .wellness-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: gentleFloat 12s infinite ease-in-out;
+        }
+
+        .floating-orb:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.08), rgba(102, 126, 234, 0.02));
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 15s;
+        }
+
+        .floating-orb:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(240, 147, 251, 0.08), rgba(240, 147, 251, 0.02));
+            top: 60%;
+            right: 15%;
+            animation-delay: -3s;
+            animation-duration: 18s;
+        }
+
+        .floating-orb:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(79, 172, 254, 0.06), rgba(79, 172, 254, 0.02));
+            bottom: 25%;
+            left: 70%;
+            animation-delay: -7s;
+            animation-duration: 20s;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 0.4;
+            }
+            25% { 
+                transform: translateY(-20px) translateX(15px) scale(1.05);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: translateY(-10px) translateX(-10px) scale(0.95);
+                opacity: 0.3;
+            }
+            75% { 
+                transform: translateY(-30px) translateX(20px) scale(1.02);
+                opacity: 0.5;
+            }
+        }
+
+        .zen-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(102, 126, 234, 0.02) 0%, 
+                transparent 25%, 
+                rgba(240, 147, 251, 0.02) 50%, 
+                transparent 75%, 
+                rgba(79, 172, 254, 0.02) 100%
+            );
+            animation: zenShift 12s ease-in-out infinite;
+        }
+
+        @keyframes zenShift {
+            0%, 100% { opacity: 0.8; }
+            33% { opacity: 0.4; }
+            66% { opacity: 0.9; }
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--gradient-primary);
+            z-index: 10000;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .loading-screen.hide {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1.1);
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+            margin-bottom: 2rem;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            opacity: 0.95;
+            animation: pulse 2s ease-in-out infinite;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.95; }
+            50% { opacity: 0.7; }
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+            font-size: 1.2rem;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+            animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: var(--shadow-xl);
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3) translateY(100px); }
+            50% { opacity: 1; transform: scale(1.05) translateY(-10px); }
+            70% { transform: scale(0.95) translateY(5px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .header {
+            background: var(--bg-glass);
+            backdrop-filter: blur(30px) saturate(180%);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(40px) saturate(200%);
+            padding: 0.8rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-full);
+            background: var(--bg-card);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logo:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .logo i {
+            font-size: 2rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rotate 4s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        .nav-center {
+            display: flex;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-full);
+            padding: 0.4rem;
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--radius-full);
+            position: relative;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            overflow: hidden;
+        }
+
+        .nav-links a.active {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-links a:hover:not(.active) {
+            background: var(--bg-secondary);
+            color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .profile-section:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .profile-status {
+            font-size: 0.75rem;
+            color: var(--success-color);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--success-color);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            padding: 0.7rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .theme-toggle:hover {
+            background: var(--gradient-primary);
+            color: white;
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            padding: 0.7rem;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Custom Modal/Popup Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 0;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            transform: scale(0.8) translateY(50px);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 1px solid var(--border-light);
+            position: relative;
+        }
+
+        .modal-overlay.show .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            padding: 2rem 2rem 1rem;
+            text-align: center;
+            position: relative;
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .modal-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .modal-subtitle {
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .modal-content {
+            padding: 2rem;
+            position: relative;
+            overflow-y: auto;
+            max-height: 50vh;
+        }
+
+        .modal-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .modal-btn.primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .modal-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .modal-btn.secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+        }
+
+        .modal-btn.secondary:hover {
+            background: var(--bg-secondary);
+            transform: translateY(-2px);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 3;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Input Modal Styles */
+        .modal-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            outline: none;
+            margin-bottom: 1rem;
+        }
+
+        .modal-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .modal-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .modal-range {
+            width: 100%;
+            margin: 1rem 0;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 8px;
+            border-radius: var(--radius-full);
+            background: var(--bg-tertiary);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .modal-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .modal-range::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: var(--shadow-md);
+        }
+
+        .range-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .mood-value {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 1rem 0;
+        }
+
+        /* Resources Dashboard */
+        .resources-dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+            padding-top: 120px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Header Section */
+        .resources-hero {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 4rem 3rem;
+            border-radius: var(--radius-xl);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .resources-hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -15%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .resources-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-15px) rotate(120deg); }
+            66% { transform: translateY(-8px) rotate(240deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .hero-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .hero-visual {
+            flex: 0 0 300px;
+            height: 280px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 3D Resources Visualization Container */
+        .three-resources-container {
+            width: 100%;
+            height: 100%;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.2);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .three-resources-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: var(--radius-lg);
+        }
+
+        /* Search & Filter Section */
+        .search-section {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-sm);
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both;
+            border: 1px solid var(--border-light);
+        }
+
+        .search-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .search-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-subtitle {
+            color: var(--text-secondary);
+        }
+
+        .search-controls {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-color);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .filter-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .category-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+        }
+
+        .category-filter {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            border: none;
+            border-radius: var(--radius-full);
+            padding: 0.8rem 1.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .category-filter.active {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .category-filter:hover:not(.active) {
+            background: var(--bg-card);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Resources Grid */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .resource-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+            transition: all 0.4s ease;
+            border: 1px solid var(--border-light);
+            cursor: pointer;
+        }
+
+        .resource-card:nth-child(1) { animation-delay: 0.1s; }
+        .resource-card:nth-child(2) { animation-delay: 0.2s; }
+        .resource-card:nth-child(3) { animation-delay: 0.3s; }
+        .resource-card:nth-child(4) { animation-delay: 0.4s; }
+        .resource-card:nth-child(5) { animation-delay: 0.5s; }
+        .resource-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .resource-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .resource-header {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .resource-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .resource-card:hover .resource-image {
+            transform: scale(1.1);
+        }
+
+        .resource-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(102, 126, 234, 0.8) 0%, 
+                rgba(118, 75, 162, 0.8) 100%
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            opacity: 0.9;
+        }
+
+        .resource-content {
+            padding: 2rem;
+        }
+
+        .resource-category {
+            display: inline-block;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .resource-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .resource-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .resource-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .resource-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--warning-color);
+        }
+
+        .resource-duration {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Emergency Resources Section */
+        .emergency-section {
+            background: linear-gradient(135deg, var(--error-color) 0%, var(--accent-2) 100%);
+            color: white;
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.7s both;
+        }
+
+        .emergency-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .emergency-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .emergency-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .emergency-subtitle {
+            opacity: 0.9;
+        }
+
+        .emergency-contacts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .emergency-contact {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .emergency-contact:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .emergency-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .emergency-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .emergency-number {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .emergency-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Quick Access Section */
+        .quick-access {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            box-shadow: var(--shadow-sm);
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.8s both;
+            border: 1px solid var(--border-light);
+        }
+
+        .quick-access-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .quick-access-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-access-subtitle {
+            color: var(--text-secondary);
+        }
+
+        .quick-access-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .quick-access-item {
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-lg);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .quick-access-item:hover {
+            background: var(--bg-card);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+        .quick-access-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 auto 1rem;
+        }
+
+        .quick-access-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-access-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Enhanced Animations */
+        @keyframes slideInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 968px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-visual {
+                flex: none;
+                height: 250px;
+            }
+
+            .search-controls {
+                grid-template-columns: 1fr;
+            }
+
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-center {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .profile-info {
+                display: none;
+            }
+
+            .resources-dashboard {
+                padding: 1rem;
+                padding-top: 100px;
+            }
+
+            .resources-hero {
+                padding: 2rem 1.5rem;
+                border-radius: var(--radius-lg);
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .category-filters {
+                flex-direction: column;
+            }
+
+            .emergency-contacts {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-access-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .floating-orb {
+                display: none;
+            }
+
+            .zen-overlay {
+                opacity: 0.3;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .resources-hero {
+                padding: 1.5rem;
+            }
+
+            .hero-visual {
+                height: 200px;
+            }
+
+            .search-section, .emergency-section, .quick-access {
+                margin: 0 -0.5rem;
+                border-radius: var(--radius-md);
+            }
+
+            .modal {
+                width: 95%;
+                margin: 1rem;
+            }
+
+            .resource-content, .emergency-section, .quick-access {
+                padding: 1.5rem;
+            }
+
+            .quick-access-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Relaxing Background Animations -->
+    <div class="wellness-background">
+        <div class="floating-orb"></div>
+        <div class="floating-orb"></div>
+        <div class="floating-orb"></div>
+        <div class="zen-overlay"></div>
+    </div>
+
+    <!-- Enhanced Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Premium Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+        <div class="loading-text">Loading wellness resources...</div>
+    </div>
+
+    <!-- Floating Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Custom Modal/Popup -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="modal-icon" id="modalIcon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3 class="modal-title" id="modalTitle">Wellness Tool</h3>
+                <p class="modal-subtitle" id="modalSubtitle">Your journey to better mental health</p>
+            </div>
+            <div class="modal-content" id="modalContent">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modern Glass Header -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-lotus"></i>
+                Eirene
+            </a>
+            
+            <div class="nav-center">
+                <nav class="nav-links">
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="creative-studio.html">Creative Studio</a>
+                    <a href="mood-tracker.html">Mood Tracker</a>
+                    <a href="counselor.html">AI Counselor</a>
+                    <a href="wellness-forecast.html">Wellness Forecast</a>
+                    <a href="resources.html" class="active">Resources</a>
+                </nav>
+            </div>
+
+            <div class="nav-right">
+                <div class="profile-section" id="profileSection">
+                    <div class="profile-avatar">R</div>
+                    <div class="profile-info">
+                        <div class="profile-name">Riya</div>
+                        <div class="profile-status">
+                            <div class="status-dot"></div>
+                            Online
+                        </div>
+                    </div>
+                </div>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Resources Dashboard -->
+    <main class="resources-dashboard">
+        <!-- Hero Header Section -->
+        <section class="resources-hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Wellness Resource Center</h1>
+                    <p class="hero-subtitle">Curated collection of expert-verified resources for your mental health journey</p>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <span class="hero-stat-number" id="totalResources">150+</span>
+                            <span class="hero-stat-label">Resources</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-number" id="expertsVerified">50+</span>
+                            <span class="hero-stat-label">Expert Verified</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-number" id="languagesSupported">8</span>
+                            <span class="hero-stat-label">Languages</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="three-resources-container" id="threeResourcesContainer">
+                        <!-- Three.js 3D resources visualization will render here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search & Filter Section -->
+        <section class="search-section">
+            <div class="search-header">
+                <h2 class="search-title">Find Your Perfect Resource</h2>
+                <p class="search-subtitle">Search through our curated collection of mental wellness resources</p>
+            </div>
+            
+            <div class="search-controls">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search for articles, videos, guides, meditation...">
+                </div>
+                <button class="filter-btn" id="filterBtn">
+                    <i class="fas fa-sliders-h"></i> Filters
+                </button>
+            </div>
+
+            <div class="category-filters">
+                <button class="category-filter active" data-category="all">All Resources</button>
+                <button class="category-filter" data-category="meditation">Meditation</button>
+                <button class="category-filter" data-category="therapy">Therapy</button>
+                <button class="category-filter" data-category="mindfulness">Mindfulness</button>
+                <button class="category-filter" data-category="exercise">Exercise</button>
+                <button class="category-filter" data-category="sleep">Sleep</button>
+                <button class="category-filter" data-category="nutrition">Nutrition</button>
+                <button class="category-filter" data-category="stress">Stress Relief</button>
+            </div>
+        </section>
+
+        <!-- Resources Grid -->
+        <section class="resources-grid" id="resourcesGrid">
+            <!-- Meditation Resources -->
+            <div class="resource-card" data-category="meditation">
+                <div class="resource-header">
+                    <div class="resource-overlay">
+                        <i class="fas fa-om"></i>
+                    </div>
+                </div>
+                <div class="resource-content">
+                    <span class="resource-category">Meditation</span>
+                    <h3 class="resource-title">Guided Mindfulness Meditation</h3>
+                    <p class="resource-description">10-minute daily guided meditation sessions designed for beginners and experienced practitioners alike.</p>
+                    <div class="resource-meta">
+                        <div class="resource-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.8</span>
+                        </div>
+                        <span class="resource-duration">10-20 min</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Therapy Resources -->
+            <div class="resource-card" data-category="therapy">
+                <div class="resource-header">
+                    <div class="resource-overlay">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                </div>
+                <div class="resource-content">
+                    <span class="resource-category">Therapy</span>
+                    <h3 class="resource-title">Cognitive Behavioral Therapy Guide</h3>
+                    <p class="resource-description">Evidence-based CBT techniques to help manage anxiety, depression, and negative thought patterns.</p>
+                    <div class="resource-meta">
+                        <div class="resource-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                        <span class="resource-duration">Self-paced</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mindfulness Resources -->
+            <div class="resource-card" data-category="mindfulness">
+                <div class="resource-header">
+                    <div class="resource-overlay">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                </div>
+                <div class="resource-content">
+                    <span class="resource-category">Mindfulness</span>
+                    <h3 class="resource-title">Mindful Living Practices</h3>
+                    <p class="resource-description">Daily mindfulness exercises to increase awareness, reduce stress, and improve overall well-being.</p>
+                    <div class="resource-meta">
+                        <div class="resource-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.7</span>
+                        </div>
+                        <span class="resource-duration">5-15 min</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise Resources -->
+            <div class="resource-card" data-category="exercise">
+                <div class="resource-header">
+                    <div class="resource-overlay">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                </div>
+                <div class="resource-content">
+                    <span class="resource-category">Exercise</span>
+                    <h3 class="resource-title">Mental Health Fitness Program</h3>
+                    <p class="resource-description">Exercise routines specifically designed to boost mood, reduce anxiety, and improve mental clarity.</p>
+                    <div class="resource-meta">
+                        <div class="resource-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.6</span>
+                        </div>
+                        <span class="resource-duration">20-45 min</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sleep Resources -->
+            <div class="resource-card" data-category="sleep">
+                <div class="resource-header">
+                    <div class="resource-overlay">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                </div>
+                <div class="resource-content">
+                    <span class="resource-category">Sleep</span>
+                    <h3 class="resource-title">Better Sleep Hygiene Guide</h3>
+                    <p class="resource-description">Science-backed strategies to improve sleep quality and establish healthy nighttime routines.</p>
+                    <div class="resource-meta">
+                        <div class="resource-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.8</span>
+                        </div>
+                        <span class="resource-duration">Read</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stress Relief Resources -->
+            <div class="resource-card" data-category="stress">
+                <div class="resource-header">
+                    <div class="resource-overlay">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                </div>
+                <div class="resource-content">
+                    <span class="resource-category">Stress Relief</span>
+                    <h3 class="resource-title">Quick Stress Relief Techniques</h3>
+                    <p class="resource-description">Instant stress-busting methods you can use anywhere, anytime to regain calm and focus.</p>
+                    <div class="resource-meta">
+                        <div class="resource-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                        <span class="resource-duration">2-5 min</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency Resources Section -->
+        <section class="emergency-section">
+            <div class="emergency-header">
+                <h2 class="emergency-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Crisis Support & Emergency Resources
+                </h2>
+                <p class="emergency-subtitle">Immediate help is available 24/7. You're not alone.</p>
+            </div>
+            
+            <div class="emergency-contacts">
+                <div class="emergency-contact">
+                    <div class="emergency-icon">📞</div>
+                    <div class="emergency-name">National Suicide Prevention</div>
+                    <div class="emergency-number">988</div>
+                    <div class="emergency-desc">24/7 Crisis Helpline</div>
+                </div>
+
+                <div class="emergency-contact">
+                    <div class="emergency-icon">💬</div>
+                    <div class="emergency-name">Crisis Text Line</div>
+                    <div class="emergency-number">Text HOME to 741741</div>
+                    <div class="emergency-desc">Free 24/7 Support</div>
+                </div>
+
+                <div class="emergency-contact">
+                    <div class="emergency-icon">🏥</div>
+                    <div class="emergency-name">Emergency Services</div>
+                    <div class="emergency-number">911</div>
+                    <div class="emergency-desc">Immediate Emergency</div>
+                </div>
+
+                <div class="emergency-contact">
+                    <div class="emergency-icon">🤝</div>
+                    <div class="emergency-name">NAMI Helpline</div>
+                    <div class="emergency-number">1-800-950-6264</div>
+                    <div class="emergency-desc">Mental Health Support</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Access Section -->
+        <section class="quick-access">
+            <div class="quick-access-header">
+                <h2 class="quick-access-title">Quick Access Tools</h2>
+                <p class="quick-access-subtitle">Instant access to essential wellness tools and exercises</p>
+            </div>
+            
+            <div class="quick-access-grid">
+                <div class="quick-access-item" onclick="startBreathingExercise()">
+                    <div class="quick-access-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <div class="quick-access-name">Breathing Exercise</div>
+                    <div class="quick-access-desc">4-7-8 breathing technique</div>
+                </div>
+
+                <div class="quick-access-item" onclick="startMoodCheck()">
+                    <div class="quick-access-icon">
+                        <i class="fas fa-heart-pulse"></i>
+                    </div>
+                    <div class="quick-access-name">Quick Mood Check</div>
+                    <div class="quick-access-desc">2-minute mood assessment</div>
+                </div>
+
+                <div class="quick-access-item" onclick="playCalming()">
+                    <div class="quick-access-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="quick-access-name">Calming Sounds</div>
+                    <div class="quick-access-desc">Nature & ambient sounds</div>
+                </div>
+
+                <div class="quick-access-item" onclick="startJournaling()">
+                    <div class="quick-access-icon">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <div class="quick-access-name">Gratitude Journal</div>
+                    <div class="quick-access-desc">Daily reflection prompts</div>
+                </div>
+
+                <div class="quick-access-item" onclick="startAffirmations()">
+                    <div class="quick-access-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <div class="quick-access-name">Daily Affirmations</div>
+                    <div class="quick-access-desc">Positive self-talk</div>
+                </div>
+
+                <div class="quick-access-item" onclick="progressiveRelaxation()">
+                    <div class="quick-access-icon">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <div class="quick-access-name">Progressive Relaxation</div>
+                    <div class="quick-access-desc">Full-body tension release</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Three.js Local File -->
+    <script src="./three.js"></script>
+
+    <script>
+        // Global Three.js Variables for Resources Visualization
+        let scene, camera, renderer, resourceSphere, particles;
+        let mouseX = 0, mouseY = 0;
+        let targetRotationX = 0, targetRotationY = 0;
+        let isThreeInitialized = false;
+
+        // Global modal state
+        let currentModal = null;
+
+        // Enhanced Loading Screen
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hide');
+                init3DResourcesVisualization();
+                initializeResourcesData();
+            }, 2000);
+        });
+
+        // Modal Functions
+        function showModal(config) {
+            const overlay = document.getElementById('modalOverlay');
+            const icon = document.getElementById('modalIcon');
+            const title = document.getElementById('modalTitle');
+            const subtitle = document.getElementById('modalSubtitle');
+            const content = document.getElementById('modalContent');
+            
+            // Set modal content
+            icon.innerHTML = config.icon || '<i class="fas fa-heart"></i>';
+            title.textContent = config.title || 'Wellness Tool';
+            subtitle.textContent = config.subtitle || 'Your journey to better mental health';
+            content.innerHTML = config.content || '';
+            
+            // Show modal
+            overlay.classList.add('show');
+            currentModal = config.type || 'default';
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const overlay = document.getElementById('modalOverlay');
+            overlay.classList.remove('show');
+            currentModal = null;
+            
+            // Restore body scroll
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on overlay click
+        document.getElementById('modalOverlay').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closeModal();
+            }
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && currentModal) {
+                closeModal();
+            }
+        });
+
+        // Enhanced Quick Access Functions with Custom Modals
+        function startBreathingExercise() {
+            showModal({
+                icon: '<i class="fas fa-wind"></i>',
+                title: 'Breathing Exercise',
+                subtitle: '4-7-8 Technique for Instant Calm',
+                type: 'breathing',
+                content: `
+                    <div class="modal-description">
+                        The 4-7-8 breathing technique is a simple yet powerful way to reduce stress and promote relaxation.
+                    </div>
+                    
+                    <div style="background: var(--bg-tertiary); padding: 1.5rem; border-radius: var(--radius-lg); margin: 1rem 0;">
+                        <h4 style="margin-bottom: 1rem; color: var(--primary-color);">How to Practice:</h4>
+                        <ol style="padding-left: 1.5rem; line-height: 1.8;">
+                            <li><strong>Inhale</strong> through your nose for <strong>4 seconds</strong></li>
+                            <li><strong>Hold</strong> your breath for <strong>7 seconds</strong></li>
+                            <li><strong>Exhale</strong> through your mouth for <strong>8 seconds</strong></li>
+                            <li><strong>Repeat</strong> 4 times for best results</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-btn primary" onclick="startBreathingTimer()">
+                            <i class="fas fa-play"></i> Start Guided Session
+                        </button>
+                        <button class="modal-btn secondary" onclick="closeModal()">
+                            Maybe Later
+                        </button>
+                    </div>
+                `
+            });
+        }
+
+        function startMoodCheck() {
+            showModal({
+                icon: '<i class="fas fa-heart-pulse"></i>',
+                title: 'Quick Mood Check',
+                subtitle: 'How are you feeling right now?',
+                type: 'mood',
+                content: `
+                    <div class="modal-description">
+                        Take a moment to check in with yourself. Rate your current mood on a scale of 1-10.
+                    </div>
+                    
+                    <div style="margin: 2rem 0;">
+                        <input type="range" class="modal-range" id="moodRange" min="1" max="10" value="5" oninput="updateMoodValue(this.value)">
+                        <div class="range-labels">
+                            <span>Very Low</span>
+                            <span>Neutral</span>
+                            <span>Excellent</span>
+                        </div>
+                        <div class="mood-value" id="moodValue">5/10</div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-btn primary" onclick="submitMoodCheck()">
+                            <i class="fas fa-check"></i> Record Mood
+                        </button>
+                        <button class="modal-btn secondary" onclick="closeModal()">
+                            Cancel
+                        </button>
+                    </div>
+                `
+            });
+        }
+
+        function playCalming() {
+            showModal({
+                icon: '<i class="fas fa-music"></i>',
+                title: 'Calming Sounds',
+                subtitle: 'Choose your peaceful soundscape',
+                type: 'sounds',
+                content: `
+                    <div class="modal-description">
+                        Immerse yourself in soothing sounds to reduce stress and promote relaxation.
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0;">
+                        <div class="quick-access-item" onclick="playSoundType('ocean')" style="padding: 1rem;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌊</div>
+                            <div style="font-weight: 600;">Ocean Waves</div>
+                        </div>
+                        <div class="quick-access-item" onclick="playSoundType('rain')" style="padding: 1rem;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌧️</div>
+                            <div style="font-weight: 600;">Forest Rain</div>
+                        </div>
+                        <div class="quick-access-item" onclick="playSoundType('birds')" style="padding: 1rem;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🐦</div>
+                            <div style="font-weight: 600;">Morning Birds</div>
+                        </div>
+                        <div class="quick-access-item" onclick="playSoundType('piano')" style="padding: 1rem;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎹</div>
+                            <div style="font-weight: 600;">Soft Piano</div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-btn secondary" onclick="closeModal()">
+                            Close
+                        </button>
+                    </div>
+                `
+            });
+        }
+
+        function startJournaling() {
+            showModal({
+                icon: '<i class="fas fa-pen-fancy"></i>',
+                title: 'Gratitude Journal',
+                subtitle: 'Reflect on the positive moments',
+                type: 'journal',
+                content: `
+                    <div class="modal-description">
+                        Research shows that practicing gratitude can boost mood by up to 25%. Take a moment to reflect.
+                    </div>
+                    
+                    <div style="margin: 1.5rem 0;">
+                        <label for="gratitudeInput" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">What are you grateful for today?</label>
+                        <textarea class="modal-input modal-textarea" id="gratitudeInput" placeholder="I'm grateful for..."></textarea>
+                        
+                        <label for="highlightInput" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">What was a highlight of your day?</label>
+                        <input type="text" class="modal-input" id="highlightInput" placeholder="Today's best moment was...">
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-btn primary" onclick="saveJournalEntry()">
+                            <i class="fas fa-save"></i> Save Entry
+                        </button>
+                        <button class="modal-btn secondary" onclick="closeModal()">
+                            Cancel
+                        </button>
+                    </div>
+                `
+            });
+        }
+
+        function startAffirmations() {
+            const affirmations = [
+                {
+                    text: "I am worthy of love and respect.",
+                    category: "Self-Worth"
+                },
+                {
+                    text: "I choose peace and calm in this moment.",
+                    category: "Inner Peace"
+                },
+                {
+                    text: "I have the strength to handle whatever comes my way.",
+                    category: "Resilience"
+                },
+                {
+                    text: "I am growing stronger every day.",
+                    category: "Growth"
+                },
+                {
+                    text: "I deserve happiness and success.",
+                    category: "Abundance"
+                }
+            ];
+            
+            const randomAffirmation = affirmations[Math.floor(Math.random() * affirmations.length)];
+            
+            showModal({
+                icon: '<i class="fas fa-smile"></i>',
+                title: 'Daily Affirmation',
+                subtitle: randomAffirmation.category,
+                type: 'affirmation',
+                content: `
+                    <div style="text-align: center; margin: 2rem 0;">
+                        <div style="font-size: 1.5rem; font-weight: 600; color: var(--primary-color); line-height: 1.6; margin-bottom: 1rem;">
+                            "${randomAffirmation.text}"
+                        </div>
+                        <div style="color: var(--text-muted); font-size: 0.9rem;">
+                            Repeat this affirmation 3 times with intention
+                        </div>
+                    </div>
+                    
+                    <div style="background: var(--bg-tertiary); padding: 1.5rem; border-radius: var(--radius-lg); margin: 1rem 0;">
+                        <h4 style="margin-bottom: 1rem; color: var(--primary-color);">💡 How to Use:</h4>
+                        <ul style="padding-left: 1.5rem; line-height: 1.6;">
+                            <li>Say it out loud or in your mind</li>
+                            <li>Feel the meaning behind the words</li>
+                            <li>Breathe deeply as you repeat it</li>
+                            <li>Believe in its truth</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-btn primary" onclick="getNewAffirmation()">
+                            <i class="fas fa-refresh"></i> New Affirmation
+                        </button>
+                        <button class="modal-btn secondary" onclick="closeModal()">
+                            Done
+                        </button>
+                    </div>
+                `
+            });
+        }
+
+        function progressiveRelaxation() {
+            showModal({
+                icon: '<i class="fas fa-bed"></i>',
+                title: 'Progressive Muscle Relaxation',
+                subtitle: 'Release tension from your entire body',
+                type: 'relaxation',
+                content: `
+                    <div class="modal-description">
+                        Progressive muscle relaxation helps reduce physical tension and mental stress by systematically tensing and relaxing muscle groups.
+                    </div>
+                    
+                    <div style="background: var(--bg-tertiary); padding: 1.5rem; border-radius: var(--radius-lg); margin: 1rem 0;">
+                        <h4 style="margin-bottom: 1rem; color: var(--primary-color);">Step-by-Step Guide:</h4>
+                        <ol style="padding-left: 1.5rem; line-height: 1.8;">
+                            <li><strong>Toes:</strong> Tense for 5 seconds, then relax</li>
+                            <li><strong>Calves:</strong> Tense and release</li>
+                            <li><strong>Thighs:</strong> Contract and let go</li>
+                            <li><strong>Abdomen:</strong> Tighten and release</li>
+                            <li><strong>Arms:</strong> Clench fists, then open</li>
+                            <li><strong>Shoulders:</strong> Lift up, then drop</li>
+                            <li><strong>Face:</strong> Scrunch up, then soften</li>
+                        </ol>
+                    </div>
+                    
+                    <div style="background: var(--gradient-tertiary); color: white; padding: 1rem; border-radius: var(--radius-lg); margin: 1rem 0; text-align: center;">
+                        <strong>💡 Tip:</strong> Take deep breaths throughout the entire exercise
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-btn primary" onclick="startRelaxationTimer()">
+                            <i class="fas fa-play"></i> Start Guided Session
+                        </button>
+                        <button class="modal-btn secondary" onclick="closeModal()">
+                            Close
+                        </button>
+                    </div>
+                `
+            });
+        }
+
+        // Modal Helper Functions
+        function updateMoodValue(value) {
+            document.getElementById('moodValue').textContent = `${value}/10`;
+        }
+
+        function submitMoodCheck() {
+            const mood = document.getElementById('moodRange').value;
+            const feedback = getMoodFeedback(mood);
+            
+            showModal({
+                icon: '<i class="fas fa-heart"></i>',
+                title: 'Mood Recorded',
+                subtitle: `Your mood: ${mood}/10`,
+                content: `
+                    <div style="text-align: center; margin: 2rem 0;">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">
+                            ${getMoodEmoji(mood)}
+                        </div>
+                        <div style="font-size: 1.2rem; color: var(--primary-color); margin-bottom: 1rem;">
+                            ${feedback}
+                        </div>
+                        <div style="color: var(--text-muted);">
+                            Thank you for checking in with yourself today.
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-btn primary" onclick="closeModal()">
+                            <i class="fas fa-check"></i> Continue
+                        </button>
+                    </div>
+                `
+            });
+        }
+
+        function getMoodFeedback(score) {
+            if (score >= 8) return "🌟 You're doing amazing! Keep up the positive energy!";
+            if (score >= 6) return "😊 You're in a good place. Consider what's working well for you.";
+            if (score >= 4) return "😐 You're managing okay. Maybe try a breathing exercise?";
+            return "💙 Thank you for checking in. Consider reaching out for support if needed.";
+        }
+
+        function getMoodEmoji(score) {
+            if (score >= 9) return "🤩";
+            if (score >= 8) return "😊";
+            if (score >= 7) return "🙂";
+            if (score >= 6) return "😐";
+            if (score >= 5) return "😔";
+            if (score >= 4) return "😟";
+            if (score >= 3) return "😢";
+            return "😭";
+        }
+
+        function playSoundType(type) {
+            const sounds = {
+                ocean: "🌊 Playing gentle ocean waves...",
+                rain: "🌧️ Playing forest rainfall sounds...",
+                birds: "🐦 Playing peaceful morning birds...",
+                piano: "🎹 Playing soft piano melodies..."
+            };
+            
+            showModal({
+                icon: '<i class="fas fa-music"></i>',
+                title: 'Now Playing',
+                subtitle: sounds[type] || 'Playing calming sounds...',
+                content: `
+                    <div style="text-align: center; margin: 2rem 0;">
+                        <div style="font-size: 4rem; margin-bottom: 1rem; animation: pulse 2s infinite;">
+                            🎵
+                        </div>
+                        <div style="font-size: 1.2rem; color: var(--primary-color); margin-bottom: 1rem;">
+                            Find these sounds on meditation apps like:
+                        </div>
+                        <div style="color: var(--text-secondary); line-height: 1.6;">
+                            • Calm<br>
+                            • Headspace<br>
+                            • Insight Timer<br>
+                            • YouTube relaxation channels
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-btn primary" onclick="closeModal()">
+                            <i class="fas fa-check"></i> Got it!
+                        </button>
+                    </div>
+                `
+            });
+        }
+
+        function saveJournalEntry() {
+            const gratitude = document.getElementById('gratitudeInput').value;
+            const highlight = document.getElementById('highlightInput').value;
+            
+            if (!gratitude.trim() && !highlight.trim()) {
+                showModal({
+                    icon: '<i class="fas fa-exclamation-triangle"></i>',
+                    title: 'Empty Entry',
+                    subtitle: 'Please write something to save',
+                    content: `
+                        <div style="text-align: center; margin: 2rem 0;">
+                            <div style="color: var(--text-secondary);">
+                                Take a moment to reflect on at least one thing you're grateful for or a highlight from today.
+                            </div>
+                        </div>
+                        
+                        <div class="modal-actions">
+                            <button class="modal-btn primary" onclick="startJournaling()">
+                                <i class="fas fa-arrow-left"></i> Back to Journal
+                            </button>
+                        </div>
+                    `
+                });
+                return;
+            }
+            
+            // Save to localStorage (in a real app, this would go to a database)
+            const entry = {
+                gratitude,
+                highlight,
+                date: new Date().toLocaleDateString(),
+                timestamp: new Date().toISOString()
+            };
+            
+            let entries = JSON.parse(localStorage.getItem('gratitude-entries') || '[]');
+            entries.push(entry);
+            localStorage.setItem('gratitude-entries', JSON.stringify(entries));
+            
+            showModal({
+                icon: '<i class="fas fa-check-circle"></i>',
+                title: 'Entry Saved!',
+                subtitle: 'Your gratitude has been recorded',
+                content: `
+                    <div style="text-align: center; margin: 2rem 0;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">
+                            🙏
+                        </div>
+                        <div style="font-size: 1.2rem; color: var(--success-color); margin-bottom: 1rem;">
+                            Beautiful! Your gratitude entry has been saved.
+                        </div>
+                        <div style="color: var(--text-secondary);">
+                            Regular gratitude practice can boost mood by up to 25%!
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-btn primary" onclick="closeModal()">
+                            <i class="fas fa-heart"></i> Continue
+                        </button>
+                    </div>
+                `
+            });
+        }
+
+        function getNewAffirmation() {
+            startAffirmations(); // Just call the function again for a new random affirmation
+        }
+
+        function startBreathingTimer() {
+            // This would start an actual breathing timer in a real app
+            showModal({
+                icon: '<i class="fas fa-wind"></i>',
+                title: 'Breathing Session',
+                subtitle: 'Follow the rhythm',
+                content: `
+                    <div style="text-align: center; margin: 2rem 0;">
+                        <div style="font-size: 3rem; margin-bottom: 2rem; animation: pulse 4s infinite;">
+                            🫁
+                        </div>
+                        <div style="font-size: 1.5rem; color: var(--primary-color); margin-bottom: 1rem;">
+                            In a real app, this would be an interactive breathing timer with visual cues and audio guidance.
+                        </div>
+                        <div style="color: var(--text-secondary); line-height: 1.6;">
+                            For now, try the 4-7-8 technique:<br>
+                            Inhale 4 → Hold 7 → Exhale 8<br>
+                            Repeat 4 times
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-btn primary" onclick="closeModal()">
+                            <i class="fas fa-check"></i> Done
+                        </button>
+                    </div>
+                `
+            });
+        }
+
+        function startRelaxationTimer() {
+            // This would start an actual guided relaxation in a real app
+            showModal({
+                icon: '<i class="fas fa-bed"></i>',
+                title: 'Relaxation Session',
+                subtitle: 'Progressive muscle relaxation',
+                content: `
+                    <div style="text-align: center; margin: 2rem 0;">
+                        <div style="font-size: 3rem; margin-bottom: 2rem; animation: pulse 3s infinite;">
+                            🧘‍♀️
+                        </div>
+                        <div style="font-size: 1.2rem; color: var(--primary-color); margin-bottom: 1rem;">
+                            In a real app, this would be a guided progressive muscle relaxation session.
+                        </div>
+                        <div style="color: var(--text-secondary); line-height: 1.6;">
+                            Find guided sessions on:<br>
+                            • YouTube (search "progressive muscle relaxation")<br>
+                            • Meditation apps<br>
+                            • Wellness websites
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-btn primary" onclick="closeModal()">
+                            <i class="fas fa-check"></i> Got it!
+                        </button>
+                    </div>
+                `
+            });
+        }
+
+        // Initialize Three.js 3D Resources Visualization (same as before...)
+        function init3DResourcesVisualization() {
+            console.log('Starting 3D resources visualization...');
+            
+            if (typeof THREE === 'undefined') {
+                console.error('THREE.js not loaded! Using fallback...');
+                showResourcesFallback();
+                return;
+            }
+            
+            const container = document.getElementById('threeResourcesContainer');
+            if (!container) {
+                console.error('Container not found!');
+                return;
+            }
+            
+            try {
+                scene = new THREE.Scene();
+                
+                const containerWidth = container.clientWidth || 300;
+                const containerHeight = container.clientHeight || 280;
+                
+                camera = new THREE.PerspectiveCamera(
+                    65, 
+                    containerWidth / containerHeight, 
+                    0.1, 
+                    100
+                );
+                camera.position.z = 4;
+                
+                renderer = new THREE.WebGLRenderer({ 
+                    antialias: true, 
+                    alpha: true,
+                    powerPreference: "high-performance"
+                });
+                
+                renderer.setSize(containerWidth, containerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                renderer.setClearColor(0x000000, 0);
+                
+                container.innerHTML = '';
+                container.appendChild(renderer.domElement);
+                
+                console.log('3D Resources renderer created');
+
+                const ambientLight = new THREE.AmbientLight(0x667eea, 0.5);
+                scene.add(ambientLight);
+
+                const directionalLight1 = new THREE.DirectionalLight(0x4facfe, 0.8);
+                directionalLight1.position.set(4, 4, 4);
+                scene.add(directionalLight1);
+
+                const pointLight1 = new THREE.PointLight(0xf093fb, 0.6, 8);
+                pointLight1.position.set(-3, 2, 2);
+                scene.add(pointLight1);
+
+                const pointLight2 = new THREE.PointLight(0x00d4aa, 0.4, 6);
+                pointLight2.position.set(2, -2, 3);
+                scene.add(pointLight2);
+
+                createResourcesVisualization();
+                createKnowledgeParticles();
+
+                container.addEventListener('mousemove', onResourcesMouseMove, false);
+                container.addEventListener('mouseleave', onResourcesMouseLeave, false);
+                window.addEventListener('resize', onResourcesWindowResize, false);
+
+                isThreeInitialized = true;
+                animate3DResources();
+                
+                console.log('3D resources visualization initialized successfully!');
+                
+            } catch (error) {
+                console.error('Three.js resources visualization error:', error);
+                showResourcesFallback();
+            }
+        }
+
+        function createResourcesVisualization() {
+            const centralGeometry = new THREE.SphereGeometry(0.8, 32, 32);
+            const centralMaterial = new THREE.MeshStandardMaterial({
+                color: 0x667eea,
+                metalness: 0.8,
+                roughness: 0.2,
+                emissive: 0x112244,
+                emissiveIntensity: 0.3,
+                transparent: true,
+                opacity: 0.9
+            });
+
+            resourceSphere = new THREE.Mesh(centralGeometry, centralMaterial);
+            scene.add(resourceSphere);
+
+            const resourceCategories = [
+                { color: 0x4facfe, position: { x: 2, y: 0, z: 0 } },
+                { color: 0xf093fb, position: { x: -2, y: 0, z: 0 } },
+                { color: 0x00d4aa, position: { x: 0, y: 2, z: 0 } },
+                { color: 0xffb946, position: { x: 0, y: -2, z: 0 } },
+                                { color: 0xff6b6b, position: { x: 1.4, y: 1.4, z: 0 } },
+                { color: 0x764ba2, position: { x: -1.4, y: -1.4, z: 0 } }
+            ];
+
+            resourceCategories.forEach((category, index) => {
+                const sphereGeometry = new THREE.SphereGeometry(0.3, 16, 16);
+                const sphereMaterial = new THREE.MeshStandardMaterial({
+                    color: category.color,
+                    metalness: 0.6,
+                    roughness: 0.4,
+                    transparent: true,
+                    opacity: 0.8
+                });
+
+                const categoryMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
+                categoryMesh.position.set(
+                    category.position.x,
+                    category.position.y,
+                    category.position.z
+                );
+
+                scene.add(categoryMesh);
+                resourceSphere[`category_${index}`] = categoryMesh;
+
+                const points = [];
+                points.push(new THREE.Vector3(0, 0, 0));
+                points.push(new THREE.Vector3(
+                    category.position.x,
+                    category.position.y,
+                    category.position.z
+                ));
+
+                const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+                const lineMaterial = new THREE.LineBasicMaterial({
+                    color: category.color,
+                    transparent: true,
+                    opacity: 0.3
+                });
+
+                const line = new THREE.Line(lineGeometry, lineMaterial);
+                scene.add(line);
+            });
+
+            console.log('Resources visualization spheres created');
+        }
+
+        function createKnowledgeParticles() {
+            if (!scene) return;
+            
+            try {
+                const particleCount = 80;
+                const particlesGeometry = new THREE.BufferGeometry();
+                const positions = new Float32Array(particleCount * 3);
+                const colors = new Float32Array(particleCount * 3);
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const radius = 3 + Math.random() * 2;
+                    const theta = Math.random() * Math.PI * 2;
+                    const phi = Math.random() * Math.PI;
+                    
+                    positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+                    positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+                    positions[i * 3 + 2] = radius * Math.cos(phi);
+                    
+                    const colorVariation = Math.random();
+                    if (colorVariation < 0.4) {
+                        colors[i * 3] = 0.2 + Math.random() * 0.3;
+                        colors[i * 3 + 1] = 0.4 + Math.random() * 0.4;
+                        colors[i * 3 + 2] = 0.8 + Math.random() * 0.2;
+                    } else if (colorVariation < 0.7) {
+                        colors[i * 3] = 0.5 + Math.random() * 0.4;
+                        colors[i * 3 + 1] = 0.2 + Math.random() * 0.3;
+                        colors[i * 3 + 2] = 0.8 + Math.random() * 0.2;
+                    } else {
+                        colors[i * 3] = 0.0 + Math.random() * 0.3;
+                        colors[i * 3 + 1] = 0.7 + Math.random() * 0.3;
+                        colors[i * 3 + 2] = 0.5 + Math.random() * 0.3;
+                    }
+                }
+                
+                particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+                
+                const particlesMaterial = new THREE.PointsMaterial({
+                    size: 0.03,
+                    transparent: true,
+                    opacity: 0.7,
+                    vertexColors: true,
+                    blending: THREE.AdditiveBlending
+                });
+                
+                particles = new THREE.Points(particlesGeometry, particlesMaterial);
+                scene.add(particles);
+                
+                console.log('Knowledge particles added');
+            } catch (error) {
+                console.error('Error creating knowledge particles:', error);
+            }
+        }
+
+        function onResourcesMouseMove(event) {
+            if (!isThreeInitialized) return;
+            
+            const container = document.getElementById('threeResourcesContainer');
+            const rect = container.getBoundingClientRect();
+            
+            mouseX = ((event.clientX - rect.left) / container.clientWidth) * 2 - 1;
+            mouseY = -((event.clientY - rect.top) / container.clientHeight) * 2 + 1;
+            
+            targetRotationX = mouseY * 0.3;
+            targetRotationY = mouseX * 0.3;
+        }
+
+        function onResourcesMouseLeave() {
+            targetRotationX = 0;
+            targetRotationY = 0;
+        }
+
+        function onResourcesWindowResize() {
+            if (!isThreeInitialized) return;
+            
+            const container = document.getElementById('threeResourcesContainer');
+            if (!container || !camera || !renderer) return;
+            
+            const containerWidth = container.clientWidth || 300;
+            const containerHeight = container.clientHeight || 280;
+            
+            camera.aspect = containerWidth / containerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(containerWidth, containerHeight);
+        }
+
+        function animate3DResources() {
+            if (!isThreeInitialized) return;
+            
+            requestAnimationFrame(animate3DResources);
+
+            try {
+                if (resourceSphere) {
+                    resourceSphere.rotation.x += (targetRotationX - resourceSphere.rotation.x) * 0.05;
+                    resourceSphere.rotation.y += (targetRotationY - resourceSphere.rotation.y) * 0.05;
+                    
+                    resourceSphere.rotation.x += 0.003;
+                    resourceSphere.rotation.y += 0.005;
+                    
+                    const time = Date.now() * 0.001;
+                    for (let i = 0; i < 6; i++) {
+                        const categoryMesh = resourceSphere[`category_${i}`];
+                        if (categoryMesh) {
+                            categoryMesh.rotation.x += 0.01 + i * 0.001;
+                            categoryMesh.rotation.y += 0.015 + i * 0.002;
+                            
+                            const floatOffset = Math.sin(time + i) * 0.1;
+                            categoryMesh.position.y += floatOffset * 0.01;
+                        }
+                    }
+                }
+
+                if (particles) {
+                    particles.rotation.y += 0.002;
+                    particles.rotation.x += 0.001;
+                    
+                    const positions = particles.geometry.attributes.position.array;
+                    const time = Date.now() * 0.0008;
+                    
+                    for (let i = 0; i < positions.length; i += 3) {
+                        const originalX = positions[i];
+                        const originalY = positions[i + 1];
+                        const originalZ = positions[i + 2];
+                        
+                        positions[i] += Math.sin(time + originalX) * 0.003;
+                        positions[i + 1] += Math.cos(time + originalY) * 0.003;
+                        positions[i + 2] += Math.sin(time * 0.7 + originalZ) * 0.002;
+                    }
+                    particles.geometry.attributes.position.needsUpdate = true;
+                }
+
+                if (renderer && scene && camera) {
+                    renderer.render(scene, camera);
+                }
+            } catch (error) {
+                console.error('3D resources animation error:', error);
+                isThreeInitialized = false;
+            }
+        }
+
+        function showResourcesFallback() {
+            const container = document.getElementById('threeResourcesContainer');
+            if (!container) return;
+            
+            container.innerHTML = `
+                <div style="
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    border-radius: var(--radius-lg);
+                    color: white;
+                    text-align: center;
+                ">
+                    <div style="
+                        width: 120px;
+                        height: 120px;
+                        background: rgba(255,255,255,0.2);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 3rem;
+                        margin-bottom: 1rem;
+                        animation: gentleFloat 3s ease-in-out infinite;
+                        border: 3px solid rgba(255,255,255,0.3);
+                    ">
+                        📚
+                    </div>
+                    <div style="font-size: 1.1rem; font-weight: 600; opacity: 0.9;">
+                        Resource Library
+                    </div>
+                </div>
+            `;
+            
+            console.log('Resources fallback visualization displayed');
+        }
+
+        function initializeResourcesData() {
+            loadResourcesStats();
+            setupSearchFunctionality();
+            setupCategoryFilters();
+        }
+
+        function loadResourcesStats() {
+            animateCounter('totalResources', 150, '+');
+            animateCounter('expertsVerified', 50, '+');
+            animateCounter('languagesSupported', 8, '');
+        }
+
+        function animateCounter(elementId, targetValue, suffix = '') {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            
+            let currentValue = 0;
+            const increment = targetValue / 50;
+            const timer = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= targetValue) {
+                    currentValue = targetValue;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(currentValue) + suffix;
+            }, 40);
+        }
+
+        function setupSearchFunctionality() {
+            const searchInput = document.getElementById('searchInput');
+            const resourceCards = document.querySelectorAll('.resource-card');
+            
+            let searchTimeout;
+            searchInput.addEventListener('input', (e) => {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    const searchTerm = e.target.value.toLowerCase();
+                    
+                    resourceCards.forEach(card => {
+                        const title = card.querySelector('.resource-title').textContent.toLowerCase();
+                        const description = card.querySelector('.resource-description').textContent.toLowerCase();
+                        const category = card.querySelector('.resource-category').textContent.toLowerCase();
+                        
+                        const isMatch = title.includes(searchTerm) || 
+                                       description.includes(searchTerm) || 
+                                       category.includes(searchTerm);
+                        
+                        if (isMatch || searchTerm === '') {
+                            card.style.display = 'block';
+                            card.style.animation = 'slideInUp 0.5s ease-out';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                    
+                    const visibleCards = document.querySelectorAll('.resource-card[style*="block"], .resource-card:not([style*="none"])').length;
+                    console.log(`Found ${visibleCards} resources matching "${searchTerm}"`);
+                }, 300);
+            });
+        }
+
+        function setupCategoryFilters() {
+            const categoryFilters = document.querySelectorAll('.category-filter');
+            const resourceCards = document.querySelectorAll('.resource-card');
+            
+            categoryFilters.forEach(filter => {
+                filter.addEventListener('click', () => {
+                    categoryFilters.forEach(f => f.classList.remove('active'));
+                    filter.classList.add('active');
+                    
+                    const selectedCategory = filter.getAttribute('data-category');
+                    
+                    resourceCards.forEach(card => {
+                        const cardCategory = card.getAttribute('data-category');
+                        
+                        if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+                            card.style.display = 'block';
+                            card.style.animation = 'slideInUp 0.5s ease-out';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+
+        function updateScrollProgress() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+            document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+        }
+
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const themeIcon = themeToggle.querySelector('i');
+
+        const savedTheme = localStorage.getItem('eirene-theme') || 'light';
+        if (savedTheme === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+            themeIcon.className = 'fas fa-sun';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('eirene-theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('eirene-theme', 'dark');
+            }
+        });
+
+        const header = document.getElementById('header');
+        const scrollTop = document.getElementById('scrollTop');
+        let ticking = false;
+
+        function updateScrollEffects() {
+            updateScrollProgress();
+            
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+                scrollTop.classList.add('show');
+            } else {
+                header.classList.remove('scrolled');
+                scrollTop.classList.remove('show');
+            }
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateScrollEffects);
+                ticking = true;
+            }
+        });
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Enhanced Card Interactions with Custom Modals
+        document.querySelectorAll('.resource-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('.resource-title').textContent;
+                const category = card.querySelector('.resource-category').textContent;
+                const description = card.querySelector('.resource-description').textContent;
+                const rating = card.querySelector('.resource-rating span').textContent;
+                const duration = card.querySelector('.resource-duration').textContent;
+                const icon = card.querySelector('.resource-overlay i').className;
+                
+                showModal({
+                    icon: `<i class="${icon}"></i>`,
+                    title: title,
+                    subtitle: `${category} • ${rating}⭐ • ${duration}`,
+                    type: 'resource',
+                    content: `
+                        <div class="modal-description">
+                            ${description}
+                        </div>
+                        
+                        <div style="background: var(--bg-tertiary); padding: 1.5rem; border-radius: var(--radius-lg); margin: 1.5rem 0;">
+                            <h4 style="margin-bottom: 1rem; color: var(--primary-color);">📖 What You'll Learn:</h4>
+                            <ul style="padding-left: 1.5rem; line-height: 1.8; color: var(--text-secondary);">
+                                <li>Evidence-based techniques for ${category.toLowerCase()}</li>
+                                <li>Practical exercises you can do anywhere</li>
+                                <li>Step-by-step guidance from experts</li>
+                                <li>Progress tracking and personalized tips</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: var(--gradient-tertiary); color: white; padding: 1rem; border-radius: var(--radius-lg); margin: 1rem 0; text-align: center;">
+                            <strong>💡 Pro Tip:</strong> Start with 5-10 minutes daily for best results
+                        </div>
+                        
+                        <div class="modal-actions">
+                            <button class="modal-btn primary" onclick="startResource('${title}')">
+                                <i class="fas fa-play"></i> Start Now
+                            </button>
+                            <button class="modal-btn secondary" onclick="bookmarkResource('${title}')">
+                                <i class="fas fa-bookmark"></i> Save for Later
+                            </button>
+                        </div>
+                    `
+                });
+            });
+        });
+
+        function startResource(title) {
+            showModal({
+                icon: '<i class="fas fa-rocket"></i>',
+                title: 'Resource Started!',
+                subtitle: `Beginning: ${title}`,
+                content: `
+                    <div style="text-align: center; margin: 2rem 0;">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">
+                            🚀
+                        </div>
+                        <div style="font-size: 1.2rem; color: var(--success-color); margin-bottom: 1rem;">
+                            Great choice! In a real app, this would launch the resource directly.
+                        </div>
+                        <div style="color: var(--text-secondary); line-height: 1.6;">
+                            You'd be directed to:<br>
+                            • Interactive content<br>
+                            • Video tutorials<br>
+                            • Guided exercises<br>
+                            • Progress tracking
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-btn primary" onclick="closeModal()">
+                            <i class="fas fa-check"></i> Got it!
+                        </button>
+                    </div>
+                `
+            });
+        }
+
+        function bookmarkResource(title) {
+            // Save to localStorage
+            let bookmarks = JSON.parse(localStorage.getItem('resource-bookmarks') || '[]');
+            if (!bookmarks.includes(title)) {
+                bookmarks.push(title);
+                localStorage.setItem('resource-bookmarks', JSON.stringify(bookmarks));
+            }
+            
+            showModal({
+                icon: '<i class="fas fa-bookmark"></i>',
+                title: 'Bookmarked!',
+                subtitle: 'Resource saved for later',
+                content: `
+                    <div style="text-align: center; margin: 2rem 0;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">
+                            📚
+                        </div>
+                        <div style="font-size: 1.2rem; color: var(--success-color); margin-bottom: 1rem;">
+                            "${title}" has been added to your saved resources.
+                        </div>
+                        <div style="color: var(--text-secondary);">
+                            You can access all your bookmarked resources anytime from your profile.
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-btn primary" onclick="closeModal()">
+                            <i class="fas fa-heart"></i> Perfect!
+                        </button>
+                    </div>
+                `
+            });
+        }
+
+        console.log('🌟 Enhanced Resources page with custom modals loaded successfully!');
+    </script>
+</body>
+</html>
+

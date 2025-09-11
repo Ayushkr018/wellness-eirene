@@ -784,8 +784,6 @@ Created with 💙 by the **Eirene Development Team**
 
 *Eirene - Where Ancient Wisdom Meets Modern AI for Holistic Healing*
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/eirene-wellness-platform)
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/yourusername/eirene-wellness-platform)
 
 </div>
 

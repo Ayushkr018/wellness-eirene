@@ -747,34 +747,7 @@ Created with 💙 by the **Eirene Development Team**
 
 ---
 
-### 📞 **Get Help Now - Crisis Resources**
 
-#### **🚨 Immediate Help (24/7)**
-- **AASRA** - +91-9820466726 - Suicide prevention and crisis support
-- **Sumaitri** - +91-11-23389090 - Delhi-based emotional support  
-- **iCALL** - +91-9152987821 - Psychosocial helpline
-- **Sneha India** - +91-44-2464-0050 - Chennai crisis intervention
-
-#### **📱 Additional Resources**
-- **National Suicide Prevention** - 📞 Call 1800-599-0019
-- **Youth Helpline** - 📞 Call 1098 (Childline India)
-- **Mental Health Rehabilitation** - 📞 Call 1800-599-0019
-- **Campus Counseling** - Contact your institution's student welfare office
-
-*Remember: You are not alone. Help is always available, and seeking support shows strength, not weakness.*
-
----
-
-### 🔗 **Quick Links**
-
-| Resource | Link | Purpose |
-|----------|------|---------|
-| 🚀 **Live Demo** | [Try Eirene Now](https://eirene-wellness.vercel.app) | Experience the platform |
-| 📖 **Documentation** | [Developer Docs](https://docs.eirene-wellness.com) | Integration guides |
-| 💬 **Community** | [Discord Server](https://discord.gg/eirene) | Developer discussions |
-| 🐛 **Bug Reports** | [GitHub Issues](https://github.com/yourusername/eirene-wellness-platform/issues) | Report problems |
-| 💡 **Feature Requests** | [GitHub Discussions](https://github.com/yourusername/eirene-wellness-platform/discussions) | Suggest improvements |
-| 📧 **Contact** | [support@eirene-wellness.com](mailto:support@eirene-wellness.com) | Direct support |
 
 ---
 

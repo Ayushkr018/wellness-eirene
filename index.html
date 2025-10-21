@@ -4,22 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eirene - AI Mental Wellness for Indian Youth</title>
+    
+    <!-- Favicon - Brain Icon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧠</text></svg>">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="AI-powered mental wellness platform designed for Indian youth. Get personalized therapy, mood tracking, and culturally-aware counseling.">
+    <meta name="keywords" content="mental health, AI therapy, Indian youth wellness, mood tracking, online counseling">
+    <meta name="author" content="Eirene">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Eirene - AI Mental Wellness">
+    <meta property="og:description" content="Transform your mental health journey with AI-powered wellness tools">
+    <meta property="og:type" content="website">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary-color: #6366f1;
-            --primary-dark: #4f46e5;
-            --primary-light: #818cf8;
-            --secondary-color: #10b981;
-            --accent-color: #f59e0b;
+            /* Updated Professional Human-Based Color Scheme */
+            --primary-color: #0d9488;
+            --primary-dark: #0f766e;
+            --primary-light: #14b8a6;
+            --secondary-color: #f97316;
+            --accent-color: #84cc16;
             --success-color: #059669;
             --error-color: #dc2626;
+            --tab-red: #ef4444;
+            --tab-red-light: #fef2f2;
+            --weak-color: #dc2626;
+            --medium-color: #f59e0b;
+            --strong-color: #059669;
             
             /* Light Mode */
             --bg-primary: #ffffff;
-            --bg-secondary: #fafafb;
+            --bg-secondary: #f8fafc;
             --bg-accent: #f1f5f9;
             --text-primary: #0f172a;
             --text-secondary: #475569;
@@ -29,8 +49,8 @@
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-primary: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+            --gradient-hero: linear-gradient(135deg, #0d9488 0%, #059669 100%);
         }
 
         [data-theme="dark"] {
@@ -41,7 +61,8 @@
             --text-secondary: #cbd5e1;
             --text-muted: #94a3b8;
             --border-color: #334155;
-            --gradient-hero: linear-gradient(135deg, #1e293b 0%, #4338ca 100%);
+            --gradient-hero: linear-gradient(135deg, #1e293b 0%, #0d9488 100%);
+            --tab-red-light: #7f1d1d;
         }
 
         * {
@@ -61,10 +82,40 @@
             -ms-user-select: none;
             user-select: none;
             transition: all 0.3s ease;
+            cursor: default;
         }
 
         html {
             scroll-behavior: smooth;
+        }
+
+        /* Custom Cursor Effect */
+        .cursor-glow {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(13, 148, 136, 0.4) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.15s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .cursor-trail {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            pointer-events: none;
+            z-index: 9997;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        body:hover .cursor-glow {
+            opacity: 1;
         }
 
         .container {
@@ -162,6 +213,10 @@
 
         .logo:hover {
             transform: scale(1.05);
+        }
+
+        .logo i {
+            font-size: 1.8rem;
         }
 
         .nav-menu {
@@ -290,7 +345,7 @@
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             background: rgba(255, 255, 255, 0.15);
             color: white;
             padding: 0.75rem 1.5rem;
@@ -300,7 +355,39 @@
             margin-bottom: 2rem;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: pulse 3s infinite;
+            position: relative;
+        }
+
+        /* Red Pulsing Light Effect */
+        .ai-indicator {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 12px;
+            height: 12px;
+        }
+
+        .ai-indicator::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #ef4444;
+            border-radius: 50%;
+            animation: pulse-red 2s infinite;
+            box-shadow: 0 0 8px #ef4444, 0 0 16px #ef4444;
+        }
+
+        @keyframes pulse-red {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.3);
+            }
         }
 
         .hero-title {
@@ -573,22 +660,23 @@
             overflow: hidden;
         }
 
-        /* Enhanced Auth Modal */
+        /* Enhanced GAMIFIED SCROLLABLE Auth Modal */
         .auth-modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 2000;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(8px);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            padding: 1rem;
         }
 
         .auth-modal.active {
@@ -596,36 +684,105 @@
             visibility: visible;
         }
 
+        /* Animated Background Particles */
+        .auth-modal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(13, 148, 136, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(239, 68, 68, 0.1) 0%, transparent 50%);
+            animation: particleFloat 8s ease-in-out infinite;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -20px); }
+        }
+
         .auth-container {
             background: var(--bg-primary);
-            border-radius: 24px;
-            box-shadow: var(--shadow-xl);
-            overflow: hidden;
+            border-radius: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             width: 100%;
-            max-width: 450px;
-            margin: 1rem;
-            transform: scale(0.9) translateY(50px);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            transform: scale(0.8) translateY(100px) rotateX(15deg);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            z-index: 1;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) var(--bg-secondary);
+        }
+
+        .auth-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .auth-container::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+        }
+
+        .auth-container::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+
+        .auth-container::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
         }
 
         .auth-modal.active .auth-container {
-            transform: scale(1) translateY(0);
+            transform: scale(1) translateY(0) rotateX(0);
+        }
+
+        .auth-container::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 200px;
+            height: 200px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .auth-container::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, var(--tab-red) 0%, var(--secondary-color) 100%);
+            border-radius: 50%;
+            opacity: 0.08;
+            animation: float 8s ease-in-out infinite reverse;
         }
 
         .auth-header {
-            padding: 2rem 2rem 1rem;
+            padding: 2.5rem 2rem 1.5rem;
             position: relative;
             text-align: center;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, transparent 100%);
         }
 
         .auth-close {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 1.5rem;
+            right: 1.5rem;
             background: var(--bg-accent);
             border: none;
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -633,50 +790,210 @@
             color: var(--text-muted);
             cursor: pointer;
             transition: all 0.3s ease;
+            z-index: 10;
         }
 
         .auth-close:hover {
             background: var(--error-color);
             color: white;
-            transform: rotate(90deg);
+            transform: rotate(90deg) scale(1.1);
         }
 
         .auth-title {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 0.5rem;
+            animation: slideInDown 0.6s ease-out 0.2s both;
         }
 
         .auth-subtitle {
             color: var(--text-secondary);
             font-size: 0.95rem;
+            animation: slideInDown 0.6s ease-out 0.3s both;
         }
 
+        /* Creative Animated Tabs */
         .auth-tabs {
-            display: flex;
-            background: var(--bg-accent);
-            border-radius: 12px;
-            padding: 0.5rem;
-            margin: 1rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            padding: 0 2rem;
+            margin-bottom: 2rem;
+            position: relative;
         }
 
         .auth-tab {
-            flex: 1;
-            padding: 0.75rem;
-            background: none;
-            border: none;
-            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
             font-weight: 600;
+            font-size: 0.95rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            color: var(--text-muted);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .auth-tab::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+        }
+
+        .auth-tab:hover::before {
+            width: 300px;
+            height: 300px;
+            opacity: 0.1;
+        }
+
+        .auth-tab i {
+            font-size: 1.6rem;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .auth-tab span {
+            display: block;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .auth-tab:hover:not(.active) {
+            background: var(--bg-accent);
+            border-color: var(--primary-color);
             color: var(--text-secondary);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .auth-tab:hover:not(.active) i {
+            transform: scale(1.2) rotate(5deg);
         }
 
         .auth-tab.active {
-            background: var(--bg-primary);
+            background: linear-gradient(135deg, var(--tab-red-light) 0%, #fff5f5 100%);
+            color: var(--tab-red);
+            border: 3px solid var(--tab-red);
+            box-shadow: 
+                0 12px 24px rgba(239, 68, 68, 0.3), 
+                0 6px 12px rgba(239, 68, 68, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        [data-theme="dark"] .auth-tab.active {
+            background: linear-gradient(135deg, var(--tab-red-light) 0%, #991b1b 100%);
+            color: #fca5a5;
+            border-color: #ef4444;
+            box-shadow: 0 12px 24px rgba(239, 68, 68, 0.5);
+        }
+
+        .auth-tab.active i {
+            animation: iconBounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            color: var(--tab-red);
+            transform: scale(1.15);
+        }
+
+        [data-theme="dark"] .auth-tab.active i {
+            color: #fca5a5;
+        }
+
+        .auth-tab.active::after {
+            content: '✓';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 28px;
+            height: 28px;
+            background: var(--tab-red);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5);
+            animation: checkmarkPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s both;
+        }
+
+        /* GAMIFIED Form Instructions */
+        .form-instructions {
+            background: linear-gradient(135deg, rgba(13, 148, 136, 0.1) 0%, rgba(20, 184, 166, 0.05) 100%);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            animation: instructionSlide 0.6s ease-out;
+        }
+
+        .form-instructions h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
             color: var(--primary-color);
-            box-shadow: var(--shadow-sm);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-instructions h4 i {
+            animation: instructionPulse 2s ease-in-out infinite;
+        }
+
+        .form-instructions ul {
+            list-style: none;
+            padding-left: 0;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .form-instructions li {
+            padding: 0.3rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-instructions li i {
+            color: var(--success-color);
+            font-size: 0.7rem;
+        }
+
+        @keyframes instructionSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes instructionPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
 
         .auth-form {
@@ -688,8 +1005,28 @@
             display: block;
         }
 
+        /* Progressive Form Group Animation */
         .form-group {
             margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        .auth-form.active .form-group {
+            animation: progressiveSlide 0.5s ease-out forwards;
+        }
+
+        .auth-form.active .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .auth-form.active .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .auth-form.active .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .auth-form.active .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .auth-form.active .form-group:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes progressiveSlide {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .form-label {
@@ -698,48 +1035,262 @@
             color: var(--text-primary);
             font-weight: 600;
             font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-wrapper {
+            position: relative;
         }
 
         .form-input {
             width: 100%;
-            padding: 1rem;
+            padding: 1.1rem;
+            padding-right: 3rem;
             border: 2px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 14px;
             background: var(--bg-primary);
             color: var(--text-primary);
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             font-family: inherit;
         }
 
         .form-input:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-            transform: translateY(-1px);
+            box-shadow: 
+                0 0 0 4px rgba(13, 148, 136, 0.1),
+                0 8px 16px rgba(13, 148, 136, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Gamified Password Strength Indicator */
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            z-index: 2;
+        }
+
+        .password-toggle:hover {
+            color: var(--primary-color);
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .password-strength {
+            margin-top: 0.75rem;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .password-strength.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .strength-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .strength-text {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .strength-text i {
+            animation: strengthPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes strengthPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        .strength-score {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .strength-bars {
+            display: flex;
+            gap: 0.5rem;
+            height: 6px;
+        }
+
+        .strength-bar {
+            flex: 1;
+            background: var(--bg-accent);
+            border-radius: 10px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .strength-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            to { left: 100%; }
+        }
+
+        .strength-bar.filled {
+            transform: scaleY(1.5);
+        }
+
+        /* Strength Level Colors */
+        .password-strength.weak .strength-text {
+            color: var(--weak-color);
+        }
+
+        .password-strength.weak .strength-score {
+            background: rgba(220, 38, 38, 0.15);
+            color: var(--weak-color);
+        }
+
+        .password-strength.weak .strength-bar.filled {
+            background: var(--weak-color);
+        }
+
+        .password-strength.medium .strength-text {
+            color: var(--medium-color);
+        }
+
+        .password-strength.medium .strength-score {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--medium-color);
+        }
+
+        .password-strength.medium .strength-bar.filled {
+            background: var(--medium-color);
+        }
+
+        .password-strength.strong .strength-text {
+            color: var(--strong-color);
+        }
+
+        .password-strength.strong .strength-score {
+            background: rgba(5, 150, 105, 0.15);
+            color: var(--strong-color);
+        }
+
+        .password-strength.strong .strength-bar.filled {
+            background: var(--strong-color);
+        }
+
+        .password-requirements {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            font-size: 0.8rem;
+        }
+
+        .requirement {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .requirement i {
+            font-size: 0.7rem;
+            width: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .requirement.met {
+            color: var(--success-color);
+        }
+
+        .requirement.met i {
+            transform: scale(1.2);
         }
 
         .form-submit {
             width: 100%;
-            padding: 1rem;
+            padding: 1.1rem;
             background: var(--gradient-primary);
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             color: white;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 1rem;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin-bottom: 1.5rem;
+            margin-top: 0.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .auth-form.active .form-submit {
+            animation: progressiveSlide 0.5s ease-out 0.6s forwards;
+        }
+
+        .form-submit::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .form-submit:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .form-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 
+                0 16px 32px rgba(13, 148, 136, 0.3),
+                0 8px 16px rgba(13, 148, 136, 0.2);
+        }
+
+        .form-submit:active {
+            transform: translateY(-2px) scale(0.98);
         }
 
         .form-submit:disabled {
@@ -754,6 +1305,12 @@
             margin: 1.5rem 0;
             color: var(--text-muted);
             font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .auth-form.active .auth-divider {
+            animation: progressiveSlide 0.5s ease-out 0.7s forwards;
         }
 
         .auth-divider::before,
@@ -761,7 +1318,7 @@
             content: '';
             flex: 1;
             height: 1px;
-            background: var(--border-color);
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
         }
 
         .auth-divider span {
@@ -770,10 +1327,10 @@
 
         .google-btn {
             width: 100%;
-            padding: 1rem;
+            padding: 1.1rem;
             background: white;
             border: 2px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 14px;
             color: var(--text-primary);
             font-size: 1rem;
             font-weight: 500;
@@ -784,6 +1341,12 @@
             justify-content: center;
             gap: 0.75rem;
             margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .auth-form.active .google-btn {
+            animation: progressiveSlide 0.5s ease-out 0.8s forwards;
         }
 
         [data-theme="dark"] .google-btn {
@@ -793,15 +1356,15 @@
         .google-btn:hover {
             border-color: var(--primary-color);
             box-shadow: var(--shadow-md);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
         }
 
         .guest-btn {
             width: 100%;
-            padding: 1rem;
+            padding: 1.1rem;
             background: transparent;
             border: 2px dashed var(--border-color);
-            border-radius: 12px;
+            border-radius: 14px;
             color: var(--text-secondary);
             font-size: 0.9rem;
             font-weight: 500;
@@ -811,13 +1374,19 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .auth-form.active .guest-btn {
+            animation: progressiveSlide 0.5s ease-out 0.9s forwards;
         }
 
         .guest-btn:hover {
             border-color: var(--primary-color);
             color: var(--primary-color);
-            background: rgba(99, 102, 241, 0.05);
-            transform: translateY(-1px);
+            background: rgba(13, 148, 136, 0.05);
+            transform: translateY(-2px);
         }
 
         /* Professional Footer */
@@ -977,17 +1546,38 @@
             .social-links {
                 justify-content: center;
             }
+
+            .auth-container {
+                max-width: 95%;
+                max-height: 85vh;
+            }
+
+            .auth-tabs {
+                gap: 0.75rem;
+            }
+
+            .auth-tab {
+                padding: 1rem 0.75rem;
+            }
+
+            .auth-tab i {
+                font-size: 1.4rem;
+            }
+
+            .auth-tab span {
+                font-size: 0.85rem;
+            }
         }
 
-        /* Animations */
+        /* Enhanced Animations */
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
         @keyframes float {
-            0% { transform: translateX(0px); }
-            100% { transform: translateX(-50px); }
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 20px); }
         }
 
         @keyframes fadeInUp {
@@ -1001,9 +1591,48 @@
             }
         }
 
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @keyframes pulse {
             0%, 100% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        @keyframes iconBounceIn {
+            0% { 
+                transform: scale(0) rotate(-180deg); 
+                opacity: 0;
+            }
+            50% { 
+                transform: scale(1.3) rotate(10deg); 
+            }
+            100% { 
+                transform: scale(1.15) rotate(0deg); 
+                opacity: 1;
+            }
+        }
+
+        @keyframes checkmarkPop {
+            0% { 
+                transform: scale(0) rotate(-180deg); 
+                opacity: 0;
+            }
+            70% { 
+                transform: scale(1.2) rotate(20deg); 
+            }
+            100% { 
+                transform: scale(1) rotate(0deg); 
+                opacity: 1;
+            }
         }
 
         .fade-in {
@@ -1020,12 +1649,13 @@
         /* Messages */
         .message {
             padding: 1rem;
-            border-radius: 8px;
+            border-radius: 12px;
             margin-bottom: 1rem;
             font-weight: 500;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            animation: slideInDown 0.4s ease-out;
         }
 
         .message.success {
@@ -1066,6 +1696,10 @@
     </style>
 </head>
 <body>
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+    <div class="cursor-trail" id="cursorTrail"></div>
+
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -1080,7 +1714,7 @@
         <div class="container">
             <div class="nav-container">
                 <a href="#" class="logo">
-                    <i class="fas fa-leaf"></i> Eirene
+                    <i class="fas fa-brain"></i> Eirene
                 </a>
                 
                 <ul class="nav-menu">
@@ -1107,7 +1741,7 @@
         <div class="container">
             <div class="hero-content fade-in">
                 <div class="hero-badge">
-                    <i class="fas fa-sparkles"></i>
+                    <div class="ai-indicator"></div>
                     <span>AI-Powered Mental Wellness Platform</span>
                 </div>
                 <h1 class="hero-title">Transform Your Mental Health Journey with AI</h1>
@@ -1129,7 +1763,7 @@
         </div>
     </section>
 
-    <!-- Features Section - NO CARDS -->
+    <!-- Features Section -->
     <section class="features-section" id="features">
         <div class="container">
             <div class="section-header">
@@ -1310,7 +1944,7 @@
         </div>
     </section>
 
-    <!-- Enhanced Auth Modal -->
+    <!-- Enhanced GAMIFIED Auth Modal -->
     <div class="auth-modal" id="authModal">
         <div class="auth-container">
             <div class="auth-header">
@@ -1322,20 +1956,39 @@
             </div>
 
             <div class="auth-tabs">
-                <button class="auth-tab active" onclick="switchAuthTab('login')">Sign In</button>
-                <button class="auth-tab" onclick="switchAuthTab('register')">Sign Up</button>
+                <button class="auth-tab active" onclick="switchAuthTab('login')">
+                    <i class="fas fa-right-to-bracket"></i>
+                    <span>Sign In</span>
+                </button>
+                <button class="auth-tab" onclick="switchAuthTab('register')">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Sign Up</span>
+                </button>
             </div>
 
             <!-- Login Form -->
             <form id="loginForm" class="auth-form active">
+                <div class="form-instructions">
+                    <h4><i class="fas fa-info-circle"></i> Quick Sign In</h4>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Enter your registered email</li>
+                        <li><i class="fas fa-check"></i> Provide your secure password</li>
+                        <li><i class="fas fa-check"></i> Access your personalized wellness dashboard</li>
+                    </ul>
+                </div>
                 <div id="loginMessages"></div>
                 <div class="form-group">
                     <label class="form-label">Email Address</label>
-                    <input type="email" class="form-input" id="loginEmail" required>
+                    <input type="email" class="form-input" id="loginEmail" required placeholder="your@email.com">
                 </div>
                 <div class="form-group">
                     <label class="form-label">Password</label>
-                    <input type="password" class="form-input" id="loginPassword" required>
+                    <div class="password-wrapper">
+                        <input type="password" class="form-input" id="loginPassword" required placeholder="••••••••">
+                        <button type="button" class="password-toggle" onclick="togglePassword('loginPassword')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
                 </div>
                 <button type="submit" class="form-submit">
                     <i class="fas fa-sign-in-alt"></i>
@@ -1363,20 +2016,68 @@
                 </button>
             </form>
 
-            <!-- Register Form -->
+            <!-- Register Form with Gamified Password Strength -->
             <form id="registerForm" class="auth-form">
+                <div class="form-instructions">
+                    <h4><i class="fas fa-sparkles"></i> Create Your Wellness Profile</h4>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Choose a strong, unique password</li>
+                        <li><i class="fas fa-check"></i> Select your preferred language</li>
+                        <li><i class="fas fa-check"></i> Start your personalized journey</li>
+                    </ul>
+                </div>
                 <div id="registerMessages"></div>
                 <div class="form-group">
                     <label class="form-label">Full Name</label>
-                    <input type="text" class="form-input" id="registerName" required>
+                    <input type="text" class="form-input" id="registerName" required placeholder="Your full name">
                 </div>
                 <div class="form-group">
                     <label class="form-label">Email Address</label>
-                    <input type="email" class="form-input" id="registerEmail" required>
+                    <input type="email" class="form-input" id="registerEmail" required placeholder="your@email.com">
                 </div>
                 <div class="form-group">
                     <label class="form-label">Password</label>
-                    <input type="password" class="form-input" id="registerPassword" required>
+                    <div class="password-wrapper">
+                        <input type="password" class="form-input" id="registerPassword" required placeholder="Create a strong password" oninput="checkPasswordStrength(this.value)">
+                        <button type="button" class="password-toggle" onclick="togglePassword('registerPassword')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Gamified Password Strength Indicator -->
+                    <div class="password-strength" id="passwordStrength">
+                        <div class="strength-label">
+                            <span class="strength-text" id="strengthText">
+                                <i class="fas fa-shield-alt"></i>
+                                <span id="strengthLabel">Weak</span>
+                            </span>
+                            <span class="strength-score" id="strengthScore">0/4</span>
+                        </div>
+                        <div class="strength-bars">
+                            <div class="strength-bar" id="bar1"></div>
+                            <div class="strength-bar" id="bar2"></div>
+                            <div class="strength-bar" id="bar3"></div>
+                            <div class="strength-bar" id="bar4"></div>
+                        </div>
+                        <div class="password-requirements">
+                            <div class="requirement" id="req-length">
+                                <i class="fas fa-circle"></i>
+                                <span>At least 8 characters</span>
+                            </div>
+                            <div class="requirement" id="req-uppercase">
+                                <i class="fas fa-circle"></i>
+                                <span>One uppercase letter</span>
+                            </div>
+                            <div class="requirement" id="req-number">
+                                <i class="fas fa-circle"></i>
+                                <span>One number</span>
+                            </div>
+                            <div class="requirement" id="req-special">
+                                <i class="fas fa-circle"></i>
+                                <span>One special character</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Preferred Language</label>
@@ -1414,13 +2115,13 @@
         </div>
     </div>
 
-    <!-- Professional Footer -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-brand">
                     <h3>
-                        <i class="fas fa-leaf"></i>
+                        <i class="fas fa-brain"></i>
                         <span>Eirene</span>
                     </h3>
                     <p>Empowering Indian youth with AI-powered mental wellness solutions. Combining technology with cultural sensitivity for better mental health outcomes.</p>
@@ -1463,7 +2164,7 @@
     </footer>
 
     <script>
-        // Enhanced Eirene Application - Final Complete Version
+        // Enhanced Eirene Application with Gamified Features
         class EireneApp {
             constructor() {
                 this.currentUser = null;
@@ -1478,10 +2179,47 @@
                 this.initNavigation();
                 this.initScrollAnimations();
                 this.initAuth();
-                // NO this.checkSession() - removed to prevent automatic redirect
+                this.initCursorEffects();
             }
 
-            // Simple Page Loader
+            initCursorEffects() {
+                const cursorGlow = document.getElementById('cursorGlow');
+                const cursorTrail = document.getElementById('cursorTrail');
+                let mouseX = 0, mouseY = 0;
+                let glowX = 0, glowY = 0;
+                let trailX = 0, trailY = 0;
+
+                document.addEventListener('mousemove', (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                });
+
+                function animateCursor() {
+                    glowX += (mouseX - glowX) * 0.15;
+                    glowY += (mouseY - glowY) * 0.15;
+                    
+                    trailX += (mouseX - trailX) * 0.3;
+                    trailY += (mouseY - trailY) * 0.3;
+
+                    cursorGlow.style.transform = `translate(${glowX - 10}px, ${glowY - 10}px)`;
+                    cursorTrail.style.transform = `translate(${trailX - 4}px, ${trailY - 4}px)`;
+                    
+                    requestAnimationFrame(animateCursor);
+                }
+                
+                animateCursor();
+
+                document.addEventListener('mouseenter', () => {
+                    cursorGlow.style.opacity = '1';
+                    cursorTrail.style.opacity = '0.6';
+                });
+
+                document.addEventListener('mouseleave', () => {
+                    cursorGlow.style.opacity = '0';
+                    cursorTrail.style.opacity = '0';
+                });
+            }
+
             initPageLoader() {
                 window.addEventListener('load', () => {
                     setTimeout(() => {
@@ -1490,7 +2228,6 @@
                 });
             }
 
-            // Scroll Progress Bar
             initScrollProgress() {
                 const scrollProgress = document.getElementById('scrollProgress');
                 
@@ -1502,7 +2239,6 @@
                 });
             }
 
-            // Theme Management
             initTheme() {
                 document.documentElement.setAttribute('data-theme', this.theme);
                 const themeIcon = document.getElementById('themeIcon');
@@ -1522,7 +2258,6 @@
                 themeIcon.className = this.theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
             }
 
-            // Navigation
             initNavigation() {
                 window.addEventListener('scroll', () => {
                     const navbar = document.getElementById('navbar');
@@ -1576,7 +2311,6 @@
                 });
             }
 
-            // Scroll Animations
             initScrollAnimations() {
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
@@ -1594,7 +2328,6 @@
                 });
             }
 
-            // Authentication
             initAuth() {
                 document.getElementById('loginForm').addEventListener('submit', (e) => {
                     e.preventDefault();
@@ -1624,10 +2357,8 @@
                 try {
                     await this.delay(1500);
                     
-                    // Simulated successful login
                     this.showMessage('loginMessages', 'Welcome back! Redirecting to dashboard...', 'success');
                     
-                    // MANUAL REDIRECT to dashboard.html
                     setTimeout(() => {
                         window.location.href = 'dashboard.html';
                     }, 1500);
@@ -1659,10 +2390,8 @@
                 try {
                     await this.delay(2000);
                     
-                    // Simulated successful registration
                     this.showMessage('registerMessages', 'Account created successfully! Welcome to Eirene...', 'success');
                     
-                    // MANUAL REDIRECT to dashboard.html
                     setTimeout(() => {
                         window.location.href = 'dashboard.html';
                     }, 2000);
@@ -1723,6 +2452,101 @@
             }
         }
 
+        // Password Strength Checker - GAMIFIED
+        function checkPasswordStrength(password) {
+            const strengthIndicator = document.getElementById('passwordStrength');
+            const strengthLabel = document.getElementById('strengthLabel');
+            const strengthScore = document.getElementById('strengthScore');
+            const bars = [
+                document.getElementById('bar1'),
+                document.getElementById('bar2'),
+                document.getElementById('bar3'),
+                document.getElementById('bar4')
+            ];
+
+            if (!password) {
+                strengthIndicator.classList.remove('visible');
+                return;
+            }
+
+            strengthIndicator.classList.add('visible');
+
+            // Check requirements
+            const hasLength = password.length >= 8;
+            const hasUppercase = /[A-Z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+            const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+            // Update requirement checkmarks
+            updateRequirement('req-length', hasLength);
+            updateRequirement('req-uppercase', hasUppercase);
+            updateRequirement('req-number', hasNumber);
+            updateRequirement('req-special', hasSpecial);
+
+            // Calculate score
+            let score = 0;
+            if (hasLength) score++;
+            if (hasUppercase) score++;
+            if (hasNumber) score++;
+            if (hasSpecial) score++;
+
+            // Update bars
+            bars.forEach((bar, index) => {
+                if (index < score) {
+                    bar.classList.add('filled');
+                } else {
+                    bar.classList.remove('filled');
+                }
+            });
+
+            // Update label and class
+            strengthIndicator.className = 'password-strength visible';
+            
+            if (score <= 1) {
+                strengthIndicator.classList.add('weak');
+                strengthLabel.textContent = 'Weak';
+                strengthScore.textContent = `${score}/4`;
+            } else if (score <= 2) {
+                strengthIndicator.classList.add('medium');
+                strengthLabel.textContent = 'Fair';
+                strengthScore.textContent = `${score}/4`;
+            } else if (score === 3) {
+                strengthIndicator.classList.add('medium');
+                strengthLabel.textContent = 'Good';
+                strengthScore.textContent = `${score}/4`;
+            } else {
+                strengthIndicator.classList.add('strong');
+                strengthLabel.textContent = 'Excellent!';
+                strengthScore.textContent = `${score}/4`;
+            }
+        }
+
+        function updateRequirement(reqId, met) {
+            const element = document.getElementById(reqId);
+            if (met) {
+                element.classList.add('met');
+                element.querySelector('i').className = 'fas fa-check-circle';
+            } else {
+                element.classList.remove('met');
+                element.querySelector('i').className = 'fas fa-circle';
+            }
+        }
+
+        // Password Toggle
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const button = input.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fas fa-eye-slash';
+            } else {
+                input.type = 'password';
+                icon.className = 'fas fa-eye';
+            }
+        }
+
         // Modal Functions
         function openAuthModal(tab = 'login') {
             document.getElementById('authModal').classList.add('active');
@@ -1738,8 +2562,16 @@
             document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
             
-            document.querySelector(`[onclick*="${tab}"]`).classList.add('active');
-            document.getElementById(tab + 'Form').classList.add('active');
+            const activeTab = Array.from(document.querySelectorAll('.auth-tab')).find(t => 
+                t.getAttribute('onclick').includes(tab)
+            );
+            
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+            
+            const form = document.getElementById(tab + 'Form');
+            form.classList.add('active');
             
             const title = document.getElementById('authTitle');
             const subtitle = document.getElementById('authSubtitle');
@@ -1776,7 +2608,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             app = new EireneApp();
             
-            // Hero title typing effect
             setTimeout(() => {
                 const heroTitle = document.querySelector('.hero-title');
                 if (heroTitle) {
@@ -1796,7 +2627,6 @@
             }, 2000);
         });
 
-        // Enhanced modal interactions
         document.addEventListener('click', (e) => {
             const modal = document.getElementById('authModal');
             if (e.target === modal) {
@@ -1804,14 +2634,12 @@
             }
         });
 
-        // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeAuthModal();
             }
         });
 
-        // Smooth scroll for CTA buttons
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();

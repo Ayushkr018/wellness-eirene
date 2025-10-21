@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mood Tracker - Eirene AI Wellness</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Favicon - Brain Icon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧠</text></svg>">
+    
+    <!-- Fonts - Inter (matching Creative Studio) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         * {
             margin: 0;
@@ -15,48 +21,39 @@
         }
 
         :root {
-            /* Premium Color Palette */
-            --primary-color: #667eea;
-            --secondary-color: #764ba2;
-            --accent-color: #f093fb;
-            --accent-2: #f5576c;
-            --accent-3: #4facfe;
-            --success-color: #00d4aa;
-            --warning-color: #ffb946;
-            --error-color: #ff6b6b;
+            /* Exact Creative Studio Color Palette */
+            --primary-color: #0d9488;
+            --primary-dark: #0f766e;
+            --primary-light: #14b8a6;
+            --secondary-color: #f97316;
+            --secondary-dark: #ea580c;
+            --accent-lime: #84cc16;
+            --accent-lime-dark: #65a30d;
+            --success-color: #059669;
+            --warning-color: #f59e0b;
+            --error-color: #dc2626;
             
-            /* Sophisticated Text Colors */
-            --text-primary: #1a1a2e;
-            --text-secondary: #4a5568;
-            --text-muted: #718096;
-            --text-light: #cbd5e0;
+            /* Text Colors (matching Creative Studio) */
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
             
-            /* Modern Background System */
-            --bg-primary: #fafbfc;
-            --bg-secondary: #f7f9fc;
-            --bg-tertiary: #eef2f7;
+            /* Background Colors (matching Creative Studio) */
+            --bg-primary: linear-gradient(135deg, #f8fafc 0%, #e0f2f1 100%);
+            --bg-secondary: #f1f5f9;
+            --bg-tertiary: #e2e8f0;
             --bg-card: #ffffff;
-            --bg-glass: rgba(255, 255, 255, 0.25);
+            --bg-glass: rgba(255, 255, 255, 0.98);
             
-            /* Border & Shadow System */
+            /* Border & Shadow (matching Creative Studio) */
             --border-color: #e2e8f0;
             --border-light: #f1f5f9;
-            --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
             --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            --shadow-glow: 0 0 40px rgba(102, 126, 234, 0.15);
             
-            /* Premium Gradients */
-            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-tertiary: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --gradient-success: linear-gradient(135deg, #00d4aa 0%, #01a085 100%);
-            --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
-            
-            /* Modern Border Radius */
-            --radius-xs: 8px;
+            /* Border Radius (matching Creative Studio) */
             --radius-sm: 12px;
             --radius-md: 16px;
             --radius-lg: 24px;
@@ -65,35 +62,67 @@
         }
 
         [data-theme="dark"] {
-            --text-primary: #f7fafc;
+            --text-primary: #f8fafc;
             --text-secondary: #e2e8f0;
-            --text-muted: #a0aec0;
-            --text-light: #718096;
-            --bg-primary: #0f0f23;
-            --bg-secondary: #16213e;
-            --bg-tertiary: #1a2332;
-            --bg-card: #1e2a3a;
-            --bg-glass: rgba(30, 42, 58, 0.8);
-            --border-color: #2d3748;
-            --border-light: #4a5568;
-            --shadow-glow: 0 0 40px rgba(102, 126, 234, 0.3);
+            --text-muted: #94a3b8;
+            --bg-primary: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --bg-card: #1e293b;
+            --bg-glass: rgba(30, 41, 59, 0.95);
+            --border-color: #334155;
+            --border-light: #475569;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
             overflow-x: hidden;
             -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
             user-select: none;
             position: relative;
         }
 
-        /* Relaxing Background Animations */
+        /* Custom Cursor Glow Effect (Mouse visible + Glow) */
+        .cursor-glow {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(13, 148, 136, 0.6) 0%, rgba(13, 148, 136, 0.3) 40%, transparent 70%);
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            transition: transform 0.15s ease, opacity 0.3s ease;
+            opacity: 0;
+            mix-blend-mode: screen;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-glow.active {
+            opacity: 1;
+        }
+
+        .cursor-glow-trail {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(13, 148, 136, 0.4) 0%, transparent 70%);
+            position: fixed;
+            pointer-events: none;
+            z-index: 99998;
+            transition: transform 0.2s ease;
+            opacity: 0;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-glow-trail.active {
+            opacity: 1;
+        }
+
+        /* Floating Orbs (matching Creative Studio) */
         .wellness-background {
             position: fixed;
             top: 0;
@@ -104,119 +133,66 @@
             pointer-events: none;
         }
 
-        /* Gentle Floating Orbs */
         .floating-orb {
             position: absolute;
             border-radius: 50%;
-            opacity: 0.4;
-            animation: gentleFloat 12s infinite ease-in-out;
+            opacity: 0.3;
+            animation: gentleFloat 15s infinite ease-in-out;
         }
 
         .floating-orb:nth-child(1) {
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.08), rgba(102, 126, 234, 0.02));
-            top: 15%;
-            left: 10%;
-            animation-delay: 0s;
-            animation-duration: 15s;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(13, 148, 136, 0.15), transparent);
+            top: 10%;
+            left: 5%;
         }
 
         .floating-orb:nth-child(2) {
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle, rgba(240, 147, 251, 0.08), rgba(240, 147, 251, 0.02));
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.1), transparent);
             top: 60%;
-            right: 15%;
-            animation-delay: -3s;
-            animation-duration: 18s;
-        }
-
-        .floating-orb:nth-child(3) {
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(79, 172, 254, 0.06), rgba(79, 172, 254, 0.02));
-            bottom: 25%;
-            left: 70%;
-            animation-delay: -7s;
-            animation-duration: 20s;
+            right: 10%;
+            animation-delay: -5s;
         }
 
         @keyframes gentleFloat {
-            0%, 100% { 
-                transform: translateY(0px) translateX(0px) scale(1);
-                opacity: 0.4;
-            }
-            25% { 
-                transform: translateY(-20px) translateX(15px) scale(1.05);
-                opacity: 0.6;
-            }
-            50% { 
-                transform: translateY(-10px) translateX(-10px) scale(0.95);
-                opacity: 0.3;
-            }
-            75% { 
-                transform: translateY(-30px) translateX(20px) scale(1.02);
-                opacity: 0.5;
-            }
-        }
-
-        /* Zen Gradient Overlay */
-        .zen-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, 
-                rgba(102, 126, 234, 0.02) 0%, 
-                transparent 25%, 
-                rgba(240, 147, 251, 0.02) 50%, 
-                transparent 75%, 
-                rgba(79, 172, 254, 0.02) 100%
-            );
-            animation: zenShift 12s ease-in-out infinite;
-        }
-
-        @keyframes zenShift {
-            0%, 100% { opacity: 0.8; }
-            33% { opacity: 0.4; }
-            66% { opacity: 0.9; }
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-20px) translateX(20px); }
         }
 
         .selectable, input, textarea, .mood-input {
             -webkit-user-select: text;
-            -moz-user-select: text;
-            -ms-user-select: text;
             user-select: text;
         }
 
-        /* Enhanced Scroll Progress Bar */
+        /* Scroll Progress Bar (matching Creative Studio) */
         .scroll-progress {
             position: fixed;
             top: 0;
             left: 0;
             width: 0%;
             height: 3px;
-            background: var(--gradient-primary);
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
             z-index: 10000;
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: width 0.3s ease;
         }
 
-        /* Premium Loading Screen */
+        /* Loading Screen (matching Creative Studio) */
         .loading-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.8s ease;
         }
 
         .loading-screen.hide {
@@ -231,7 +207,7 @@
             border: 4px solid rgba(255, 255, 255, 0.2);
             border-top: 4px solid white;
             border-radius: 50%;
-            animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+            animation: spin 1s linear infinite;
             margin-bottom: 2rem;
         }
 
@@ -241,7 +217,6 @@
             font-weight: 600;
             opacity: 0.95;
             animation: pulse 2s ease-in-out infinite;
-            letter-spacing: 0.5px;
         }
 
         @keyframes spin {
@@ -254,21 +229,21 @@
             50% { opacity: 0.7; }
         }
 
-        /* Floating Scroll to Top Button */
+        /* Scroll to Top Button (matching Creative Studio) */
         .scroll-top {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
             width: 56px;
             height: 56px;
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
             border: none;
             border-radius: 50%;
             color: white;
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: all 0.3s ease;
             z-index: 1000;
             box-shadow: var(--shadow-lg);
             font-size: 1.2rem;
@@ -277,38 +252,29 @@
         .scroll-top.show {
             opacity: 1;
             visibility: visible;
-            animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
         .scroll-top:hover {
-            transform: translateY(-5px) scale(1.1);
+            transform: translateY(-5px);
             box-shadow: var(--shadow-xl);
         }
 
-        @keyframes bounceIn {
-            0% { opacity: 0; transform: scale(0.3) translateY(100px); }
-            50% { opacity: 1; transform: scale(1.05) translateY(-10px); }
-            70% { transform: scale(0.95) translateY(5px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        /* Modern Glass Header */
+        /* Glass Header (matching Creative Studio exactly) */
         .header {
             background: var(--bg-glass);
-            backdrop-filter: blur(30px) saturate(180%);
-            border-bottom: 1px solid var(--border-light);
+            backdrop-filter: blur(30px);
+            border-bottom: 1px solid var(--border-color);
             padding: 1rem 0;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 100;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
         }
 
         .header.scrolled {
             box-shadow: var(--shadow-md);
-            backdrop-filter: blur(40px) saturate(200%);
             padding: 0.8rem 0;
         }
 
@@ -329,7 +295,7 @@
             font-weight: 800;
             color: var(--primary-color);
             text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
             padding: 0.5rem 1rem;
             border-radius: var(--radius-full);
             background: var(--bg-card);
@@ -337,22 +303,17 @@
         }
 
         .logo:hover {
-            transform: scale(1.05) translateY(-2px);
+            transform: translateY(-2px);
             box-shadow: var(--shadow-md);
         }
 
         .logo i {
             font-size: 2rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
             background-clip: text;
-            animation: rotate 4s ease-in-out infinite;
-        }
-
-        @keyframes rotate {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(10deg); }
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
         }
 
         .nav-center {
@@ -362,7 +323,6 @@
             border-radius: var(--radius-full);
             padding: 0.4rem;
             box-shadow: var(--shadow-sm);
-            backdrop-filter: blur(20px);
         }
 
         .nav-links {
@@ -375,17 +335,14 @@
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
             padding: 0.8rem 1.5rem;
             border-radius: var(--radius-full);
-            position: relative;
-            white-space: nowrap;
             font-size: 0.9rem;
-            overflow: hidden;
         }
 
         .nav-links a.active {
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
             color: white;
             box-shadow: var(--shadow-sm);
         }
@@ -393,7 +350,6 @@
         .nav-links a:hover:not(.active) {
             background: var(--bg-secondary);
             color: var(--primary-color);
-            transform: translateY(-1px);
         }
 
         .nav-right {
@@ -411,7 +367,7 @@
             border: 1px solid var(--border-color);
             border-radius: var(--radius-full);
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
             box-shadow: var(--shadow-sm);
         }
 
@@ -424,7 +380,7 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -461,8 +417,8 @@
         }
 
         @keyframes pulse-dot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.8); }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
         .theme-toggle {
@@ -472,7 +428,7 @@
             padding: 0.7rem;
             cursor: pointer;
             color: var(--text-primary);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
             width: 44px;
             height: 44px;
             display: flex;
@@ -482,29 +438,13 @@
         }
 
         .theme-toggle:hover {
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
             color: white;
-            transform: scale(1.1) rotate(10deg);
+            transform: rotate(180deg);
             box-shadow: var(--shadow-md);
         }
 
-        .mobile-menu-btn {
-            display: none;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            padding: 0.7rem;
-            font-size: 1.1rem;
-            color: var(--text-primary);
-            cursor: pointer;
-            width: 44px;
-            height: 44px;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow-sm);
-        }
-
-        /* Advanced Mood Tracker Dashboard */
+        /* Mood Dashboard */
         .mood-dashboard {
             max-width: 1200px;
             margin: 0 auto;
@@ -515,16 +455,16 @@
             z-index: 1;
         }
 
-        /* Hero Header Section */
+        /* Hero Section (matching Creative Studio) */
         .mood-hero {
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
             color: white;
             padding: 4rem 3rem;
             border-radius: var(--radius-xl);
             margin-bottom: 3rem;
             position: relative;
             overflow: hidden;
-            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: slideInUp 0.8s ease;
             box-shadow: var(--shadow-xl);
         }
 
@@ -540,22 +480,9 @@
             animation: float 8s ease-in-out infinite;
         }
 
-        .mood-hero::after {
-            content: '';
-            position: absolute;
-            bottom: -40%;
-            left: -15%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
-            border-radius: 50%;
-            animation: float 10s ease-in-out infinite reverse;
-        }
-
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-15px) rotate(120deg); }
-            66% { transform: translateY(-8px) rotate(240deg); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         .hero-content {
@@ -575,20 +502,20 @@
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+            animation: fadeInUp 1s ease 0.2s both;
         }
 
         .hero-subtitle {
             font-size: 1.3rem;
             opacity: 0.9;
             margin-bottom: 1.5rem;
-            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+            animation: fadeInUp 1s ease 0.4s both;
         }
 
         .hero-stats {
             display: flex;
             gap: 2rem;
-            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
+            animation: fadeInUp 1s ease 0.6s both;
         }
 
         .hero-stat {
@@ -615,7 +542,6 @@
             justify-content: center;
         }
 
-        /* 3D Mood Visualization Container */
         .three-mood-container {
             width: 100%;
             height: 100%;
@@ -624,10 +550,6 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.2);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .three-mood-container canvas {
@@ -636,7 +558,7 @@
             border-radius: 50%;
         }
 
-        /* Advanced Mood Analysis Section */
+        /* Analysis Section */
         .analysis-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -649,37 +571,27 @@
             border-radius: var(--radius-xl);
             padding: 0;
             box-shadow: var(--shadow-sm);
-            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+            animation: slideInUp 0.8s ease both;
             transition: all 0.4s ease;
             overflow: hidden;
-            border: 1px solid var(--border-light);
+            border: 1px solid var(--border-color);
         }
 
         .analysis-card:nth-child(1) { animation-delay: 0.1s; }
         .analysis-card:nth-child(2) { animation-delay: 0.2s; }
 
         .analysis-card:hover {
-            transform: translateY(-8px) scale(1.02);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-xl);
+            border-color: var(--primary-color);
         }
 
         .analysis-header {
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
             padding: 2rem;
             color: white;
             position: relative;
             overflow: hidden;
-        }
-
-        .analysis-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 150px;
-            height: 150px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
         }
 
         .analysis-title {
@@ -700,7 +612,7 @@
             padding: 2.5rem;
         }
 
-        /* Smart Text Input */
+        /* Smart Input */
         .smart-input {
             position: relative;
             margin-bottom: 2rem;
@@ -710,9 +622,9 @@
             width: 100%;
             min-height: 140px;
             padding: 1.5rem;
-            border: 2px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background: var(--bg-secondary);
             color: var(--text-primary);
             font-size: 1rem;
             font-family: inherit;
@@ -723,8 +635,8 @@
 
         .mood-input:focus {
             border-color: var(--primary-color);
-            background: white;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            background: var(--bg-card);
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
         }
 
         .mood-input::placeholder {
@@ -741,7 +653,7 @@
             background: var(--bg-card);
             padding: 0.3rem 0.8rem;
             border-radius: var(--radius-full);
-            border: 1px solid var(--border-light);
+            border: 1px solid var(--border-color);
         }
 
         .typing-indicator {
@@ -778,7 +690,7 @@
             30% { transform: scale(1.3); opacity: 1; }
         }
 
-        /* Advanced Voice Recorder */
+        /* Voice Section */
         .voice-section {
             text-align: center;
             padding: 1rem 0;
@@ -787,12 +699,12 @@
         .voice-visualizer {
             width: 100%;
             height: 120px;
-            background: var(--bg-primary);
-            border-radius: var(--radius-lg);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
-            border: 2px solid var(--border-light);
+            border: 2px solid var(--border-color);
         }
 
         .voice-waves {
@@ -805,7 +717,7 @@
 
         .voice-wave {
             width: 4px;
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
             border-radius: var(--radius-full);
             transition: all 0.1s ease;
             height: 20%;
@@ -832,47 +744,27 @@
             height: 80px;
             border-radius: 50%;
             border: none;
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
             color: white;
             font-size: 2rem;
             cursor: pointer;
             transition: all 0.4s ease;
             box-shadow: var(--shadow-sm);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .voice-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            border-radius: 50%;
-            transform: scale(0);
-            transition: transform 0.3s ease;
-            opacity: 0.2;
-        }
-
-        .voice-btn:hover::before {
-            transform: scale(1);
         }
 
         .voice-btn:hover {
             transform: scale(1.1);
-            box-shadow: var(--shadow-glow);
+            box-shadow: var(--shadow-lg);
         }
 
         .voice-btn.recording {
-            background: var(--error-color);
+            background: linear-gradient(135deg, var(--error-color), #ef4444);
             animation: recordingPulse 1s infinite;
         }
 
         @keyframes recordingPulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4); }
-            50% { box-shadow: 0 0 0 20px rgba(255, 107, 107, 0); }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+            50% { box-shadow: 0 0 0 20px rgba(220, 38, 38, 0); }
         }
 
         .voice-status {
@@ -881,21 +773,16 @@
             margin-bottom: 1rem;
         }
 
-        /* Real-time Mood Display */
+        /* Live Mood Display */
         .live-mood {
             background: var(--bg-card);
             border-radius: var(--radius-xl);
             padding: 3rem;
             margin-bottom: 3rem;
             box-shadow: var(--shadow-sm);
-            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-light);
+            animation: slideInUp 0.8s ease 0.3s both;
+            border: 1px solid var(--border-color);
             text-align: center;
-        }
-
-        .live-mood:hover {
-            box-shadow: var(--shadow-md);
         }
 
         .mood-display {
@@ -905,8 +792,17 @@
             margin-bottom: 2rem;
         }
 
-        .mood-emoji {
-            font-size: 5rem;
+        .mood-icon-display {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            box-shadow: var(--shadow-lg);
             animation: emojiFloat 3s ease-in-out infinite;
         }
 
@@ -932,21 +828,35 @@
             color: var(--text-secondary);
         }
 
+        .mood-trend-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
+            color: white;
+            box-shadow: var(--shadow-lg);
+            animation: emojiFloat 3s ease-in-out infinite 0.5s;
+        }
+
         .mood-description {
             font-size: 1.1rem;
             color: var(--text-secondary);
             margin-bottom: 2rem;
         }
 
-        /* Interactive Mood Scale */
+        /* Mood Scale */
         .mood-scale-section {
             background: var(--bg-card);
             border-radius: var(--radius-xl);
             padding: 3rem;
             margin-bottom: 3rem;
             box-shadow: var(--shadow-sm);
-            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
-            border: 1px solid var(--border-light);
+            animation: slideInUp 0.8s ease 0.4s both;
+            border: 1px solid var(--border-color);
         }
 
         .scale-header {
@@ -968,12 +878,12 @@
             position: relative;
             height: 60px;
             background: linear-gradient(90deg, 
-                #ff6b6b 0%, 
-                #ffb946 20%, 
+                #dc2626 0%, 
+                #f59e0b 20%, 
                 #eab308 40%, 
                 #84cc16 60%, 
-                #00d4aa 80%, 
-                #4facfe 100%
+                #059669 80%, 
+                #0d9488 100%
             );
             border-radius: var(--radius-full);
             margin: 2rem 0;
@@ -990,7 +900,7 @@
             border: 4px solid var(--primary-color);
             border-radius: var(--radius-md);
             cursor: grab;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             left: 50%;
             transform: translateX(-50%);
             box-shadow: var(--shadow-lg);
@@ -998,7 +908,6 @@
 
         .mood-indicator:hover {
             transform: translateX(-50%) scale(1.1);
-            box-shadow: var(--shadow-xl);
         }
 
         .mood-indicator.dragging {
@@ -1017,12 +926,12 @@
         .mood-feedback {
             text-align: center;
             padding: 1.5rem;
-            background: var(--bg-tertiary);
-            border-radius: var(--radius-lg);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
             margin-top: 2rem;
         }
 
-        /* Advanced Analytics */
+        /* Analytics */
         .analytics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1035,9 +944,9 @@
             border-radius: var(--radius-xl);
             overflow: hidden;
             box-shadow: var(--shadow-sm);
-            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+            animation: slideInUp 0.8s ease both;
             transition: all 0.4s ease;
-            border: 1px solid var(--border-light);
+            border: 1px solid var(--border-color);
         }
 
         .analytics-card:nth-child(1) { animation-delay: 0.5s; }
@@ -1051,21 +960,20 @@
 
         .analytics-header {
             padding: 2rem;
-            background: var(--gradient-tertiary);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
             color: white;
-            position: relative;
         }
 
         .analytics-card:nth-child(2) .analytics-header {
-            background: var(--gradient-secondary);
+            background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));
         }
 
         .analytics-card:nth-child(3) .analytics-header {
-            background: var(--gradient-success);
+            background: linear-gradient(135deg, var(--accent-lime), var(--accent-lime-dark));
         }
 
         .analytics-icon {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
         }
 
@@ -1083,7 +991,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 0;
-            border-bottom: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .metric:last-child {
@@ -1101,14 +1009,14 @@
             font-size: 1.1rem;
         }
 
-        /* Smart Insights */
+        /* Insights */
         .insights-section {
             background: var(--bg-card);
             border-radius: var(--radius-xl);
             padding: 3rem;
             box-shadow: var(--shadow-sm);
-            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.8s both;
-            border: 1px solid var(--border-light);
+            animation: slideInUp 0.8s ease 0.8s both;
+            border: 1px solid var(--border-color);
         }
 
         .insights-header {
@@ -1134,8 +1042,8 @@
 
         .insight-item {
             padding: 2rem;
-            background: var(--bg-tertiary);
-            border-radius: var(--radius-lg);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
             transition: all 0.3s ease;
             cursor: pointer;
             border-left: 4px solid transparent;
@@ -1156,7 +1064,7 @@
         }
 
         .insight-item.info {
-            border-left-color: var(--accent-3);
+            border-left-color: var(--primary-color);
         }
 
         .insight-icon {
@@ -1180,7 +1088,7 @@
         }
 
         .insight-item.info .insight-icon {
-            background: var(--accent-3);
+            background: var(--primary-color);
         }
 
         .insight-title {
@@ -1194,7 +1102,7 @@
             line-height: 1.5;
         }
 
-        /* Enhanced Animations */
+        /* Animations */
         @keyframes slideInUp {
             0% {
                 opacity: 0;
@@ -1217,7 +1125,62 @@
             }
         }
 
-        /* Mobile Responsive Design */
+        /* Mobile Bottom Navigation (matching Creative Studio) */
+        .mobile-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-glass);
+            backdrop-filter: blur(30px);
+            border-top: 1px solid var(--border-color);
+            padding: 1rem 0;
+            z-index: 100;
+            display: none;
+        }
+
+        .mobile-nav-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .mobile-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-item i {
+            font-size: 1.3rem;
+        }
+
+        .mobile-nav-item.active {
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .nav-center {
+                display: none;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
+
+            .mood-dashboard {
+                padding-bottom: 100px;
+            }
+        }
+
         @media (max-width: 968px) {
             .analysis-section {
                 grid-template-columns: 1fr;
@@ -1236,12 +1199,9 @@
         }
 
         @media (max-width: 768px) {
-            .nav-center {
+            .cursor-glow,
+            .cursor-glow-trail {
                 display: none;
-            }
-
-            .mobile-menu-btn {
-                display: flex;
             }
 
             .profile-info {
@@ -1275,13 +1235,8 @@
                 grid-template-columns: 1fr;
             }
 
-            /* Mobile Optimization for Animations */
             .floating-orb {
                 display: none;
-            }
-
-            .zen-overlay {
-                opacity: 0.3;
             }
         }
 
@@ -1306,40 +1261,45 @@
             .analysis-content, .live-mood, .mood-scale-section, .insights-section {
                 padding: 1.5rem;
             }
+
+            .mood-icon-display, .mood-trend-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Relaxing Background Animations -->
+    <!-- Custom Cursor Glow Effect -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+    <div class="cursor-glow-trail" id="cursorGlowTrail"></div>
+
+    <!-- Wellness Background -->
     <div class="wellness-background">
-        <!-- Gentle Floating Orbs -->
         <div class="floating-orb"></div>
         <div class="floating-orb"></div>
-        <div class="floating-orb"></div>
-        
-        <!-- Zen Gradient Overlay -->
-        <div class="zen-overlay"></div>
     </div>
 
-    <!-- Enhanced Scroll Progress Bar -->
+    <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- Premium Loading Screen -->
+    <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loader"></div>
         <div class="loading-text">Analyzing your emotional patterns...</div>
     </div>
 
-    <!-- Floating Scroll to Top Button -->
+    <!-- Scroll to Top -->
     <button class="scroll-top" id="scrollTop">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Modern Glass Header -->
+    <!-- Glass Header -->
     <header class="header" id="header">
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <i class="fas fa-lotus"></i>
+                <i class="fas fa-brain"></i>
                 Eirene
             </a>
             
@@ -1349,7 +1309,7 @@
                     <a href="creative-studio.html">Creative Studio</a>
                     <a href="mood-tracker.html" class="active">Mood Tracker</a>
                     <a href="counselor.html">AI Counselor</a>
-                    <a href="wellness-forecast.html">Wellness Forecast</a>
+                    <a href="wellness-forecast.html">Wellness</a>
                     <a href="resources.html">Resources</a>
                 </nav>
             </div>
@@ -1369,16 +1329,42 @@
                     <i class="fas fa-moon"></i>
                 </button>
             </div>
-
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </header>
 
-    <!-- Advanced Mood Tracker Dashboard -->
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-nav">
+        <div class="mobile-nav-container">
+            <a href="dashboard.html" class="mobile-nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="creative-studio.html" class="mobile-nav-item">
+                <i class="fas fa-palette"></i>
+                <span>Create</span>
+            </a>
+            <a href="mood-tracker.html" class="mobile-nav-item active">
+                <i class="fas fa-heart"></i>
+                <span>Mood</span>
+            </a>
+            <a href="counselor.html" class="mobile-nav-item">
+                <i class="fas fa-comments"></i>
+                <span>Chat</span>
+            </a>
+            <a href="wellness-forecast.html" class="mobile-nav-item">
+                <i class="fas fa-cloud-sun"></i>
+                <span>Wellness</span>
+            </a>
+            <a href="resources.html" class="mobile-nav-item">
+                <i class="fas fa-book"></i>
+                <span>Resources</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Mood Dashboard -->
     <main class="mood-dashboard">
-        <!-- Hero Header Section -->
+        <!-- Hero Section -->
         <section class="mood-hero">
             <div class="hero-content">
                 <div class="hero-text">
@@ -1407,9 +1393,9 @@
             </div>
         </section>
 
-        <!-- Advanced Mood Analysis Section -->
+        <!-- Analysis Section -->
         <section class="analysis-section">
-            <!-- Smart Text Analysis -->
+            <!-- Text Analysis -->
             <div class="analysis-card">
                 <div class="analysis-header">
                     <h3 class="analysis-title">Smart Text Analysis</h3>
@@ -1433,9 +1419,9 @@
                 </div>
             </div>
 
-            <!-- Advanced Voice Analyzer -->
+            <!-- Voice Analyzer -->
             <div class="analysis-card">
-                <div class="analysis-header" style="background: var(--gradient-secondary);">
+                <div class="analysis-header" style="background: linear-gradient(135deg, var(--secondary-color), var(--secondary-dark));">
                     <h3 class="analysis-title">Voice Emotion Reader</h3>
                     <p class="analysis-desc">Real-time voice analysis for tone, pace, and emotional state</p>
                 </div>
@@ -1457,22 +1443,26 @@
             </div>
         </section>
 
-        <!-- Real-time Mood Display -->
+        <!-- Live Mood Display -->
         <section class="live-mood">
             <div class="mood-display">
-                <div class="mood-emoji" id="moodEmoji">😊</div>
+                <div class="mood-icon-display" id="moodIconDisplay">
+                    <i class="fas fa-smile"></i>
+                </div>
                 <div class="mood-info">
                     <div class="current-mood" id="currentMood">7.2</div>
                     <div class="mood-confidence" id="moodConfidence">87% confidence</div>
                 </div>
-                <div class="mood-emoji" id="moodTrend">📈</div>
+                <div class="mood-trend-icon" id="moodTrendIcon">
+                    <i class="fas fa-arrow-trend-up"></i>
+                </div>
             </div>
             <div class="mood-description" id="moodDescription">
                 You're feeling positive and optimistic today with steady emotional balance
             </div>
         </section>
 
-        <!-- Interactive Mood Scale -->
+        <!-- Mood Scale -->
         <section class="mood-scale-section">
             <div class="scale-header">
                 <h2 class="scale-title">Interactive Mood Scale</h2>
@@ -1495,11 +1485,11 @@
             </div>
         </section>
 
-        <!-- Advanced Analytics -->
+        <!-- Analytics -->
         <section class="analytics-grid">
             <div class="analytics-card">
                 <div class="analytics-header">
-                    <div class="analytics-icon">📊</div>
+                    <div class="analytics-icon"><i class="fas fa-chart-line"></i></div>
                     <h3 class="analytics-title">Behavioral Patterns</h3>
                 </div>
                 <div class="analytics-content">
@@ -1524,7 +1514,7 @@
 
             <div class="analytics-card">
                 <div class="analytics-header">
-                    <div class="analytics-icon">🧠</div>
+                    <div class="analytics-icon"><i class="fas fa-brain"></i></div>
                     <h3 class="analytics-title">Emotional Trends</h3>
                 </div>
                 <div class="analytics-content">
@@ -1549,7 +1539,7 @@
 
             <div class="analytics-card">
                 <div class="analytics-header">
-                    <div class="analytics-icon">💚</div>
+                    <div class="analytics-icon"><i class="fas fa-heart-pulse"></i></div>
                     <h3 class="analytics-title">Wellness Insights</h3>
                 </div>
                 <div class="analytics-content">
@@ -1573,7 +1563,7 @@
             </div>
         </section>
 
-        <!-- Smart Insights -->
+        <!-- Insights -->
         <section class="insights-section">
             <div class="insights-header">
                 <h2 class="insights-title">AI-Powered Insights</h2>
@@ -1619,7 +1609,208 @@
     <script src="./three.js"></script>
 
     <script>
-        // Global Three.js Variables for Mood Visualization
+        // ============================================
+        // CUSTOM CURSOR GLOW EFFECT
+        // ============================================
+        const cursorGlow = document.getElementById('cursorGlow');
+        const cursorGlowTrail = document.getElementById('cursorGlowTrail');
+
+        let glowX = 0, glowY = 0;
+        let trailX = 0, trailY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            glowX = e.clientX;
+            glowY = e.clientY;
+            
+            cursorGlow.style.left = glowX + 'px';
+            cursorGlow.style.top = glowY + 'px';
+            cursorGlow.classList.add('active');
+            cursorGlowTrail.classList.add('active');
+        });
+
+        // Smooth trail follow
+        function animateCursorTrail() {
+            trailX += (glowX - trailX) * 0.15;
+            trailY += (glowY - trailY) * 0.15;
+            
+            cursorGlowTrail.style.left = trailX + 'px';
+            cursorGlowTrail.style.top = trailY + 'px';
+            
+            requestAnimationFrame(animateCursorTrail);
+        }
+        animateCursorTrail();
+
+        // ============================================
+        // BACKEND ROUTES CONFIGURATION
+        // ============================================
+        const API_CONFIG = {
+            BASE_URL: 'http://localhost:3000/api',
+            ENDPOINTS: {
+                ANALYZE_TEXT: '/mood/analyze-text',
+                ANALYZE_VOICE: '/mood/analyze-voice',
+                SAVE_MOOD: '/mood/save',
+                GET_HISTORY: '/mood/history',
+                GET_ANALYTICS: '/mood/analytics',
+                GET_INSIGHTS: '/mood/insights'
+            }
+        };
+
+        // ============================================
+        // REAL SENTIMENT ANALYZER (NO API NEEDED)
+        // ============================================
+        class RealSentimentAnalyzer {
+            constructor() {
+                this.positiveWords = {
+                    'happy': 0.8, 'joy': 0.9, 'excited': 0.85, 'love': 0.95, 'amazing': 0.9,
+                    'wonderful': 0.85, 'great': 0.75, 'fantastic': 0.9, 'excellent': 0.85,
+                    'perfect': 0.9, 'beautiful': 0.8, 'awesome': 0.85, 'good': 0.7,
+                    'nice': 0.65, 'pleasant': 0.7, 'delightful': 0.8, 'cheerful': 0.75,
+                    'optimistic': 0.75, 'hopeful': 0.7, 'confident': 0.75, 'proud': 0.8,
+                    'grateful': 0.8, 'blessed': 0.85, 'lucky': 0.75, 'comfortable': 0.7,
+                    'relaxed': 0.75, 'calm': 0.7, 'peaceful': 0.8, 'content': 0.75,
+                    'satisfied': 0.7, 'pleased': 0.75, 'thrilled': 0.9, 'energetic': 0.8,
+                    'enthusiastic': 0.85, 'motivated': 0.75, 'inspired': 0.8, 'creative': 0.75
+                };
+
+                this.negativeWords = {
+                    'sad': -0.8, 'depressed': -0.9, 'down': -0.7, 'disappointed': -0.75,
+                    'hurt': -0.8, 'crying': -0.85, 'lonely': -0.8, 'terrible': -0.9,
+                    'awful': -0.85, 'horrible': -0.9, 'bad': -0.7, 'worse': -0.8,
+                    'worst': -0.9, 'hate': -0.9, 'angry': -0.85, 'mad': -0.8,
+                    'furious': -0.9, 'frustrated': -0.75, 'irritated': -0.7, 'annoyed': -0.65,
+                    'upset': -0.75, 'worried': -0.7, 'anxious': -0.8, 'nervous': -0.75,
+                    'stressed': -0.8, 'panic': -0.85, 'fear': -0.8, 'scared': -0.8,
+                    'afraid': -0.75, 'tired': -0.6, 'exhausted': -0.75, 'overwhelmed': -0.8,
+                    'sick': -0.7, 'pain': -0.75, 'difficult': -0.65, 'hard': -0.6,
+                    'struggle': -0.7, 'hopeless': -0.9, 'worthless': -0.95
+                };
+
+                this.intensifiers = {
+                    'very': 1.5, 'extremely': 1.8, 'really': 1.4, 'so': 1.3,
+                    'incredibly': 1.7, 'absolutely': 1.6, 'totally': 1.5,
+                    'completely': 1.6, 'quite': 1.2, 'pretty': 1.1
+                };
+
+                this.negators = ['not', 'no', 'never', 'neither', 'nobody', 'nothing', "don't", "didn't", "won't", "can't", "couldn't", "shouldn't"];
+            }
+
+            analyze(text) {
+                if (!text || text.trim().length < 3) {
+                    return {
+                        emotion: 'Neutral',
+                        moodScore: 5.0,
+                        confidence: 50,
+                        sentiment: 'neutral',
+                        description: 'Not enough text to analyze',
+                        keywords: []
+                    };
+                }
+
+                const words = text.toLowerCase()
+                    .replace(/[^\w\s']/g, ' ')
+                    .split(/\s+/)
+                    .filter(w => w.length > 0);
+
+                let totalScore = 0;
+                let wordCount = 0;
+                let detectedWords = [];
+                let emotionCounts = {
+                    positive: 0,
+                    negative: 0,
+                    neutral: 0
+                };
+
+                for (let i = 0; i < words.length; i++) {
+                    const word = words[i];
+                    let score = 0;
+                    let isNegated = false;
+
+                    if (i > 0) {
+                        for (let j = Math.max(0, i - 3); j < i; j++) {
+                            if (this.negators.includes(words[j])) {
+                                isNegated = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    let intensifier = 1.0;
+                    if (i > 0 && this.intensifiers[words[i - 1]]) {
+                        intensifier = this.intensifiers[words[i - 1]];
+                    }
+
+                    if (this.positiveWords[word]) {
+                        score = this.positiveWords[word] * intensifier;
+                        if (isNegated) score *= -0.8;
+                        emotionCounts.positive++;
+                        detectedWords.push({ word, score: score > 0 ? 'positive' : 'negative' });
+                    } else if (this.negativeWords[word]) {
+                        score = this.negativeWords[word] * intensifier;
+                        if (isNegated) score *= -0.5;
+                        emotionCounts.negative++;
+                        detectedWords.push({ word, score: score < 0 ? 'negative' : 'positive' });
+                    } else {
+                        emotionCounts.neutral++;
+                    }
+
+                    if (score !== 0) {
+                        totalScore += score;
+                        wordCount++;
+                    }
+                }
+
+                const avgScore = wordCount > 0 ? totalScore / wordCount : 0;
+                const moodScore = Math.max(0, Math.min(10, (avgScore + 1) * 5));
+                const confidence = Math.min(95, 50 + (wordCount * 5));
+                const emotion = this.determineEmotion(avgScore, emotionCounts);
+                const description = this.generateDescription(emotion, moodScore, avgScore);
+                const keywords = detectedWords.slice(0, 5).map(w => w.word);
+
+                return {
+                    emotion,
+                    moodScore: parseFloat(moodScore.toFixed(1)),
+                    confidence: Math.round(confidence),
+                    sentiment: avgScore > 0.2 ? 'positive' : avgScore < -0.2 ? 'negative' : 'neutral',
+                    description,
+                    keywords,
+                    rawScore: avgScore,
+                    emotionCounts
+                };
+            }
+
+            determineEmotion(avgScore, counts) {
+                if (avgScore >= 0.6) return 'Excited';
+                if (avgScore >= 0.4) return 'Happy';
+                if (avgScore >= 0.2) return 'Optimistic';
+                if (avgScore >= 0.05) return 'Content';
+                if (avgScore >= -0.05) return 'Neutral';
+                if (avgScore >= -0.2) return 'Uncertain';
+                if (avgScore >= -0.4) return 'Worried';
+                if (avgScore >= -0.6) return 'Sad';
+                return 'Distressed';
+            }
+
+            generateDescription(emotion, moodScore, rawScore) {
+                const descriptions = {
+                    'Excited': 'Showing high enthusiasm and positive energy',
+                    'Happy': 'Expressing joy and satisfaction with life',
+                    'Optimistic': 'Displaying hopeful and positive outlook',
+                    'Content': 'Feeling satisfied and at peace',
+                    'Neutral': 'Balanced emotional state without strong feelings',
+                    'Uncertain': 'Mixed emotions with slight concern',
+                    'Worried': 'Showing signs of anxiety or stress',
+                    'Sad': 'Expressing sadness or disappointment',
+                    'Distressed': 'Experiencing significant emotional difficulty'
+                };
+
+                return descriptions[emotion] || 'Analyzing emotional patterns';
+            }
+        }
+
+        const sentimentAnalyzer = new RealSentimentAnalyzer();
+
+        // [ALL REMAINING JAVASCRIPT CODE FROM ORIGINAL FILE - Three.js, Voice Recording, Text Analysis, Mood Scale, etc.]
+        // Global Three.js Variables
         let scene, camera, renderer, moodSphere, particles, ambientLight;
         let mouseX = 0, mouseY = 0;
         let targetRotationX = 0, targetRotationY = 0;
@@ -1632,7 +1823,7 @@
         let mediaRecorder;
         let audioChunks = [];
 
-        // Enhanced Loading Screen
+        // Loading Screen
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 document.getElementById('loadingScreen').classList.add('hide');
@@ -1646,7 +1837,6 @@
         function init3DMoodVisualization() {
             console.log('Starting 3D mood visualization...');
             
-            // Check if THREE is available
             if (typeof THREE === 'undefined') {
                 console.error('THREE.js not loaded! Using fallback...');
                 showMoodFallback();
@@ -1659,16 +1849,9 @@
                 return;
             }
             
-            console.log('Container dimensions:', {
-                width: container.clientWidth,
-                height: container.clientHeight
-            });
-            
             try {
-                // Scene setup
                 scene = new THREE.Scene();
                 
-                // Camera with container aspect ratio
                 const containerWidth = container.clientWidth || 300;
                 const containerHeight = container.clientHeight || 280;
                 
@@ -1680,7 +1863,6 @@
                 );
                 camera.position.z = 3;
                 
-                // Renderer setup for R150
                 renderer = new THREE.WebGLRenderer({ 
                     antialias: true, 
                     alpha: true,
@@ -1691,31 +1873,30 @@
                 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
                 renderer.setClearColor(0x000000, 0);
                 
-                // Clear container and add canvas
                 container.innerHTML = '';
                 container.appendChild(renderer.domElement);
                 
                 console.log('3D Mood renderer created');
 
-                // Lighting - Emotional and Dynamic
-                ambientLight = new THREE.AmbientLight(0x667eea, 0.4);
+                // Lighting
+                ambientLight = new THREE.AmbientLight(0x0d9488, 0.4);
                 scene.add(ambientLight);
 
-                const directionalLight = new THREE.DirectionalLight(0x4facfe, 1.0);
+                const directionalLight = new THREE.DirectionalLight(0x14b8a6, 1.0);
                 directionalLight.position.set(3, 3, 3);
                 scene.add(directionalLight);
 
-                const pointLight = new THREE.PointLight(0xf093fb, 0.8, 10);
+                const pointLight = new THREE.PointLight(0xf97316, 0.8, 10);
                 pointLight.position.set(-2, 2, 2);
                 scene.add(pointLight);
 
-                // Main Mood Sphere - Responds to Emotional State
+                // Mood Sphere
                 const sphereGeometry = new THREE.SphereGeometry(1.2, 32, 32);
                 const sphereMaterial = new THREE.MeshStandardMaterial({
-                    color: 0x667eea,
+                    color: 0x0d9488,
                     metalness: 0.7,
                     roughness: 0.3,
-                    emissive: 0x221144,
+                    emissive: 0x064e3b,
                     emissiveIntensity: 0.3,
                     transparent: true,
                     opacity: 0.85
@@ -1726,17 +1907,13 @@
 
                 console.log('Mood sphere added to scene');
 
-                // Add Emotional Particles
                 createEmotionalParticles();
 
-                // Mouse interaction
                 container.addEventListener('mousemove', onMoodMouseMove, false);
                 container.addEventListener('mouseleave', onMoodMouseLeave, false);
 
-                // Resize handler
                 window.addEventListener('resize', onMoodWindowResize, false);
 
-                // Mark as initialized and start animation
                 isThreeInitialized = true;
                 animate3DMood();
                 
@@ -1758,7 +1935,6 @@
                 const colors = new Float32Array(particleCount * 3);
                 
                 for (let i = 0; i < particleCount; i++) {
-                    // Position particles in a sphere around the mood sphere
                     const radius = 2 + Math.random() * 1;
                     const theta = Math.random() * Math.PI * 2;
                     const phi = Math.random() * Math.PI;
@@ -1767,23 +1943,15 @@
                     positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
                     positions[i * 3 + 2] = radius * Math.cos(phi);
                     
-                    // Emotional colors
                     const colorVariation = Math.random();
-                    if (colorVariation < 0.33) {
-                        // Blue tones - calm
-                        colors[i * 3] = 0.3 + Math.random() * 0.2;     // R
-                        colors[i * 3 + 1] = 0.5 + Math.random() * 0.3; // G  
-                        colors[i * 3 + 2] = 0.8 + Math.random() * 0.2; // B
-                    } else if (colorVariation < 0.66) {
-                        // Purple tones - creative
-                        colors[i * 3] = 0.6 + Math.random() * 0.3;     // R
-                        colors[i * 3 + 1] = 0.2 + Math.random() * 0.3; // G
-                        colors[i * 3 + 2] = 0.8 + Math.random() * 0.2; // B
+                    if (colorVariation < 0.5) {
+                        colors[i * 3] = 0.05 + Math.random() * 0.1;
+                        colors[i * 3 + 1] = 0.58 + Math.random() * 0.2;
+                        colors[i * 3 + 2] = 0.53 + Math.random() * 0.2;
                     } else {
-                        // Pink tones - happy
-                        colors[i * 3] = 0.8 + Math.random() * 0.2;     // R
-                        colors[i * 3 + 1] = 0.4 + Math.random() * 0.3; // G
-                        colors[i * 3 + 2] = 0.7 + Math.random() * 0.3; // B
+                        colors[i * 3] = 0.98 + Math.random() * 0.02;
+                        colors[i * 3 + 1] = 0.45 + Math.random() * 0.2;
+                        colors[i * 3 + 2] = 0.09 + Math.random() * 0.1;
                     }
                 }
                 
@@ -1846,19 +2014,15 @@
 
             try {
                 if (moodSphere) {
-                    // Interactive rotation
                     moodSphere.rotation.x += (targetRotationX - moodSphere.rotation.x) * 0.03;
                     moodSphere.rotation.y += (targetRotationY - moodSphere.rotation.y) * 0.03;
                     
-                    // Continuous gentle rotation
                     moodSphere.rotation.x += 0.002;
                     moodSphere.rotation.y += 0.003;
                     
-                    // Mood-based pulsing
                     const moodScale = 1 + (currentMoodScore / 10) * 0.2 + Math.sin(Date.now() * 0.002) * 0.1;
                     moodSphere.scale.setScalar(moodScale);
                     
-                    // Color changes based on mood
                     updateMoodSphereColor(currentMoodScore);
                 }
 
@@ -1866,24 +2030,18 @@
                     particles.rotation.y += 0.001;
                     particles.rotation.x += 0.0005;
                     
-                    // Gentle particle movement based on mood
                     const positions = particles.geometry.attributes.position.array;
                     const time = Date.now() * 0.001;
                     
                     for (let i = 0; i < positions.length; i += 3) {
-                        const originalX = positions[i];
-                        const originalY = positions[i + 1];
-                        const originalZ = positions[i + 2];
-                        
-                        positions[i] += Math.sin(time + originalX) * 0.005;
-                        positions[i + 1] += Math.cos(time + originalY) * 0.005;
-                        positions[i + 2] += Math.sin(time * 0.5 + originalZ) * 0.003;
+                        positions[i] += Math.sin(time + positions[i]) * 0.005;
+                        positions[i + 1] += Math.cos(time + positions[i + 1]) * 0.005;
+                        positions[i + 2] += Math.sin(time * 0.5 + positions[i + 2]) * 0.003;
                     }
                     particles.geometry.attributes.position.needsUpdate = true;
                 }
 
                 if (ambientLight) {
-                    // Mood-based ambient light intensity
                     const lightIntensity = 0.3 + (currentMoodScore / 10) * 0.4;
                     ambientLight.intensity = lightIntensity;
                 }
@@ -1900,36 +2058,29 @@
         function updateMoodSphereColor(moodScore) {
             if (!moodSphere) return;
             
-            // Color mapping based on mood score (0-10)
             let color, emissiveColor;
             
             if (moodScore >= 8) {
-                // Happy - Bright blue/purple
-                color = new THREE.Color().setHSL(0.7, 0.8, 0.6);
-                emissiveColor = new THREE.Color().setHSL(0.7, 0.6, 0.3);
+                color = new THREE.Color(0x14b8a6);
+                emissiveColor = new THREE.Color(0x0d9488);
             } else if (moodScore >= 6) {
-                // Good - Cool blue
-                color = new THREE.Color().setHSL(0.6, 0.7, 0.5);
-                emissiveColor = new THREE.Color().setHSL(0.6, 0.5, 0.2);
+                color = new THREE.Color(0x0d9488);
+                emissiveColor = new THREE.Color(0x0f766e);
             } else if (moodScore >= 4) {
-                // Neutral - Purple/pink
-                color = new THREE.Color().setHSL(0.8, 0.6, 0.5);
-                emissiveColor = new THREE.Color().setHSL(0.8, 0.4, 0.2);
+                color = new THREE.Color(0xf59e0b);
+                emissiveColor = new THREE.Color(0xd97706);
             } else if (moodScore >= 2) {
-                // Low - Orange/red
-                color = new THREE.Color().setHSL(0.1, 0.7, 0.5);
-                emissiveColor = new THREE.Color().setHSL(0.1, 0.5, 0.2);
+                color = new THREE.Color(0xf97316);
+                emissiveColor = new THREE.Color(0xea580c);
             } else {
-                // Very low - Red
-                color = new THREE.Color().setHSL(0.0, 0.8, 0.4);
-                emissiveColor = new THREE.Color().setHSL(0.0, 0.6, 0.2);
+                color = new THREE.Color(0xdc2626);
+                emissiveColor = new THREE.Color(0xb91c1c);
             }
             
             moodSphere.material.color = color;
             moodSphere.material.emissive = emissiveColor;
         }
 
-        // Fallback visualization if Three.js fails
         function showMoodFallback() {
             const container = document.getElementById('threeMoodContainer');
             if (!container) return;
@@ -1942,7 +2093,7 @@
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
-                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    background: linear-gradient(135deg, #0d9488, #0f766e);
                     border-radius: 50%;
                     color: white;
                     text-align: center;
@@ -1960,7 +2111,7 @@
                         animation: gentleFloat 3s ease-in-out infinite;
                         border: 4px solid rgba(255,255,255,0.3);
                     ">
-                        🎭
+                        <i class="fas fa-brain" style="color: white;"></i>
                     </div>
                     <div style="font-size: 1.1rem; font-weight: 600; opacity: 0.9;">
                         Mood Analysis
@@ -1971,11 +2122,7 @@
             console.log('Mood fallback visualization displayed');
         }
 
-        // GEMINI API CONFIGURATION (same as original)
-        const GEMINI_API_KEY = 'YOUR_GEMINI_API_KEY_HERE';
-        const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
-
-        // Initialize voice visualizer bars
+        // Initialize voice visualizer
         function initializeVoiceVisualizer() {
             const voiceWaves = document.getElementById('voiceWaves');
             for (let i = 0; i < 40; i++) {
@@ -1986,15 +2133,13 @@
             }
         }
 
-        // Load user data from localStorage
+        // Load user data
         function loadUserData() {
             const userData = JSON.parse(localStorage.getItem('eirene-mood-data') || '{}');
             
-            // Update stats
             document.getElementById('totalAnalyses').textContent = userData.totalAnalyses || 247;
             document.getElementById('streakDays').textContent = userData.streakDays || 12;
             
-            // Load mood history
             const moodHistory = JSON.parse(localStorage.getItem('eirene-mood-history') || '[]');
             if (moodHistory.length > 0) {
                 const latestMood = moodHistory[moodHistory.length - 1];
@@ -2002,7 +2147,7 @@
             }
         }
 
-        // Smooth Scroll Progress Bar
+        // Scroll Progress
         function updateScrollProgress() {
             const scrollTop = window.scrollY;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -2010,7 +2155,7 @@
             document.getElementById('scrollProgress').style.width = scrollPercent + '%';
         }
 
-        // Enhanced Theme Toggle
+        // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
         const themeIcon = themeToggle.querySelector('i');
@@ -2034,9 +2179,9 @@
             }
         });
 
-        // Ultra Smooth Scroll Effects
+        // Scroll Effects
         const header = document.getElementById('header');
-        const scrollTop = document.getElementById('scrollTop');
+        const scrollTopBtn = document.getElementById('scrollTop');
         let ticking = false;
 
         function updateScrollEffects() {
@@ -2044,10 +2189,10 @@
             
             if (window.scrollY > 100) {
                 header.classList.add('scrolled');
-                scrollTop.classList.add('show');
+                scrollTopBtn.classList.add('show');
             } else {
                 header.classList.remove('scrolled');
-                scrollTop.classList.remove('show');
+                scrollTopBtn.classList.remove('show');
             }
             ticking = false;
         }
@@ -2059,14 +2204,16 @@
             }
         });
 
-        scrollTop.addEventListener('click', () => {
+        scrollTopBtn.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
 
-        // ADVANCED TEXT ANALYSIS WITH GEMINI (same as original)
+        // ============================================
+        // REAL TEXT ANALYSIS
+        // ============================================
         const textInput = document.getElementById('textMoodInput');
         const charCounter = document.getElementById('charCounter');
         const typingIndicator = document.getElementById('typingIndicator');
@@ -2076,7 +2223,6 @@
             const length = textInput.value.length;
             charCounter.textContent = `${length} / 500`;
             
-            // Update counter color based on length
             if (length > 450) {
                 charCounter.style.color = 'var(--error-color)';
             } else if (length > 300) {
@@ -2089,147 +2235,46 @@
             if (length > 15) {
                 typingIndicator.classList.add('show');
                 analysisTimeout = setTimeout(() => {
-                    analyzeTextWithGemini(textInput.value);
-                }, 2000);
+                    analyzeTextRealTime(textInput.value);
+                }, 1500);
             } else {
                 typingIndicator.classList.remove('show');
             }
         });
 
-        async function analyzeTextWithGemini(text) {
-            try {
-                const prompt = `Analyze this text for emotional content and mood: "${text}"
-
-                Respond ONLY in this JSON format:
-                {
-                    "emotion": "primary emotion (Happy/Sad/Anxious/Calm/Excited/Angry/Neutral/Optimistic/etc.)",
-                    "confidence": 85,
-                    "moodScore": 7.5,
-                    "description": "Brief analysis in one sentence",
-                    "keywords": ["positive", "energetic", "focused"]
-                }
-
-                Be accurate and professional.`;
-
-                const result = await callGeminiAPI(prompt);
-                const analysis = JSON.parse(result);
-                
-                updateMoodFromAnalysis(analysis);
-                typingIndicator.classList.remove('show');
-                
-            } catch (error) {
-                console.error('Gemini analysis failed:', error);
-                fallbackTextAnalysis(text);
-                typingIndicator.classList.remove('show');
-            }
-        }
-
-        // GEMINI API CALL FUNCTION (same as original)
-        async function callGeminiAPI(prompt) {
-            const requestBody = {
-                contents: [{
-                    parts: [{
-                        text: prompt
-                    }]
-                }],
-                generationConfig: {
-                    temperature: 0.2,
-                    topK: 10,
-                    topP: 0.8,
-                    maxOutputTokens: 200,
-                }
-            };
-
-            const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(requestBody)
+        function analyzeTextRealTime(text) {
+            console.log('Analyzing text with Real Sentiment Analyzer...');
+            
+            const analysis = sentimentAnalyzer.analyze(text);
+            
+            console.log('Analysis Result:', analysis);
+            
+            updateMoodFromAnalysis({
+                emotion: analysis.emotion,
+                confidence: analysis.confidence,
+                moodScore: analysis.moodScore,
+                description: analysis.description,
+                keywords: analysis.keywords
             });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const data = await response.json();
-            return data.candidates[0].content.parts[0].text;
+            
+            typingIndicator.classList.remove('show');
         }
 
-        // FALLBACK TEXT ANALYSIS (same as original)
-        function fallbackTextAnalysis(text) {
-            const words = text.toLowerCase();
-            let moodScore = 5.0;
-            let emotion = 'Neutral';
-            let confidence = 75;
-
-            // Advanced keyword analysis
-            const emotionKeywords = {
-                'happy': ['happy', 'joy', 'excited', 'love', 'amazing', 'wonderful', 'great', 'fantastic'],
-                'sad': ['sad', 'depressed', 'down', 'disappointed', 'hurt', 'crying', 'lonely'],
-                'anxious': ['anxious', 'worried', 'nervous', 'stressed', 'panic', 'fear', 'scared'],
-                'calm': ['calm', 'peaceful', 'relaxed', 'serene', 'tranquil', 'quiet', 'zen'],
-                'excited': ['excited', 'thrilled', 'pumped', 'energetic', 'enthusiastic'],
-                'angry': ['angry', 'mad', 'furious', 'frustrated', 'irritated', 'annoyed']
-            };
-
-            let maxCount = 0;
-            let detectedEmotion = 'neutral';
-
-            for (const [key, keywords] of Object.entries(emotionKeywords)) {
-                const count = keywords.filter(keyword => words.includes(keyword)).length;
-                if (count > maxCount) {
-                    maxCount = count;
-                    detectedEmotion = key;
-                }
-            }
-
-            // Calculate mood score
-            const emotionScores = {
-                'happy': 8.5,
-                'excited': 8.0,
-                'calm': 7.0,
-                'neutral': 5.0,
-                'anxious': 3.5,
-                'sad': 2.5,
-                'angry': 2.0
-            };
-
-            emotion = detectedEmotion.charAt(0).toUpperCase() + detectedEmotion.slice(1);
-            moodScore = emotionScores[detectedEmotion] || 5.0;
-            confidence = Math.min(95, 60 + (maxCount * 10));
-
-            const analysis = {
-                emotion: emotion,
-                confidence: confidence,
-                moodScore: moodScore,
-                description: `Analysis based on ${maxCount} emotional indicators`,
-                keywords: emotionKeywords[detectedEmotion].slice(0, 3)
-            };
-
-            updateMoodFromAnalysis(analysis);
-        }
-
-        // UPDATE MOOD FROM ANALYSIS (updated to sync with 3D)
         function updateMoodFromAnalysis(analysis) {
             currentMoodScore = analysis.moodScore;
             
-            // Update mood display
             updateMoodDisplay(analysis.moodScore);
             
-            // Update confidence
             document.getElementById('moodConfidence').textContent = `${analysis.confidence}% confidence • ${analysis.emotion}`;
             
-            // Update 3D visualization
             if (isThreeInitialized) {
                 updateMoodSphereColor(currentMoodScore);
             }
             
-            // Save analysis
             saveAnalysisData(analysis);
         }
 
-        // Voice recording functions (same as original)
+        // Voice recording
         const voiceBtn = document.getElementById('voiceBtn');
         const voiceStatus = document.getElementById('voiceStatus');
 
@@ -2273,10 +2318,8 @@
                 voiceBtn.querySelector('i').className = 'fas fa-stop';
                 voiceStatus.textContent = 'Recording... speak naturally for 5-10 seconds';
                 
-                // Start voice visualization
                 startVoiceVisualization();
                 
-                // Auto-stop after 10 seconds
                 setTimeout(() => {
                     if (isRecording) {
                         stopVoiceRecording();
@@ -2314,7 +2357,6 @@
         }
 
         function analyzeVoiceData(audioBlob) {
-            // Simulate voice analysis (in production, you'd send to speech-to-text API)
             setTimeout(() => {
                 const voiceEmotions = [
                     { emotion: 'Calm', confidence: 89, moodScore: 7.2, description: 'Steady pace with clear articulation' },
@@ -2335,16 +2377,14 @@
             }, 2000);
         }
 
-        // INTERACTIVE MOOD SCALE (same as original but updates 3D)
+        // MOOD SCALE
         const moodScale = document.getElementById('moodScale');
         const moodIndicator = document.getElementById('moodIndicator');
         const moodRating = document.getElementById('moodRating');
         const feedbackText = document.getElementById('feedbackText');
 
-        // Initialize mood scale
         updateMoodDisplay(currentMoodScore);
 
-        // Click handler for mood scale
         moodScale.addEventListener('click', (e) => {
             if (!isDragging) {
                 const rect = moodScale.getBoundingClientRect();
@@ -2355,14 +2395,12 @@
                 updateMoodDisplay(clampedMood);
                 currentMoodScore = clampedMood;
                 
-                // Update 3D visualization
                 if (isThreeInitialized) {
                     updateMoodSphereColor(currentMoodScore);
                 }
             }
         });
 
-        // Drag functionality for mood indicator
         let startX = 0;
         let startLeft = 0;
 
@@ -2390,7 +2428,6 @@
             updateMoodDisplay(newMood);
             currentMoodScore = newMood;
             
-            // Update 3D visualization in real-time
             if (isThreeInitialized) {
                 updateMoodSphereColor(currentMoodScore);
             }
@@ -2404,40 +2441,37 @@
             document.removeEventListener('mouseup', onMouseUp);
         }
 
-        // UPDATE MOOD DISPLAY (same as original)
+        // UPDATE MOOD DISPLAY WITH ICONS
         function updateMoodDisplay(mood) {
             const percentage = (mood / 10) * 100;
             moodIndicator.style.left = `${percentage}%`;
             
-            // Update main mood display
             document.getElementById('currentMood').textContent = mood.toFixed(1);
             moodRating.textContent = `${mood.toFixed(1)}/10`;
             
-            // Update emoji based on mood
-            const moodEmoji = document.getElementById('moodEmoji');
-            const moodTrend = document.getElementById('moodTrend');
+            const moodIconDisplay = document.getElementById('moodIconDisplay');
+            const moodTrendIcon = document.getElementById('moodTrendIcon');
             
             if (mood >= 8.5) {
-                moodEmoji.textContent = '🤩';
-                moodTrend.textContent = '🚀';
+                moodIconDisplay.innerHTML = '<i class="fas fa-laugh-beam"></i>';
+                moodTrendIcon.innerHTML = '<i class="fas fa-rocket"></i>';
             } else if (mood >= 7.5) {
-                moodEmoji.textContent = '😊';
-                moodTrend.textContent = '📈';
+                moodIconDisplay.innerHTML = '<i class="fas fa-smile"></i>';
+                moodTrendIcon.innerHTML = '<i class="fas fa-arrow-trend-up"></i>';
             } else if (mood >= 6.5) {
-                moodEmoji.textContent = '🙂';
-                moodTrend.textContent = '➡️';
+                moodIconDisplay.innerHTML = '<i class="fas fa-smile-beam"></i>';
+                moodTrendIcon.innerHTML = '<i class="fas fa-arrow-right"></i>';
             } else if (mood >= 5.5) {
-                moodEmoji.textContent = '😐';
-                moodTrend.textContent = '➡️';
+                moodIconDisplay.innerHTML = '<i class="fas fa-meh"></i>';
+                moodTrendIcon.innerHTML = '<i class="fas fa-minus"></i>';
             } else if (mood >= 4.0) {
-                moodEmoji.textContent = '😔';
-                moodTrend.textContent = '📉';
+                moodIconDisplay.innerHTML = '<i class="fas fa-frown"></i>';
+                moodTrendIcon.innerHTML = '<i class="fas fa-arrow-trend-down"></i>';
             } else {
-                moodEmoji.textContent = '😢';
-                moodTrend.textContent = '⬇️';
+                moodIconDisplay.innerHTML = '<i class="fas fa-sad-tear"></i>';
+                moodTrendIcon.innerHTML = '<i class="fas fa-arrow-down"></i>';
             }
             
-            // Update description
             const descriptions = {
                 9: "You're feeling absolutely amazing! Everything seems to be going perfectly.",
                 8: "You're in an excellent mood with high energy and positivity.",
@@ -2456,10 +2490,7 @@
             feedbackText.textContent = description;
         }
 
-        // Rest of the functions remain the same as the original...
-        // (saveAnalysisData, isConsecutiveDay, updateAnalytics, etc.)
-
-        // SAVE ANALYSIS DATA (same as original)
+        // SAVE ANALYSIS DATA
         function saveAnalysisData(analysis) {
             const timestamp = new Date().toISOString();
             const moodData = {
@@ -2470,23 +2501,19 @@
                 description: analysis.description
             };
             
-            // Save to history
             let history = JSON.parse(localStorage.getItem('eirene-mood-history') || '[]');
             history.push(moodData);
             
-            // Keep only last 50 entries
             if (history.length > 50) {
                 history = history.slice(-50);
             }
             
             localStorage.setItem('eirene-mood-history', JSON.stringify(history));
             
-            // Update user stats
             const userData = JSON.parse(localStorage.getItem('eirene-mood-data') || '{}');
             userData.totalAnalyses = (userData.totalAnalyses || 0) + 1;
             userData.lastUpdate = timestamp;
             
-            // Update streak
             const today = new Date().toDateString();
             const lastDate = userData.lastDate;
             
@@ -2501,12 +2528,10 @@
             
             localStorage.setItem('eirene-mood-data', JSON.stringify(userData));
             
-            // Update UI
             document.getElementById('totalAnalyses').textContent = userData.totalAnalyses;
             document.getElementById('streakDays').textContent = userData.streakDays;
         }
 
-        // Helper function to check consecutive days
         function isConsecutiveDay(lastDate, currentDate) {
             if (!lastDate) return false;
             
@@ -2518,34 +2543,33 @@
             return diffDays === 1;
         }
 
-        // Auto-update analytics
+        // Update analytics
         function updateAnalytics() {
             const history = JSON.parse(localStorage.getItem('eirene-mood-history') || '[]');
             
             if (history.length > 1) {
-                const recent = history.slice(-7); // Last 7 entries
+                const recent = history.slice(-7);
                 const avgMood = recent.reduce((sum, entry) => sum + entry.moodScore, 0) / recent.length;
                 
                 document.getElementById('weeklyAvg').textContent = `${avgMood.toFixed(1)}/10`;
                 
-                // Calculate daily change
                 const today = history[history.length - 1]?.moodScore || currentMoodScore;
                 const yesterday = history[history.length - 2]?.moodScore || currentMoodScore;
                 const change = ((today - yesterday) / yesterday * 100).toFixed(0);
                 
                 document.getElementById('dailyChange').textContent = `${change > 0 ? '+' : ''}${change}%`;
                 
-                // Update positive ratio
                 const positiveCount = recent.filter(entry => entry.moodScore >= 6).length;
                 const positiveRatio = (positiveCount / recent.length * 100).toFixed(0);
                 document.getElementById('positiveRatio').textContent = `${positiveRatio}%`;
             }
         }
 
-        // Update analytics on load
         updateAnalytics();
         
-        console.log('Advanced Mood Tracker with 3D visualization ready! 🎭✨');
+        console.log('✅ Advanced Mood Tracker with Cursor Glow Ready!');
+        console.log('✅ Real Sentiment Analyzer Active!');
+        console.log('✅ Backend Routes Ready for Integration!');
     </script>
 </body>
 </html>

@@ -5,6 +5,10 @@ import os
 from datetime import datetime, timedelta
 from models import User
 from shared.db_config import init_db
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 CORS(app)
@@ -14,44 +18,58 @@ init_db()
 
 @app.route('/register', methods=['POST'])
 def register():
+    """Register new user"""
     try:
         data = request.get_json()
-        email = data.get('email')
-        password = data.get('password')
+        email = data.get('email', '').strip()
+        password = data.get('password', '').strip()
+        name = data.get('name', '').strip()
         
         if not email or not password:
             return jsonify({'error': 'Email and password required'}), 400
+        
+        if len(password) < 6:
+            return jsonify({'error': 'Password must be at least 6 characters'}), 400
         
         # Check if user already exists
         if User.find_by_email(email):
             return jsonify({'error': 'Email already registered'}), 409
         
         # Create new user
-        user = User(email, password)
+        user = User(email, password, name)
         user_id = user.save()
+        
+        if not user_id:
+            return jsonify({'error': 'Failed to create user'}), 500
         
         # Generate JWT token
         token = jwt.encode({
             'user_id': user_id,
             'email': email,
-            'exp': datetime.utcnow() + timedelta(days=7)
-        }, os.getenv('JWT_SECRET'), algorithm='HS256')
+            'exp': datetime.utcnow() + timedelta(days=int(os.getenv('JWT_EXPIRATION_DAYS', 7)))
+        }, os.getenv('JWT_SECRET'), algorithm=os.getenv('JWT_ALGORITHM', 'HS256'))
+        
+        logger.info(f"User registered: {email}")
         
         return jsonify({
             'message': 'User registered successfully',
             'token': token,
-            'user_id': user_id
+            'user_id': user_id,
+            'email': email,
+            'name': name
         }), 201
         
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        logger.error(f"Registration error: {str(e)}")
+        return jsonify({'error': 'Registration failed'}), 500
 
 @app.route('/login', methods=['POST'])
 def login():
+    """Login user"""
     try:
         data = request.get_json()
-        email = data.get('email')
-        password = data.get('password')
+        email = data.get('email', '').strip()
+        password = data.get('password', '').strip()
         
         if not email or not password:
             return jsonify({'error': 'Email and password required'}), 400
@@ -61,25 +79,38 @@ def login():
         if not user or not user.check_password(password):
             return jsonify({'error': 'Invalid credentials'}), 401
         
+        # Update last activity
+        User.update_last_activity(user._id)
+        
         # Generate JWT token
         token = jwt.encode({
             'user_id': user._id,
             'email': email,
-            'exp': datetime.utcnow() + timedelta(days=7)
-        }, os.getenv('JWT_SECRET'), algorithm='HS256')
+            'exp': datetime.utcnow() + timedelta(days=int(os.getenv('JWT_EXPIRATION_DAYS', 7)))
+        }, os.getenv('JWT_SECRET'), algorithm=os.getenv('JWT_ALGORITHM', 'HS256'))
+        
+        logger.info(f"User logged in: {email}")
         
         return jsonify({
             'message': 'Login successful',
             'token': token,
-            'user_id': user._id
+            'user_id': user._id,
+            'email': email,
+            'name': user.name
         }), 200
         
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        logger.error(f"Login error: {str(e)}")
+        return jsonify({'error': 'Login failed'}), 500
 
 @app.route('/health', methods=['GET'])
 def health():
-    return jsonify({'status': 'Auth service running'}), 200
+    """Health check endpoint"""
+    return jsonify({
+        'status': 'healthy',
+        'service': 'auth-service',
+        'version': os.getenv('APP_VERSION', '2.0.0')
+    }), 200
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001, debug=True)
+    app.run(host='0.0.0.0', port=5001, debug=os.getenv('FLASK_DEBUG', 'False') == 'True')

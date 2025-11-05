@@ -1,0 +1,108 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: eirene-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=eirene
+
+  api-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile.gateway
+    container_name: eirene-gateway
+    ports:
+      - "5000:5000"
+    depends_on:
+      - auth-service
+      - mood-service
+      - creative-therapy-service
+      - notification-service
+      - analytics-service
+    env_file:
+      - .env
+    volumes:
+      - ./api-gateway:/app
+
+  auth-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.auth
+    container_name: eirene-auth
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongodb
+    env_file:
+      - .env
+    volumes:
+      - ./auth-service:/app
+      - ./shared:/app/shared
+
+  mood-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.mood
+    container_name: eirene-mood
+    ports:
+      - "5002:5002"
+    depends_on:
+      - mongodb
+      - analytics-service
+    env_file:
+      - .env
+    volumes:
+      - ./mood-service:/app
+      - ./shared:/app/shared
+
+  creative-therapy-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.therapy
+    container_name: eirene-therapy
+    ports:
+      - "5003:5003"
+    depends_on:
+      - mongodb
+    env_file:
+      - .env
+    volumes:
+      - ./creative-therapy-service:/app
+
+  notification-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.notification
+    container_name: eirene-notification
+    ports:
+      - "5004:5004"
+    depends_on:
+      - mongodb
+    env_file:
+      - .env
+    volumes:
+      - ./notification-service:/app
+      - ./shared:/app/shared
+
+  analytics-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.analytics
+    container_name: eirene-analytics
+    ports:
+      - "5005:5005"
+    depends_on:
+      - mongodb
+    env_file:
+      - .env
+    volumes:
+      - ./analytics-service:/app
+      - ./shared:/app/shared
+
+volumes:
+  mongodb_data:

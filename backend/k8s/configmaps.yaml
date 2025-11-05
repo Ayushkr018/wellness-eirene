@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: eirene-config
+  namespace: eirene-prod
+data:
+  APP_NAME: "Eirene AI Mental Wellness Platform"
+  APP_VERSION: "4.0.0"
+  APP_PHASE: "4"
+  FLASK_ENV: "production"
+  LOG_LEVEL: "INFO"
+  
+  # MongoDB
+  MONGODB_URI: "mongodb://mongodb-service:27017/eirene"
+  
+  # Redis
+  REDIS_HOST: "redis-service"
+  REDIS_PORT: "6379"
+  REDIS_DB: "0"
+  REDIS_CACHE_TTL: "3600"
+  
+  # Service URLs
+  AUTH_SERVICE_URL: "http://auth-service:5001"
+  MOOD_SERVICE_URL: "http://mood-service:5002"
+  CREATIVE_THERAPY_SERVICE_URL: "http://creative-therapy-service:5003"
+  NOTIFICATION_SERVICE_URL: "http://notification-service:5004"
+  ANALYTICS_SERVICE_URL: "http://analytics-service:5005"
+  AI_ENGINE_URL: "http://ai-engine:5006"
+  RESOURCE_FINDER_URL: "http://resource-finder:5007"
+  PRIVACY_SERVICE_URL: "http://privacy-service:5008"
+  MULTILINGUAL_SERVICE_URL: "http://multilingual-service:5009"
+  CRISIS_MANAGER_URL: "http://crisis-manager:5010"
+  GAMIFICATION_SERVICE_URL: "http://gamification-service:5011"
+  
+  # Features
+  PREDICTION_HORIZON_DAYS: "7"
+  MIN_HISTORY_FOR_PREDICTION: "7"
+  USER_CONTEXT_HISTORY_LIMIT: "10"
+  DATA_RETENTION_DAYS: "730"
+  CRISIS_THRESHOLD: "0.8"
+  AUTO_TRIGGER_RESOURCES: "true"
+  
+  # Performance
+  MAX_WORKERS: "4"
+  REQUEST_TIMEOUT: "30"
+  RATE_LIMIT_PER_MINUTE: "60"
